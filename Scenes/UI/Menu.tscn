@@ -1,0 +1,325 @@
+[gd_scene load_steps=6 format=3 uid="uid://bn610g1y3m6q4"]
+
+[ext_resource type="Script" path="res://Code/UI/Menu.cs" id="1_6jges"]
+[ext_resource type="Theme" uid="uid://cnni4p646elf0" path="res://main_theme.tres" id="2_3223l"]
+[ext_resource type="Script" path="res://Code/Settings/SettingAudioBus.cs" id="2_m1w02"]
+[ext_resource type="Script" path="res://Code/Settings/SettingScreenMode.cs" id="3_4bdpt"]
+[ext_resource type="Script" path="res://Code/Settings/SettingLanguage.cs" id="3_t4xhp"]
+
+[node name="Menu" type="Control" node_paths=PackedStringArray("_main", "_settings", "_authors", "_startButton", "_settingsButton", "_authorsButton", "_exitButton", "_returnFromSettingsButton", "_returnFromAuthorsButton", "_exitConfirmationDialog")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6jges")
+_main = NodePath("Main")
+_settings = NodePath("Settings")
+_authors = NodePath("Authors")
+_startButton = NodePath("Main/VBoxContainer/StartButton")
+_settingsButton = NodePath("Main/VBoxContainer/SettingsButton")
+_authorsButton = NodePath("Main/VBoxContainer/AuthorsButton")
+_exitButton = NodePath("Main/VBoxContainer/ExitButton")
+_returnFromSettingsButton = NodePath("Settings/BackButton")
+_returnFromAuthorsButton = NodePath("Authors/BackButton")
+_exitConfirmationDialog = NodePath("ConfirmationDialog")
+
+[node name="Main" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -68.0
+offset_right = 100.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartButton" type="Button" parent="Main/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_3223l")
+text = "Start"
+
+[node name="SettingsButton" type="Button" parent="Main/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_3223l")
+text = "Settings"
+
+[node name="AuthorsButton" type="Button" parent="Main/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_3223l")
+text = "Authors"
+
+[node name="ExitButton" type="Button" parent="Main/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_3223l")
+text = "Exit"
+
+[node name="Settings" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="RichTextLabel" parent="Settings"]
+custom_minimum_size = Vector2(600, 30)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_top = 80.0
+offset_right = 300.0
+offset_bottom = 110.0
+grow_horizontal = 2
+theme = ExtResource("2_3223l")
+bbcode_enabled = true
+text = "[center]Settings"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -68.0
+offset_right = 300.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Localization" type="HBoxContainer" parent="Settings/VBoxContainer" node_paths=PackedStringArray("_menuButton")]
+layout_mode = 2
+script = ExtResource("3_t4xhp")
+_menuButton = NodePath("MenuButton")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Settings/VBoxContainer/Localization"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("2_3223l")
+text = "Язык локализации"
+fit_content = true
+
+[node name="MenuButton" type="MenuButton" parent="Settings/VBoxContainer/Localization"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_3223l")
+text = "Russian"
+flat = false
+
+[node name="WindowMode" type="HBoxContainer" parent="Settings/VBoxContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Settings/VBoxContainer/WindowMode"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("2_3223l")
+text = "Режим экрана"
+fit_content = true
+
+[node name="MenuButton" type="MenuButton" parent="Settings/VBoxContainer/WindowMode"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_3223l")
+text = "Windowed"
+flat = false
+item_count = 2
+popup/item_0/text = "Windowed"
+popup/item_0/id = 0
+popup/item_1/text = "Fullscreen"
+popup/item_1/id = 1
+script = ExtResource("3_4bdpt")
+
+[node name="MasterVolume" type="HBoxContainer" parent="Settings/VBoxContainer" node_paths=PackedStringArray("_slider", "_spinBox")]
+layout_mode = 2
+script = ExtResource("2_m1w02")
+_slider = NodePath("HSlider")
+_spinBox = NodePath("SpinBox")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Settings/VBoxContainer/MasterVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("2_3223l")
+text = "Общая громокость"
+fit_content = true
+
+[node name="HSlider" type="HSlider" parent="Settings/VBoxContainer/MasterVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_3223l")
+
+[node name="SpinBox" type="SpinBox" parent="Settings/VBoxContainer/MasterVolume"]
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("2_3223l")
+
+[node name="SFXVolume" type="HBoxContainer" parent="Settings/VBoxContainer" node_paths=PackedStringArray("_slider", "_spinBox")]
+layout_mode = 2
+script = ExtResource("2_m1w02")
+_bus = 1
+_slider = NodePath("HSlider")
+_spinBox = NodePath("SpinBox")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Settings/VBoxContainer/SFXVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("2_3223l")
+text = "Громкость звуковых эффектов"
+fit_content = true
+
+[node name="HSlider" type="HSlider" parent="Settings/VBoxContainer/SFXVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_3223l")
+
+[node name="SpinBox" type="SpinBox" parent="Settings/VBoxContainer/SFXVolume"]
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("2_3223l")
+
+[node name="MusicVolume" type="HBoxContainer" parent="Settings/VBoxContainer" node_paths=PackedStringArray("_slider", "_spinBox")]
+layout_mode = 2
+script = ExtResource("2_m1w02")
+_bus = 2
+_slider = NodePath("HSlider")
+_spinBox = NodePath("SpinBox")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Settings/VBoxContainer/MusicVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("2_3223l")
+text = "Громкость музыки"
+fit_content = true
+
+[node name="HSlider" type="HSlider" parent="Settings/VBoxContainer/MusicVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_3223l")
+
+[node name="SpinBox" type="SpinBox" parent="Settings/VBoxContainer/MusicVolume"]
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("2_3223l")
+
+[node name="BackButton" type="Button" parent="Settings"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -22.5
+offset_top = -111.0
+offset_right = 22.5
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_3223l")
+text = "Back"
+
+[node name="Authors" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="RichTextLabel" parent="Authors"]
+custom_minimum_size = Vector2(600, 30)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_top = 80.0
+offset_right = 300.0
+offset_bottom = 110.0
+grow_horizontal = 2
+theme = ExtResource("2_3223l")
+bbcode_enabled = true
+text = "[center]Authors"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Authors"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_right = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackButton" type="Button" parent="Authors"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -22.5
+offset_top = -111.0
+offset_right = 22.5
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_3223l")
+text = "Back"
+
+[node name="Exit" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+initial_position = 4
+size = Vector2i(215, 90)
+theme = ExtResource("2_3223l")
+dialog_text = "Are you sure?"

@@ -14,7 +14,7 @@ public partial class Intro : Control
 
     public override void _Input(InputEvent @event)
     {
-        if (@event.IsActionPressed("ui_accept")) 
+        if (@event.IsActionPressed("ui_accept") || @event.IsActionPressed("mouse_left")) 
         {
             LoadNextScene();
         }

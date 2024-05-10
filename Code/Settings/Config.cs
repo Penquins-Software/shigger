@@ -20,6 +20,8 @@ namespace Settings
         private static int _sfxVolume = 50;
         private static int _musicVolume = 50;
 
+        private static bool _cameraShaking = true;
+
 
         public static string PlayerName
         {
@@ -109,6 +111,18 @@ namespace Settings
             }
         }
 
+        public static bool CameraShaking 
+        {
+            get 
+            {
+                return _cameraShaking;
+            }
+            set 
+            {
+                _cameraShaking = value;
+            }
+        }
+
 
         public override void _EnterTree()
         {
@@ -132,6 +146,8 @@ namespace Settings
             _config.SetValue("audio_settings", "sfx_volume", _sfxVolume);
             _config.SetValue("audio_settings", "music_volume", _musicVolume);
 
+            _config.SetValue("game_settings", "shaking", _cameraShaking);
+
             _config.Save(PATH_TO_CONFIG);
         }
 
@@ -151,6 +167,8 @@ namespace Settings
                 MasterVolume = _config.GetValue("audio_settings", "master_volume").AsInt32();
                 SFXVolume = _config.GetValue("audio_settings", "sfx_volume").AsInt32();
                 MusicVolume = _config.GetValue("audio_settings", "music_volume").AsInt32();
+
+                CameraShaking = _config.GetValue("game_settings", "shaking").AsBool();
             }
             else
             {

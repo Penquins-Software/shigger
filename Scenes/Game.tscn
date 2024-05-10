@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://cycif5o6ovikj"]
+
+[ext_resource type="Script" path="res://Code/Game.cs" id="1_4mrl1"]
+[ext_resource type="PackedScene" uid="uid://dj6ej8wvocjor" path="res://Scenes/UI/HUD.tscn" id="1_67q3x"]
+[ext_resource type="PackedScene" uid="uid://k82wwl0t8p28" path="res://Scenes/UI/Pause.tscn" id="2_c7und"]
+[ext_resource type="Script" path="res://Code/World.cs" id="4_vaqct"]
+[ext_resource type="PackedScene" uid="uid://d0ot6x3rk7wx4" path="res://Scenes/player.tscn" id="5_0bvna"]
+[ext_resource type="AudioStream" uid="uid://bb4ooo62q1mh8" path="res://audio/track1_demo.mp3" id="6_ge2i7"]
+[ext_resource type="PackedScene" uid="uid://c0ie6d8kmwven" path="res://Scenes/monster.tscn" id="7_xrk0u"]
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("_hud", "_pause", "_world", "_player", "_monster")]
+script = ExtResource("1_4mrl1")
+_hud = NodePath("Hud")
+_pause = NodePath("Pause")
+_world = NodePath("World")
+_player = NodePath("World/Player")
+_monster = NodePath("World/Monster")
+_menuSceneFile = "res://Scenes/UI/Menu.tscn"
+
+[node name="Hud" parent="." instance=ExtResource("1_67q3x")]
+
+[node name="Pause" parent="." instance=ExtResource("2_c7und")]
+visible = false
+
+[node name="World" type="Node2D" parent="." node_paths=PackedStringArray("_player", "_monster")]
+rotation = 1.37126e-05
+script = ExtResource("4_vaqct")
+_player = NodePath("Player")
+_monster = NodePath("Monster")
+
+[node name="Player" parent="World" instance=ExtResource("5_0bvna")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="World"]
+stream = ExtResource("6_ge2i7")
+autoplay = true
+bus = &"Music"
+
+[node name="CanvasModulate" type="CanvasModulate" parent="World"]
+color = Color(0, 0, 0, 1)
+
+[node name="Monster" parent="World" instance=ExtResource("7_xrk0u")]
+position = Vector2(0, -640)

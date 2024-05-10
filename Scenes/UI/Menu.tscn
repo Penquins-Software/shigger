@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bn610g1y3m6q4"]
+[gd_scene load_steps=20 format=3 uid="uid://bn610g1y3m6q4"]
 
 [ext_resource type="Script" path="res://Code/UI/Menu.cs" id="1_6jges"]
 [ext_resource type="Theme" uid="uid://cnni4p646elf0" path="res://main_theme.tres" id="2_3223l"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bik7wytsep4qm" path="res://2D/menu/titlekot.png" id="4_nlc67"]
 [ext_resource type="Script" path="res://Code/Settings/SettingCameraShaking.cs" id="8_56oxu"]
 [ext_resource type="AudioStream" uid="uid://cbmwkumvvirkg" path="res://audio/Dig_down_2024-05-09_22_06_19.mp3" id="12_5p7nb"]
+[ext_resource type="Script" path="res://Code/Authors.cs" id="12_eji4d"]
 
 [sub_resource type="Animation" id="Animation_d3m5h"]
 length = 0.001
@@ -664,7 +665,7 @@ theme = ExtResource("2_3223l")
 bbcode_enabled = true
 text = "[center]Авторы"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Authors"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Authors" node_paths=PackedStringArray("_credits")]
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 1
 anchors_preset = 8
@@ -676,6 +677,22 @@ offset_left = -300.0
 offset_right = 300.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("12_eji4d")
+_credits = NodePath("RichTextLabel")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Authors/VBoxContainer"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme = ExtResource("2_3223l")
+bbcode_enabled = true
+text = "[center]Программирование: [url=https://ozkitsune.itch.io/]Oz Fox[/url]
+
+Геймдизайн и сценарий: Akiona
+
+Графика: [url=https://vk.com/ankelran]RANKEL[/url], [url=https://vk.com/agnialoo]Василий Василич[/url]
+
+Музыка и звуки: [url=https://vk.com/musical_output]lexander[/url]"
+fit_content = true
 
 [node name="BackButton" type="Button" parent="Authors"]
 layout_mode = 1

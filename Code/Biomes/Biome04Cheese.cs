@@ -9,12 +9,12 @@ namespace Biomes
         public static PackedScene Back = ResourceLoader.Load<PackedScene>("res://Scenes/chunks/earth_background.tscn");
         public static PackedScene[] BaseChunks = new PackedScene[]
         {
-            ResourceLoader.Load<PackedScene>("res://Scenes/chunks/earth_base_chunk_01.tscn"),
-            ResourceLoader.Load<PackedScene>("res://Scenes/chunks/earth_base_chunk_02.tscn"),
-            ResourceLoader.Load<PackedScene>("res://Scenes/chunks/earth_base_chunk_03.tscn"),
-            ResourceLoader.Load<PackedScene>("res://Scenes/chunks/earth_base_chunk_04.tscn"),
+            ResourceLoader.Load<PackedScene>("res://Scenes/chunks/cheese_base_chunk_01.tscn"),
+            ResourceLoader.Load<PackedScene>("res://Scenes/chunks/cheese_base_chunk_02.tscn"),
+            ResourceLoader.Load<PackedScene>("res://Scenes/chunks/cheese_base_chunk_03.tscn"),
+            ResourceLoader.Load<PackedScene>("res://Scenes/chunks/cheese_base_chunk_04.tscn"),
         };
-        public static PackedScene SolidChunk = ResourceLoader.Load<PackedScene>("res://Scenes/chunks/earth_solid_chunk.tscn");
+        public static PackedScene SolidChunk = ResourceLoader.Load<PackedScene>("res://Scenes/chunks/cheese_solid_chunk.tscn");
 
         public Biome04Cheese()
         {

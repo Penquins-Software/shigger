@@ -3,8 +3,8 @@ using System;
 
 public partial class Monster : Node2D
 {
-    private const int MIN_BITS_TO_ATTACK = 8;
-    private const int MAX_BITS_TO_ATTACK = 14;
+    private const int MIN_BITS_TO_ATTACK = 6;
+    private const int MAX_BITS_TO_ATTACK = 12;
 
     private const int ATTACK_SPEED = 1;
     private const int MIN_DEFAULT_SPEED = 2;

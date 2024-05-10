@@ -12,6 +12,8 @@ namespace Items
         {
             Game.Points += _points;
             base.Use();
+
+            GD.Print("Сокровище!");
         }
     }
 }

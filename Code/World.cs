@@ -197,7 +197,6 @@ public partial class World : Node2D
             item.Position = position * Constantns.FACTOR;
             AddChild(item);
             item.Place(_player, _monster, this);
-            GD.Print("Предмет!");
         }
 
     }
@@ -261,7 +260,7 @@ public partial class World : Node2D
             {
                 _chunks.Remove(new_position);
                 Game.Points += chunk.Points;
-                chunk.Destroy();
+                chunk.Destroy(Game.CurrentBPMInSeconds);
                 //PlacePlayer(new_position);
             }
         }
@@ -313,9 +312,9 @@ public partial class World : Node2D
 
     private void CheckMonsterPosition() 
     {
-        if (_monster.WorldPosition.Y + 16 < _playerPosition.Y) 
+        if (_monster.WorldPosition.Y + 12 < _playerPosition.Y) 
         {
-            _monster.PlaceMonster(new Vector2I(_monster.WorldPosition.X, _playerPosition.Y - 16));
+            _monster.PlaceMonster(new Vector2I(_monster.WorldPosition.X, _playerPosition.Y - 12));
             GD.Print("Телепортация монстра!");
         }
 
@@ -339,27 +338,30 @@ public partial class World : Node2D
     public void Explode(Vector2 game_position) 
     {
         var world_position = (Vector2I)(game_position / Constantns.FACTOR);
+        GD.Print(world_position);
 
         for (int index = -2; index < 3; index++)
         {
             var position = world_position + new Vector2I(index, 0);
-            if (_chunks.ContainsKey(world_position))
+            if (_chunks.ContainsKey(position))
             {
-                DestroyChunkByPosition(position);
+                DestroyChunkByPosition(position, true);
             }
-            position = world_position + new Vector2I(index, 0);
-            if (_chunks.ContainsKey(world_position))
+            position = world_position + new Vector2I(0, index);
+            if (_chunks.ContainsKey(position))
             {
-                DestroyChunkByPosition(position);
+                DestroyChunkByPosition(position, true);
             }
         }
+
+        GD.Print("Взрыв!");
     }
 
-    private void DestroyChunkByPosition(Vector2I position)
+    private void DestroyChunkByPosition(Vector2I position, bool explode)
     {
         var chunk = _chunks[position];
         _chunks.Remove(position);
         Game.Points += chunk.Points;
-        chunk.Destroy();
+        chunk.Destroy(Game.CurrentBPMInSecondsHalf, explode);
     }
 }

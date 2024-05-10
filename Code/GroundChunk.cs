@@ -12,6 +12,8 @@ public partial class GroundChunk : Node2D
 
     [Export]
     private Area2D _area2D;
+    [Export]
+    private AnimatedSprite2D _animatedSprite2D;
 
 
     public int Points => _points;
@@ -23,7 +25,7 @@ public partial class GroundChunk : Node2D
         {
             if (area is MonsterArea) 
             {
-                Destroy();
+                Destroy(Game.CurrentBPMInSeconds);
             }
         };
     }
@@ -47,11 +49,16 @@ public partial class GroundChunk : Node2D
         return false;
     }
 
-    public async void Destroy()
+    public async void Destroy(double time, bool explode = false)
     {
+        if (explode)
+        {
+            _animatedSprite2D.Play();
+        }
+
         Modulate = new Color(0.8f, 0.8f, 0.8f);
 
-        await ToSignal(GetTree().CreateTimer(Game.CurrentBPMInSeconds), "timeout");
+        await ToSignal(GetTree().CreateTimer(time), "timeout");
 
         QueueFree();
     }

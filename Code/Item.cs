@@ -6,6 +6,8 @@ public partial class Item : Node2D
     private static PackedScene[] s_ItemScenes = new PackedScene[]
     {
         ResourceLoader.Load<PackedScene>("res://Scenes/items/StopMonster.tscn"),
+        ResourceLoader.Load<PackedScene>("res://Scenes/items/Treasure.tscn"),
+        ResourceLoader.Load<PackedScene>("res://Scenes/items/Dynamite.tscn"),
     };
 
     [Export]

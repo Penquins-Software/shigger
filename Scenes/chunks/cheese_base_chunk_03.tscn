@@ -1,25 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://lo4tqvues1tj"]
+[gd_scene load_steps=5 format=3 uid="uid://qta0j32j8b7w"]
 
-[ext_resource type="Script" path="res://Code/GroundChunk.cs" id="1_pywlm"]
-[ext_resource type="Texture2D" uid="uid://car6dc71atty0" path="res://2D/chunks/chunk_earth_base_03.png" id="2_egnn3"]
-[ext_resource type="PackedScene" uid="uid://cpt4tcy3n6p0a" path="res://Scenes/items/Explode.tscn" id="3_lek3a"]
+[ext_resource type="Script" path="res://Code/GroundChunk.cs" id="1_vuelp"]
+[ext_resource type="Texture2D" uid="uid://cjndanbt6ea3w" path="res://2D/chunks/chunk_cheese_base_03.png" id="2_wiwve"]
+[ext_resource type="PackedScene" uid="uid://cpt4tcy3n6p0a" path="res://Scenes/items/Explode.tscn" id="3_6sh2b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_47j3p"]
 size = Vector2(64, 64)
 
 [node name="EarthBaseChunk" type="Node2D" node_paths=PackedStringArray("_area2D", "_animatedSprite2D")]
-script = ExtResource("1_pywlm")
+script = ExtResource("1_vuelp")
+_points = 8
 _area2D = NodePath("Area2D")
 _animatedSprite2D = NodePath("Explode")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_egnn3")
+texture = ExtResource("2_wiwve")
 centered = false
+
+[node name="Explode" parent="." instance=ExtResource("3_6sh2b")]
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(32, 32)
 shape = SubResource("RectangleShape2D_47j3p")
-
-[node name="Explode" parent="." instance=ExtResource("3_lek3a")]

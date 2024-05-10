@@ -76,10 +76,10 @@ tracks/3/path = NodePath("PointLight2D:texture_scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(-0.0199256),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.7]
+"values": [0.9]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -88,10 +88,10 @@ tracks/4/path = NodePath("PointLight2D2:texture_scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(-0.0199256),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.7]
+"values": [0.9]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -166,7 +166,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.7, 0.8]
+"values": [0.9, 1.2]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -178,7 +178,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.7, 0.8]
+"values": [0.9, 1.2]
 }
 
 [sub_resource type="Animation" id="Animation_u6lfd"]
@@ -229,7 +229,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.8, 0.9]
+"values": [1.2, 1.6]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -241,7 +241,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.8, 0.9]
+"values": [1.2, 1.6]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -304,7 +304,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.9, 1.0]
+"values": [1.6, 2.0]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -313,10 +313,10 @@ tracks/4/path = NodePath("PointLight2D2:texture_scale")
 tracks/4/interp = 2
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0.0199256, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.9, 1.0]
+"values": [1.6, 2.0]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -439,13 +439,13 @@ shape = SubResource("RectangleShape2D_uwgbk")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(-145, -70)
-color = Color(1, 0, 0, 0.576471)
+color = Color(1, 0.563709, 0.500924, 0.576471)
 energy = 2.0
 texture = ExtResource("7_mkaqm")
 
 [node name="PointLight2D2" type="PointLight2D" parent="."]
 position = Vector2(100, 62)
-color = Color(1, 0, 0, 0.576471)
+color = Color(1, 0.563709, 0.500924, 0.576471)
 energy = 2.0
 texture = ExtResource("7_mkaqm")
 

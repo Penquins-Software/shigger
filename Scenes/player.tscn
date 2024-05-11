@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://d0ot6x3rk7wx4"]
+[gd_scene load_steps=31 format=3 uid="uid://d0ot6x3rk7wx4"]
 
 [ext_resource type="Script" path="res://Code/Player.cs" id="1_l26pi"]
 [ext_resource type="Texture2D" uid="uid://bqjfoqrhuhjq8" path="res://2D/main/main1.png" id="2_wifcb"]
@@ -138,6 +138,43 @@ _data = {
 "Shake": SubResource("Animation_irhnf")
 }
 
+[sub_resource type="Animation" id="Animation_qk1l0"]
+resource_name = "Shake"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.9, 0.9), Vector2(1, 1), Vector2(0.9, 0.9)]
+}
+
+[sub_resource type="Animation" id="Animation_7sxyy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.9, 0.9)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xuqti"]
+_data = {
+"RESET": SubResource("Animation_7sxyy"),
+"Shake": SubResource("Animation_qk1l0")
+}
+
 [sub_resource type="Animation" id="Animation_15pmj"]
 resource_name = "DoABarrelRoll"
 length = 4.0
@@ -210,13 +247,15 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ck4yl"]
 size = Vector2(60, 60)
 
-[node name="Player" type="Node2D" node_paths=PackedStringArray("_animationPlayer", "_rotateAnimationPlayer", "_animatedSprite2D", "_effectAnimatedSprite2D", "_area2D", "_camera2D")]
+[node name="Player" type="Node2D" node_paths=PackedStringArray("_animationPlayer", "_animationPlayer2", "_rotateAnimationPlayer", "_animatedSprite2D", "_effectAnimatedSprite2D", "_light2D", "_area2D", "_camera2D")]
 z_index = 1
 script = ExtResource("1_l26pi")
 _animationPlayer = NodePath("AnimationPlayer")
+_animationPlayer2 = NodePath("AnimationPlayer2")
 _rotateAnimationPlayer = NodePath("RotateAnimationPlayer")
 _animatedSprite2D = NodePath("AnimatedSprite2D")
 _effectAnimatedSprite2D = NodePath("EffectAnimatedSprite2D")
+_light2D = NodePath("PointLight2D")
 _area2D = NodePath("Area2D")
 _camera2D = NodePath("Camera2D")
 
@@ -236,7 +275,7 @@ offset = Vector2(0, 32)
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(33, 32)
 ignore_rotation = false
-zoom = Vector2(1.2, 1.2)
+zoom = Vector2(0.9, 0.9)
 position_smoothing_enabled = true
 position_smoothing_speed = 2.0
 rotation_smoothing_enabled = true
@@ -252,6 +291,12 @@ texture_scale = 1.5
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_nuqnv")
+}
+autoplay = "RESET"
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xuqti")
 }
 
 [node name="RotateAnimationPlayer" type="AnimationPlayer" parent="."]

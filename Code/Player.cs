@@ -19,11 +19,15 @@ public partial class Player : Node2D
     [Export]
     private AnimationPlayer _animationPlayer;
     [Export]
+    private AnimationPlayer _animationPlayer2;
+    [Export]
     private AnimationPlayer _rotateAnimationPlayer;
     [Export]
     private AnimatedSprite2D _animatedSprite2D;
     [Export]
     private AnimatedSprite2D _effectAnimatedSprite2D;
+    [Export]
+    private Light2D _light2D;
 
     [Export]
     private Area2D _area2D;
@@ -117,6 +121,9 @@ public partial class Player : Node2D
     {
         Flashlight = true;
         Item.TurnOnLight();
+        _animationPlayer.Stop();
+        _animationPlayer2.Play("RESET");
+        _light2D.Scale = new Vector2(1.5f, 1.5f);
     }
 
     public override void _Input(InputEvent @event)
@@ -234,7 +241,14 @@ public partial class Player : Node2D
     {
         if (Config.CameraShaking)
         {
-            _animationPlayer.Play("Shake");
+            if (Flashlight)
+            {
+                _animationPlayer2.Play("Shake");
+            }
+            else
+            {
+                _animationPlayer.Play("Shake");
+            }
         }
         _animatedSprite2D.Play("digging");
         _animatedSprite2D.Modulate = new Color(0.7f, 0.7f, 0.7f);

@@ -83,12 +83,15 @@ public partial class Game : Node2D
 
     public Player Player => _player;
 
+    public static int GlobalMultiplier = 1;
+
 
     public override void _Ready()
     {
         s_Instance = this;
 
         Points = 0;
+        GlobalMultiplier = 1;
         //SetBPM(Constantns.BPM_75);
 
         _hud.PauseButton.Pressed += () => Pause();
@@ -270,12 +273,12 @@ public partial class Game : Node2D
             _hud.Skills.ShowSkills();
             _world.ProcessMode = ProcessModeEnum.Disabled;
         }
-        if (!_sixSkill && Points > 131072)
-        {
-            _sixSkill = true;
-            _hud.Skills.ShowSkills();
-            _world.ProcessMode = ProcessModeEnum.Disabled;
-        }
+        //if (!_sixSkill && Points > 131072)
+        //{
+        //    _sixSkill = true;
+        //    _hud.Skills.ShowSkills();
+        //    _world.ProcessMode = ProcessModeEnum.Disabled;
+        //}
     }
 
     public void SetPointsMultiplier(int value, int bits)
@@ -290,27 +293,27 @@ public partial class Game : Node2D
     {
         if (hits < 15) 
         {
-            _multiplier = 1;
+            _multiplier = 1 * GlobalMultiplier;
         }
         if (hits >= 15)
         {
-            _multiplier = 2;
+            _multiplier = 2 * GlobalMultiplier;
         }
         if (hits >= 31)
         {
-            _multiplier = 4;
+            _multiplier = 4 * GlobalMultiplier;
         }
         if (hits >= 63)
         {
-            _multiplier = 8;
+            _multiplier = 8 * GlobalMultiplier;
         }
         if (hits >= 127)
         {
-            _multiplier = 16;
+            _multiplier = 16 * GlobalMultiplier;
         }
         if (hits >= 255)
         {
-            _multiplier = 32;
+            _multiplier = 32 * GlobalMultiplier;
         }
 
         _hud.SetPoints(s_Points, _multiplier, _player.SeriesOfHits);

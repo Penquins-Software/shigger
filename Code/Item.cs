@@ -71,7 +71,10 @@ public partial class Item : Node2D
     {
         foreach(var item in s_Items) 
         {
-            item._light2D.Visible = true;
+            if (item._light2D != null)
+            {
+                item._light2D.Visible = true;
+            }
         }
     }
 
@@ -79,7 +82,10 @@ public partial class Item : Node2D
     {
         foreach (var item in s_Items)
         {
-            item._light2D.Visible = false;
+            if (item._light2D != null)
+            {
+                item._light2D.Visible = false;
+            }
         }
     }
 }

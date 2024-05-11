@@ -12,8 +12,8 @@ dest_files=["res://.godot/imported/Dig_down_2024-05-09_22_06_19.mp3-35110f2f604c
 
 [params]
 
-loop=false
-loop_offset=0
-bpm=0
+loop=true
+loop_offset=0.0
+bpm=0.0
 beat_count=0
 bar_beats=4

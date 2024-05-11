@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://b7rvcnkabubwr"]
+[gd_scene load_steps=4 format=3 uid="uid://dinbif03n58ea"]
 
 [ext_resource type="Texture2D" uid="uid://dbyi2vh2hc6oe" path="res://icon.svg" id="1_jp28r"]
 [ext_resource type="Script" path="res://Code/PlayerSkills/SkillSidewaysShovel.cs" id="2_gt6bv"]

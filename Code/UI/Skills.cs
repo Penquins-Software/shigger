@@ -13,14 +13,15 @@ public partial class Skills : Control
 
     private List<SkillCard> _currentSkills = new List<SkillCard>();
 
-	private List<SkillCard> _skillCards = new List<SkillCard>() 
-	{
-		ResourceLoader.Load<PackedScene>("res://Scenes/skills_cards/Drill.tscn").Instantiate() as SkillCard,
+	private List<SkillCard> _skillCards = new List<SkillCard>()
+    {
+        ResourceLoader.Load<PackedScene>("res://Scenes/skills_cards/Drill.tscn").Instantiate() as SkillCard,
         ResourceLoader.Load<PackedScene>("res://Scenes/skills_cards/Flashlight.tscn").Instantiate() as SkillCard,
         ResourceLoader.Load<PackedScene>("res://Scenes/skills_cards/Fugu.tscn").Instantiate() as SkillCard,
         ResourceLoader.Load<PackedScene>("res://Scenes/skills_cards/MegaShovel.tscn").Instantiate() as SkillCard,
         ResourceLoader.Load<PackedScene>("res://Scenes/skills_cards/SidewaysShovel.tscn").Instantiate() as SkillCard,
         ResourceLoader.Load<PackedScene>("res://Scenes/skills_cards/WideShovel.tscn").Instantiate() as SkillCard,
+        ResourceLoader.Load<PackedScene>("res://Scenes/skills_cards/Multiplier.tscn").Instantiate() as SkillCard,
     };
 
     public void ShowSkills() 

@@ -157,8 +157,8 @@ public partial class Monster : Node2D
         _audioPlayer.Stream = BPM75;
         _audioPlayer.Play();
 
-        MIN_BITS_TO_ATTACK = 6;
-        MAX_BITS_TO_ATTACK = 12;
+        MIN_BITS_TO_ATTACK = 8;
+        MAX_BITS_TO_ATTACK = 14;
 
         MIN_DEFAULT_SPEED = 2;
         MAX_DEDAULT_SPEED = 3;
@@ -174,12 +174,12 @@ public partial class Monster : Node2D
         _audioPlayer.Play();
 
         MIN_BITS_TO_ATTACK = 4;
-        MAX_BITS_TO_ATTACK = 8;
+        MAX_BITS_TO_ATTACK = 6;
 
         MIN_DEFAULT_SPEED = 2;
         MAX_DEDAULT_SPEED = 3;
 
-        _attackPossibility = 0.12;
+        _attackPossibility = 0.06;
     }
 
     public void Play120()
@@ -190,11 +190,11 @@ public partial class Monster : Node2D
         _audioPlayer.Play();
 
         MIN_BITS_TO_ATTACK = 4;
-        MAX_BITS_TO_ATTACK = 8;
+        MAX_BITS_TO_ATTACK = 6;
 
         MIN_DEFAULT_SPEED = 2;
         MAX_DEDAULT_SPEED = 3;
 
-        _attackPossibility = 0.16;
+        _attackPossibility = 0.12;
     }
 }

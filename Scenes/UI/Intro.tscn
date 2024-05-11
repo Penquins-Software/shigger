@@ -48,7 +48,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2lllw")
-_nextSceneFile = "res://Scenes/UI/Menu.tscn"
+_nextSceneFile = "res://Scenes/intro.tscn"
 _player = NodePath("AnimationPlayer")
 
 [node name="ColorRect" type="ColorRect" parent="."]

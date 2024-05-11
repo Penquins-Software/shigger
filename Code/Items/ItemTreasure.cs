@@ -6,14 +6,13 @@ namespace Items
     public partial class ItemTreasure : Item
     {
         [Export]
-        private int _points = 16;
+        private int _points = 32;
 
         public override void Use()
         {
-            Game.Points += _points;
+            var points = Game.Instance.AddPoints(_points, false, false);
+            Message.Create(_world, _player.Position, $"[color=gold]Сокровище! +{points}");
             base.Use();
-
-            GD.Print("Сокровище!");
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Biomes
 {
     public partial class Biome03Magma : Biome
     {
-        public static PackedScene Back = ResourceLoader.Load<PackedScene>("res://Scenes/chunks/earth_background.tscn");
+        public static PackedScene Back = ResourceLoader.Load<PackedScene>("res://Scenes/chunks/magma_background.tscn");
         public static PackedScene[] BaseChunks = new PackedScene[]
         {
             ResourceLoader.Load<PackedScene>("res://Scenes/chunks/magma_base_chunk_01.tscn"),
@@ -15,6 +15,8 @@ namespace Biomes
             ResourceLoader.Load<PackedScene>("res://Scenes/chunks/magma_base_chunk_04.tscn"),
         };
         public static PackedScene SolidChunk = ResourceLoader.Load<PackedScene>("res://Scenes/chunks/magma_solid_chunk.tscn");
+
+        public static PackedScene Background = ResourceLoader.Load<PackedScene>("res://Scenes/biomes/magma_background.tscn");
 
         public Biome03Magma()
         {
@@ -43,6 +45,11 @@ namespace Biomes
         public override PackedScene GetSolidChunk()
         {
             return SolidChunk;
+        }
+
+        public override BiomeBackground GetBackground()
+        {
+            return Background.Instantiate() as BiomeBackground;
         }
     }
 }

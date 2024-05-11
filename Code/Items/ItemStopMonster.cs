@@ -11,6 +11,7 @@ namespace Items
         public override void Use()
         {
             _monster.Stop(_bits);
+            Message.Create(_world, _player.Position, $"[color=orange]Монстр замедлен!");
             base.Use();
         }
     }

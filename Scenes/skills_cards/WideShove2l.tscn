@@ -1,0 +1,71 @@
+[gd_scene load_steps=4 format=3 uid="uid://bd56erjhgodpb"]
+
+[ext_resource type="Texture2D" uid="uid://dbyi2vh2hc6oe" path="res://icon.svg" id="1_a72bo"]
+[ext_resource type="Script" path="res://Code/PlayerSkills/SkillWideShovel.cs" id="2_dy22r"]
+[ext_resource type="Theme" uid="uid://cnni4p646elf0" path="res://main_theme.tres" id="3_acs8k"]
+
+[node name="WideShovel" type="TextureRect"]
+custom_minimum_size = Vector2(200, 400)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+texture = ExtResource("1_a72bo")
+expand_mode = 1
+script = ExtResource("2_dy22r")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.0
+offset_right = 64.0
+offset_bottom = 128.0
+grow_horizontal = 2
+mouse_filter = 2
+texture = ExtResource("1_a72bo")
+
+[node name="Title" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -84.0
+offset_top = -53.0
+offset_right = 85.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("3_acs8k")
+bbcode_enabled = true
+text = "[center]Широкая лопата"
+fit_content = true
+scroll_active = false
+
+[node name="Description" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -117.0
+offset_top = 17.0
+offset_right = 118.0
+offset_bottom = 49.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("3_acs8k")
+bbcode_enabled = true
+text = "[center]Увеличивает радиус обзора и подсвечивает подбираемые предметы"
+fit_content = true
+scroll_active = false

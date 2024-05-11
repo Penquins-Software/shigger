@@ -8,7 +8,7 @@ public static class LootLockerClient
 
 
     private static string _apiKey = "dev_fb7eb641411a4264ba4d9add7ead7815";
-    private static string _leaderboardKey = "22173";
+    private static string _leaderboardKey = "22174";
     private static string _oldLeaderboardKey = "20344";
     private static string _sessionToken = "";
     private static string _gameVersion = "0.0.0.1";

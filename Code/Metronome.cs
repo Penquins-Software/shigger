@@ -3,17 +3,17 @@ using System;
 
 public partial class Metronome : AudioStreamPlayer
 {
-    private const double BPM_75 = 0.8;
-    private double _currentTime = 0.0;
+    [Export]
+    private Game _game;
 
+    [Export]
+    private bool _enable;
 
-	public override void _Process(double delta)
+    public override void _Ready()
     {
-        _currentTime += delta;
-        if (_currentTime > BPM_75)
+        if (_enable)
         {
-            _currentTime = _currentTime - BPM_75;
-            Play();
+            _game.Bit += () => Play();
         }
     }
 }

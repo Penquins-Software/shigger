@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c0ie6d8kmwven"]
+[gd_scene load_steps=17 format=3 uid="uid://c0ie6d8kmwven"]
 
 [ext_resource type="Script" path="res://Code/Monster.cs" id="1_434hh"]
 [ext_resource type="Texture2D" uid="uid://lq0an2iqhm6n" path="res://2D/monster/4.png" id="2_6yifh"]
@@ -6,7 +6,8 @@
 [ext_resource type="Script" path="res://Code/MonsterArea.cs" id="3_108pp"]
 [ext_resource type="Texture2D" uid="uid://bfvhl8wqqhimc" path="res://2D/monster/3.png" id="3_xjpjo"]
 [ext_resource type="Texture2D" uid="uid://cp84286bidnhc" path="res://2D/monster/2.png" id="4_vholg"]
-[ext_resource type="Texture2D" uid="uid://dknlgi0dvoat0" path="res://2D/light_3.png" id="7_mkaqm"]
+[ext_resource type="Texture2D" uid="uid://dknlgi0dvoat0" path="res://2D/light.png" id="7_acewy"]
+[ext_resource type="AudioStream" uid="uid://dmmmgwhfmdcec" path="res://audio/sfx/pop_75_cut.mp3" id="8_aevxc"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yk8wh"]
 animations = [{
@@ -415,9 +416,10 @@ _data = {
 "RESET": SubResource("Animation_u3wlp")
 }
 
-[node name="Monster" type="Node2D" node_paths=PackedStringArray("_animationPlayer")]
-z_index = 2
+[node name="Monster" type="Node2D" node_paths=PackedStringArray("_audioPlayer", "_animationPlayer")]
+z_index = 3
 script = ExtResource("1_434hh")
+_audioPlayer = NodePath("AudioStreamPlayer2D")
 _animationPlayer = NodePath("AnimationPlayer")
 
 [node name="BodyAnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -441,16 +443,24 @@ shape = SubResource("RectangleShape2D_uwgbk")
 position = Vector2(-145, -70)
 color = Color(1, 0.563709, 0.500924, 0.576471)
 energy = 2.0
-texture = ExtResource("7_mkaqm")
+texture = ExtResource("7_acewy")
 
 [node name="PointLight2D2" type="PointLight2D" parent="."]
 position = Vector2(100, 62)
 color = Color(1, 0.563709, 0.500924, 0.576471)
 energy = 2.0
-texture = ExtResource("7_mkaqm")
+texture = ExtResource("7_acewy")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_ecvi4")
 }
 autoplay = "3"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_aevxc")
+volume_db = 10.0
+autoplay = true
+max_distance = 1200.0
+attenuation = 2.37841
+bus = &"SFX"

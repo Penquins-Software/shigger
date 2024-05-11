@@ -1,20 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjd7vf20bui3c"]
+[gd_scene load_steps=6 format=3 uid="uid://cjd7vf20bui3c"]
 
 [ext_resource type="Script" path="res://Code/Items/ItemDynamite.cs" id="1_jgv16"]
-[ext_resource type="Texture2D" uid="uid://dbyi2vh2hc6oe" path="res://icon.svg" id="2_6g1a3"]
-[ext_resource type="Texture2D" uid="uid://dknlgi0dvoat0" path="res://2D/light_3.png" id="3_gx52c"]
+[ext_resource type="Texture2D" uid="uid://l5g2twos4ruc" path="res://2D/items/icon.png" id="2_28m8g"]
+[ext_resource type="Texture2D" uid="uid://dknlgi0dvoat0" path="res://2D/light.png" id="3_gx52c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2oru1"]
+atlas = ExtResource("2_28m8g")
+region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a8008"]
 size = Vector2(32, 32)
 
-[node name="Dynamite" type="Node2D" node_paths=PackedStringArray("_area2D")]
+[node name="Dynamite" type="Node2D" node_paths=PackedStringArray("_area2D", "_light2D")]
+z_index = 1
 script = ExtResource("1_jgv16")
 _area2D = NodePath("Area2D")
+_light2D = NodePath("PointLight2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(7, 6)
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("2_6g1a3")
+texture = SubResource("AtlasTexture_2oru1")
 centered = false
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -24,6 +28,8 @@ position = Vector2(32, 32)
 shape = SubResource("RectangleShape2D_a8008")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
 position = Vector2(32, 32)
+energy = 2.0
 texture = ExtResource("3_gx52c")
 texture_scale = 0.25

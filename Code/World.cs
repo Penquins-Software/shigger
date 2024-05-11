@@ -3,17 +3,16 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 
 public partial class World : Node2D
 {
     private const int LEVEL_START = 32;
     private const int LEVEL_EARTH = 64;
     private const int LEVEL_MAGMA = 128;
-    private const int LEVEL_CHEESE = 256;
-    private const int LEVEL_BACK_EARTH = 768;
-    private const int LEVEL_WATER = 896;
-    private const int LEVEL_SAND = 1024;
+    private const int LEVEL_CHEESE = 512;
+    private const int LEVEL_BACK_EARTH = 1024;
+    private const int LEVEL_WATER = 1025;
+    private const int LEVEL_SAND = 1026;
     private const int LEVEL_SKY = 1280;
     private const int LEVEL_ORBIT = 1536;
     private const int LEVEL_SOLAR = 1664;
@@ -23,12 +22,14 @@ public partial class World : Node2D
     public const int MIDDLE_POINT = 4;
     public const int RIGHT_POINT = 8;
 
-
+    [Export]
+    private Game _game;
     [Export]
     private Player _player;
-    private Vector2I _playerPosition;
     [Export]
     private Monster _monster;
+    [Export]
+    private MusicPlayer _musicPlayer;
 
     private List<Vector2I> _path;
     private Dictionary<Vector2I, bool> _back;
@@ -61,10 +62,11 @@ public partial class World : Node2D
 	{
         GD.Randomize();
 
-        _playerPosition = new Vector2I(MIDDLE_POINT, 0);
-        _player.Position = _playerPosition * Constantns.FACTOR;
-
+        _player.Place(new Vector2I(MIDDLE_POINT, 0));
         _monster.PlaceMonster(new Vector2I(MIDDLE_POINT, -16));
+        _musicPlayer.Play75BPM();
+        _musicPlayer.Play75BPM();
+        _player.SetBPMInSeconds(Constantns.BPM_75);
 
         _path = new List<Vector2I>
         {
@@ -102,7 +104,9 @@ public partial class World : Node2D
             }
         }
 
-        
+        var background = Biome01Start.Background.Instantiate() as BiomeBackground;
+        background.Place(new Vector2(MIDDLE_POINT, -30), _game, _player);
+        AddChild(background);
 
         _biomes = new List<Biome>();
 
@@ -152,6 +156,7 @@ public partial class World : Node2D
             _biomes.Add(biome);
             PlaceChunks(biome);
             PlaceItems(biome);
+            CreateBackground(biome);
         }
     }
 
@@ -198,12 +203,18 @@ public partial class World : Node2D
             AddChild(item);
             item.Place(_player, _monster, this);
         }
+    }
 
+    private void CreateBackground(Biome biome) 
+    {
+        var background = biome.GetBackground();
+        background.Place(new Vector2(MIDDLE_POINT, biome.StartPoint.Y), _game, _player);
+        AddChild(background);
     }
 
     private void MoveLeft()
     {
-        var new_position = _playerPosition - new Vector2I(1, 0);
+        var new_position = _player.WorldPosition - new Vector2I(1, 0);
         if (!_back.ContainsKey(new_position)) 
         {
             return;
@@ -211,10 +222,11 @@ public partial class World : Node2D
         if (_chunks.ContainsKey(new_position))
         {
             // На пути есть блок. Можно попробовать забраться на него.
-            var upper_position = new_position - new Vector2I(0, 1);
-            if (!_chunks.ContainsKey(upper_position) && _back.ContainsKey(upper_position))
+            var upper_player_position = _player.WorldPosition - new Vector2I(0, 1);
+            var upper_chunk_position = new_position - new Vector2I(0, 1);
+            if (!_chunks.ContainsKey(upper_player_position) && !_chunks.ContainsKey(upper_chunk_position) && _back.ContainsKey(upper_chunk_position))
             {
-                PlacePlayer(upper_position);
+                PlacePlayer(upper_chunk_position);
                 return;
             }
             else 
@@ -227,7 +239,7 @@ public partial class World : Node2D
 
     private void MoveRight()
     {
-        var new_position = _playerPosition + new Vector2I(1, 0);
+        var new_position = _player.WorldPosition + new Vector2I(1, 0);
         if (!_back.ContainsKey(new_position))
         {
             return;
@@ -235,10 +247,11 @@ public partial class World : Node2D
         if (_chunks.ContainsKey(new_position))
         {
             // На пути есть блок. Можно попробовать забраться на него.
-            var upper_position = new_position - new Vector2I(0, 1);
-            if (!_chunks.ContainsKey(upper_position) && _back.ContainsKey(upper_position))
+            var upper_player_position = _player.WorldPosition - new Vector2I(0, 1);
+            var upper_chunk_position = new_position - new Vector2I(0, 1);
+            if (!_chunks.ContainsKey(upper_player_position) && !_chunks.ContainsKey(upper_chunk_position) && _back.ContainsKey(upper_chunk_position))
             {
-                PlacePlayer(upper_position);
+                PlacePlayer(upper_chunk_position);
                 return;
             }
             else
@@ -251,23 +264,69 @@ public partial class World : Node2D
 
     private void Dig()
     {
-        var new_position = _playerPosition + new Vector2I(0, 1);
-        GroundChunk chunk;
-        if (_chunks.TryGetValue(new_position, out chunk))
+        var new_position = _player.WorldPosition + new Vector2I(0, 1);
+        if (TryHitChunkByPosition(new_position))
         {
             _player.PlayDigAnim();
-            if (chunk.Dig())
-            {
-                _chunks.Remove(new_position);
-                Game.Points += chunk.Points;
-                chunk.Destroy(Game.CurrentBPMInSeconds);
-                //PlacePlayer(new_position);
-            }
+
+            WideShovel(new_position);
+            SidewaysShovel(new_position);
+            Drill(new_position);
         }
         else
         {
             PlacePlayer(new_position);
         }
+    }
+
+    private void WideShovel(Vector2I position) 
+    {
+        if (!Player.WideShovel) 
+        {
+            return;
+        }
+
+        TryHitChunkByPosition(position - new Vector2I(1, 0));
+        TryHitChunkByPosition(position + new Vector2I(1, 0));
+    }
+
+    private void SidewaysShovel(Vector2I position)
+    {
+        if (!Player.SidewaysShovel)
+        {
+            return;
+        }
+
+        TryHitChunkByPosition(position + new Vector2I(-1, -1));
+        TryHitChunkByPosition(position + new Vector2I(1, -1));
+    }
+
+    private void Drill(Vector2I position)
+    {
+        if (!Player.Drill)
+        {
+            return;
+        }
+
+        TryHitChunkByPosition(position + new Vector2I(0, 1));
+    }
+
+    private bool TryHitChunkByPosition(Vector2I position)
+    {
+        GroundChunk chunk;
+        if (_chunks.TryGetValue(position, out chunk))
+        {
+            if (chunk.Dig(_player))
+            {
+                _chunks.Remove(position);
+                Game.Instance.AddPoints(chunk.Points);
+                chunk.Destroy(Game.CurrentBPMInSeconds1_2);
+            }
+
+            return true;
+        }
+
+        return false;
     }
 
     private void PlacePlayer(Vector2I position)
@@ -280,10 +339,11 @@ public partial class World : Node2D
         //    position = lower_position;
         //}
 
-        _playerPosition = position;
-        _player.Position = position * Constantns.FACTOR;
+        _player.Place(position);
+        //_playerPosition = position;
+        //_player.Position = position * Constantns.FACTOR;
 
-        if (_playerPosition.Y + 64 > _pathLevel) 
+        if (_player.WorldPosition.Y + 64 > _pathLevel) 
         {
             ContinuePath();
         }
@@ -298,24 +358,31 @@ public partial class World : Node2D
 
     private void CheckPlayerPosition()
     {
-        if (!_isMagma && _playerPosition.Y > LEVEL_EARTH)
+        if (!_isMagma && _player.WorldPosition.Y > LEVEL_EARTH - 2)
         {
             _isMagma = true;
-            _player.RotateCamera90();
+            _player.DoABarrelRoll();
+            _player.SetBPMInSeconds(Constantns.BPM_100);
+            _musicPlayer.Play100BPM();
+            _monster.Play100();
+            //_player.RotateCamera90();
         }
-        else if (!_isCheese && _playerPosition.Y > LEVEL_CHEESE)
+        else if (!_isCheese && _player.WorldPosition.Y > LEVEL_MAGMA - 2)
         {
             _isCheese = true;
-            _player.RotateCamera180();
+            _player.DoABarrelRoll();
+            _player.SetBPMInSeconds(Constantns.BPM_120);
+            _musicPlayer.Play120BPM();
+            _monster.Play120();
+            //_player.RotateCamera180();
         }
     }
 
     private void CheckMonsterPosition() 
     {
-        if (_monster.WorldPosition.Y + 12 < _playerPosition.Y) 
+        if (_monster.WorldPosition.Y + 14 < _player.WorldPosition.Y) 
         {
-            _monster.PlaceMonster(new Vector2I(_monster.WorldPosition.X, _playerPosition.Y - 12));
-            GD.Print("Телепортация монстра!");
+            _monster.PlaceMonster(new Vector2I(_monster.WorldPosition.X, _player.WorldPosition.Y - 14));
         }
 
         if (!_is5 && _monster.WorldPosition.Y > LEVEL_START - 4) 
@@ -340,28 +407,30 @@ public partial class World : Node2D
         var world_position = (Vector2I)(game_position / Constantns.FACTOR);
         GD.Print(world_position);
 
+        int points = 0;
         for (int index = -2; index < 3; index++)
         {
             var position = world_position + new Vector2I(index, 0);
             if (_chunks.ContainsKey(position))
             {
-                DestroyChunkByPosition(position, true);
+                points += DestroyChunkByPosition(position, true);
             }
             position = world_position + new Vector2I(0, index);
             if (_chunks.ContainsKey(position))
             {
-                DestroyChunkByPosition(position, true);
+                points += DestroyChunkByPosition(position, true);
             }
         }
 
-        GD.Print("Взрыв!");
+        Message.Create(this, _player.Position, $"[color=red]+{points}!", delay: Game.CurrentBPMInSeconds1_2);
     }
 
-    private void DestroyChunkByPosition(Vector2I position, bool explode)
+    private int DestroyChunkByPosition(Vector2I position, bool explode)
     {
         var chunk = _chunks[position];
         _chunks.Remove(position);
-        Game.Points += chunk.Points;
-        chunk.Destroy(Game.CurrentBPMInSecondsHalf, explode);
+        var points = Game.Instance.AddPoints(chunk.Points, show_message: false);
+        chunk.Destroy(Game.CurrentBPMInSeconds1_2, explode);
+        return points;
     }
 }

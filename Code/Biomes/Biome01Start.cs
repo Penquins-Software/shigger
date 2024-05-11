@@ -16,6 +16,8 @@ namespace Biomes
         };
         public static PackedScene SolidChunk = ResourceLoader.Load<PackedScene>("res://Scenes/chunks/earth_solid_chunk.tscn");
 
+        public static PackedScene Background = ResourceLoader.Load<PackedScene>("res://Scenes/biomes/earth_background.tscn");
+
         public Biome01Start()
         {
             _type = BiomeType.Start;
@@ -43,6 +45,11 @@ namespace Biomes
         public override PackedScene GetSolidChunk()
         {
             return SolidChunk;
+        }
+
+        public override BiomeBackground GetBackground() 
+        {
+            return Background.Instantiate() as BiomeBackground;
         }
     }
 }

@@ -21,6 +21,7 @@ namespace Settings
         private static int _musicVolume = 50;
 
         private static bool _cameraShaking = true;
+        private static bool _turorial = false;
 
 
         public static string PlayerName
@@ -123,6 +124,18 @@ namespace Settings
             }
         }
 
+        public static bool Tutorial
+        {
+            get
+            {
+                return _turorial;
+            }
+            set
+            {
+                _turorial = value;
+            }
+        }
+
 
         public override void _EnterTree()
         {
@@ -147,6 +160,7 @@ namespace Settings
             _config.SetValue("audio_settings", "music_volume", _musicVolume);
 
             _config.SetValue("game_settings", "shaking", _cameraShaking);
+            _config.SetValue("game_settings", "turorial", _turorial);
 
             _config.Save(PATH_TO_CONFIG);
         }
@@ -169,6 +183,7 @@ namespace Settings
                 MusicVolume = _config.GetValue("audio_settings", "music_volume").AsInt32();
 
                 CameraShaking = _config.GetValue("game_settings", "shaking").AsBool();
+                Tutorial = _config.GetValue("game_settings", "turorial").AsBool();
             }
             else
             {

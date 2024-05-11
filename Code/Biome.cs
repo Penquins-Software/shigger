@@ -31,6 +31,8 @@ public partial class Biome
 
     public int MonsterSpeed => _monsterSpeed;
 
+    public Vector2 StartPoint => _startPoint;
+
 
     public virtual void Generate(List<Vector2I> path, int depth = 32) 
     {
@@ -150,6 +152,11 @@ public partial class Biome
     }
 
     public virtual PackedScene GetSolidChunk()
+    {
+        return null;
+    }
+
+    public virtual BiomeBackground GetBackground() 
     {
         return null;
     }

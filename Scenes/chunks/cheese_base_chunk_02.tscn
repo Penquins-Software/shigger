@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://dnlue763n1ovk"]
 
 [ext_resource type="Script" path="res://Code/GroundChunk.cs" id="1_lrlgr"]
-[ext_resource type="Texture2D" uid="uid://cs3ips83x13mx" path="res://2D/chunks/chunk_cheese_base_02.png" id="2_7jely"]
-[ext_resource type="PackedScene" uid="uid://cpt4tcy3n6p0a" path="res://Scenes/items/Explode.tscn" id="3_skyyg"]
+[ext_resource type="Texture2D" uid="uid://cs3ips83x13mx" path="res://2D/biomes/chunks/chunk_cheese_base_02.png" id="2_7jely"]
+[ext_resource type="PackedScene" uid="uid://cpt4tcy3n6p0a" path="res://Scenes/Explode.tscn" id="3_skyyg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_47j3p"]
 size = Vector2(64, 64)

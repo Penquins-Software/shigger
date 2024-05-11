@@ -33,6 +33,7 @@ public partial class Menu : Control
     [Export] private TextureRect _back_02;
 
     [Export(PropertyHint.File, "*.tscn")] private string _gameSceneFile;
+    [Export(PropertyHint.File, "*.tscn")] private string _tutorialSceneFile;
 
 
     [Export] private AnimationPlayer _animationPlayer;
@@ -86,6 +87,12 @@ public partial class Menu : Control
         if (Config.PlayerName == "") 
         {
             _nickname.Show();
+            return;
+        }
+
+        if (!Config.Tutorial)
+        {
+            GetTree().ChangeSceneToFile(_tutorialSceneFile);
             return;
         }
 

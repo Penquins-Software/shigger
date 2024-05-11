@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://bl3almmc15u7q"]
 
 [ext_resource type="Script" path="res://Code/GroundChunk.cs" id="1_xwwuy"]
-[ext_resource type="Texture2D" uid="uid://sw1h5fhv8q8f" path="res://2D/chunks/chunk_magma_base_03.png" id="2_34b7q"]
-[ext_resource type="PackedScene" uid="uid://cpt4tcy3n6p0a" path="res://Scenes/items/Explode.tscn" id="3_1qah8"]
+[ext_resource type="Texture2D" uid="uid://sw1h5fhv8q8f" path="res://2D/biomes/chunks/chunk_magma_base_03.png" id="2_34b7q"]
+[ext_resource type="PackedScene" uid="uid://cpt4tcy3n6p0a" path="res://Scenes/Explode.tscn" id="3_1qah8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_47j3p"]
 size = Vector2(64, 64)

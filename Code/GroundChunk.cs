@@ -3,6 +3,17 @@ using System;
 
 public partial class GroundChunk : Node2D
 {
+    public static AudioStream[] SFXDig = new AudioStream[]
+    {
+        ResourceLoader.Load<AudioStream>("res://audio/sfx/dig1.mp3"),
+        ResourceLoader.Load<AudioStream>("res://audio/sfx/dig_2.mp3"),
+    };
+    public static AudioStream[] SFXBreak = new AudioStream[] 
+    {
+        ResourceLoader.Load<AudioStream>("res://audio/sfx/break1.mp3"),
+        ResourceLoader.Load<AudioStream>("res://audio/sfx/break2.mp3"),
+    };
+
     [Export]
     private GroundChunkType _type;
     [Export]
@@ -25,7 +36,7 @@ public partial class GroundChunk : Node2D
         {
             if (area is MonsterArea) 
             {
-                Destroy(Game.CurrentBPMInSeconds);
+                Destroy(Game.CurrentBPMInSeconds, play_sound: false);
             }
         };
     }
@@ -36,9 +47,9 @@ public partial class GroundChunk : Node2D
     }
 
 
-    public bool Dig() 
+    public bool Dig(Player player) 
     {
-        _hp -= 1;
+        _hp -= Player.Damage;
 
         if (_hp <= 0) 
         {
@@ -49,14 +60,19 @@ public partial class GroundChunk : Node2D
         return false;
     }
 
-    public async void Destroy(double time, bool explode = false)
+    public async void Destroy(double time, bool explode = false, bool play_sound = true)
     {
         if (explode)
         {
             _animatedSprite2D.Play();
         }
 
-        Modulate = new Color(0.8f, 0.8f, 0.8f);
+        if (play_sound)
+        {
+            SFXAudioStreamPlayer.Instance.PlaySFX(SFXBreak[GD.RandRange(0, SFXBreak.Length - 1)]);
+        }
+
+        Modulate = new Color(0.8f, 0.2f, 0.4f);
 
         await ToSignal(GetTree().CreateTimer(time), "timeout");
 
@@ -67,7 +83,9 @@ public partial class GroundChunk : Node2D
     {
         Modulate = new Color(0.5f, 0.5f, 0.5f);
 
-        await ToSignal(GetTree().CreateTimer(Game.CurrentBPMInSeconds / 2), "timeout");
+        SFXAudioStreamPlayer.Instance.PlaySFX(SFXDig[GD.RandRange(0, SFXBreak.Length - 1)]);
+
+        await ToSignal(GetTree().CreateTimer(Game.CurrentBPMInSeconds1_2), "timeout");
 
         Modulate = Colors.White;
     }

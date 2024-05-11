@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="SGJ-24-May"
+config/name="Shigger"
 run/main_scene="res://Scenes/UI/Intro.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://2D/icon.png"
 
 [autoload]
 
@@ -72,3 +72,4 @@ dig={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

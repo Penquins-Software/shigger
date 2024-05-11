@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://qpk814y1mmdx"]
+
+[ext_resource type="Script" path="res://Code/BiomeBackground.cs" id="1_84bw8"]
+[ext_resource type="Texture2D" uid="uid://c1u645re3q5on" path="res://2D/biomes/background1.png" id="1_lvr8f"]
+
+[node name="EarthBackground" type="Node2D"]
+z_index = -4
+script = ExtResource("1_84bw8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_lvr8f")
+offset = Vector2(0, 540)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(0, 1080)
+texture = ExtResource("1_lvr8f")
+offset = Vector2(0, 540)

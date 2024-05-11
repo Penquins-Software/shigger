@@ -3,14 +3,21 @@ using System;
 
 public partial class Monster : Node2D
 {
-    private const int MIN_BITS_TO_ATTACK = 6;
-    private const int MAX_BITS_TO_ATTACK = 12;
+    private static AudioStream BPM75 = ResourceLoader.Load<AudioStream>("res://audio/sfx/pop_75_cut.mp3");
+    private static AudioStream BPM100 = ResourceLoader.Load<AudioStream>("res://audio/sfx/pop_100_cut.mp3");
+    private static AudioStream BPM120 = ResourceLoader.Load<AudioStream>("res://audio/sfx/pop_120_cut.mp3");
 
-    private const int ATTACK_SPEED = 1;
-    private const int MIN_DEFAULT_SPEED = 2;
-    private const int MAX_DEDAULT_SPEED = 4;
+    [Export]
+    private AudioStreamPlayer2D _audioPlayer;
 
-    private const double MAX_ATTACK_POSSIBILITY = 0.1;
+    private int MIN_BITS_TO_ATTACK = 1;
+    private int MAX_BITS_TO_ATTACK = 2;
+
+    private int ATTACK_SPEED = 1;
+    private int MIN_DEFAULT_SPEED = 4;
+    private int MAX_DEDAULT_SPEED = 4;
+
+    private const double MAX_ATTACK_POSSIBILITY = 0.26;
     private double _attackPossibility = 0.03;
 
     private int _attackBits = 0;
@@ -137,5 +144,57 @@ public partial class Monster : Node2D
         {
             _animationPlayer.Play("9");
         }
+    }
+
+    public void SetDifficult() 
+    {
+    }
+
+    public void Play75() 
+    {
+        GD.Print("Play75");
+
+        _audioPlayer.Stream = BPM75;
+        _audioPlayer.Play();
+
+        MIN_BITS_TO_ATTACK = 6;
+        MAX_BITS_TO_ATTACK = 12;
+
+        MIN_DEFAULT_SPEED = 2;
+        MAX_DEDAULT_SPEED = 3;
+
+        _attackPossibility = 0.03;
+    }
+
+    public void Play100()
+    {
+        GD.Print("Play100");
+
+        _audioPlayer.Stream = BPM100;
+        _audioPlayer.Play();
+
+        MIN_BITS_TO_ATTACK = 4;
+        MAX_BITS_TO_ATTACK = 8;
+
+        MIN_DEFAULT_SPEED = 2;
+        MAX_DEDAULT_SPEED = 3;
+
+        _attackPossibility = 0.12;
+    }
+
+    public void Play120()
+    {
+        GD.Print("Play120");
+
+        _audioPlayer.Stream = BPM120;
+        _audioPlayer.Play();
+
+        MIN_BITS_TO_ATTACK = 4;
+        MAX_BITS_TO_ATTACK = 8;
+
+        MIN_DEFAULT_SPEED = 2;
+        MAX_DEDAULT_SPEED = 3;
+
+        _attackPossibility = 0.16;
     }
 }

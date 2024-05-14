@@ -295,23 +295,23 @@ public partial class Game : Node2D
         {
             _multiplier = 1 * GlobalMultiplier;
         }
-        if (hits >= 15)
+        if (hits > 15)
         {
             _multiplier = 2 * GlobalMultiplier;
         }
-        if (hits >= 31)
+        if (hits > 31)
         {
             _multiplier = 4 * GlobalMultiplier;
         }
-        if (hits >= 63)
+        if (hits > 63)
         {
             _multiplier = 8 * GlobalMultiplier;
         }
-        if (hits >= 127)
+        if (hits > 127)
         {
             _multiplier = 16 * GlobalMultiplier;
         }
-        if (hits >= 255)
+        if (hits > 255)
         {
             _multiplier = 32 * GlobalMultiplier;
         }

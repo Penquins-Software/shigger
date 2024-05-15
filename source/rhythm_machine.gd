@@ -9,6 +9,8 @@ signal bit_2_3
 signal bit_3_4
 signal bit_4_5
 
+signal bit_changed
+
 enum BPM {
 	BPM75,
 	BPM100,
@@ -57,36 +59,28 @@ func _process(delta):
 	if not _bit_1_5 and current_time > bpm_in_seconds_1_5:
 		bit_1_5.emit()
 		_bit_1_5 = true
-		print("bit_1_5")
 	elif not _bit_1_4 and current_time > bpm_in_seconds_1_4:
 		bit_1_4.emit()
 		_bit_1_4 = true
-		print("bit_1_4")
 	elif not _bit_1_3 and current_time > bpm_in_seconds_1_3:
 		bit_1_3.emit()
 		_bit_1_3 = true
-		print("bit_1_3")
 	elif not _bit_1_2 and current_time > bpm_in_seconds_1_2:
 		bit_1_2.emit()
 		_bit_1_2 = true
-		print("bit_1_2")
 	elif not _bit_2_3 and current_time > bpm_in_seconds_2_3:
 		bit_2_3.emit()
 		_bit_2_3 = true
-		print("bit_2_3")
 	elif not _bit_3_4 and current_time > bpm_in_seconds_3_4:
 		bit_3_4.emit()
 		_bit_3_4 = true
-		print("bit_3_4")
 	elif not _bit_4_5 and current_time > bpm_in_seconds_4_5:
 		bit_4_5.emit()
 		_bit_4_5 = true
-		print("bit_4_5")
 	
 	if current_time > bpm_in_seconds_1_1:
 		bit_1_1.emit()
 		reset(current_time - bpm_in_seconds_1_1)
-		print("bit_1_1")
 
 
 func reset(time: float = 0) -> void:
@@ -110,6 +104,7 @@ func set_bpm(bpm: BPM) -> void:
 	bpm_in_seconds_3_4 = bpm_in_seconds_1_1 * 3 / 4
 	bpm_in_seconds_4_5 = bpm_in_seconds_1_1 * 4 / 5
 	reset()
+	bit_changed.emit()
 
 
 func start(from_start: bool) -> void:

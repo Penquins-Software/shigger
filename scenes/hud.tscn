@@ -1,0 +1,178 @@
+[gd_scene load_steps=10 format=3 uid="uid://dj6ej8wvocjor"]
+
+[ext_resource type="Script" path="res://source/hud.gd" id="1_54nam"]
+[ext_resource type="Theme" uid="uid://cnni4p646elf0" path="res://main_theme.tres" id="2_cd0nx"]
+[ext_resource type="Script" path="res://source/rhythm.gd" id="3_gjadg"]
+[ext_resource type="Texture2D" uid="uid://did5hpwtole3t" path="res://2D/rhythm/2_1.png" id="4_deqmw"]
+[ext_resource type="Texture2D" uid="uid://0kv0o1btx4jt" path="res://2D/rhythm/2_2.png" id="5_xbu7f"]
+[ext_resource type="Script" path="res://source/skills/skills.gd" id="6_d7hfr"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_njc70"]
+action = &"pause"
+
+[sub_resource type="Shortcut" id="Shortcut_21tut"]
+events = [SubResource("InputEventAction_njc70")]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wbur7"]
+size = Vector2(10, 48)
+
+[node name="Hud" type="CanvasLayer" node_paths=PackedStringArray("rhythm", "pause_button", "points", "skills")]
+script = ExtResource("1_54nam")
+rhythm = NodePath("Control/Rhythm")
+pause_button = NodePath("Control/PauseButton")
+points = NodePath("Control/Points")
+skills = NodePath("Control/Skills")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PauseButton" type="Button" parent="Control"]
+layout_mode = 1
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 66.0
+offset_bottom = 41.0
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_cd0nx")
+shortcut = SubResource("Shortcut_21tut")
+text = "Пауза"
+
+[node name="Points" type="RichTextLabel" parent="Control"]
+clip_contents = false
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_top = 20.0
+offset_right = 150.0
+offset_bottom = 52.0
+grow_horizontal = 2
+mouse_filter = 2
+theme = ExtResource("2_cd0nx")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+bbcode_enabled = true
+text = "[center]Очков: 0
+
+Серия: 0 (X1)"
+fit_content = true
+scroll_active = false
+
+[node name="Rhythm" type="Control" parent="Control" node_paths=PackedStringArray("rhythm_button")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -324.0
+offset_right = 576.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("3_gjadg")
+rhythm_button = NodePath("TextureRect")
+idle_texture = ExtResource("4_deqmw")
+hover_texture = ExtResource("5_xbu7f")
+
+[node name="Lines" type="Control" parent="Control/Rhythm"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/Rhythm"]
+modulate = Color(1, 1, 1, 0.784314)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -121.0
+offset_right = 40.0
+offset_bottom = -41.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(40, 40)
+texture = ExtResource("4_deqmw")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Area2D" type="Area2D" parent="Control/Rhythm/TextureRect"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/Rhythm/TextureRect/Area2D"]
+position = Vector2(40, 40)
+shape = SubResource("RectangleShape2D_wbur7")
+
+[node name="Skills" type="Control" parent="Control" node_paths=PackedStringArray("_hud", "_container")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_d7hfr")
+_hud = NodePath("../..")
+_container = NodePath("HBoxContainer")
+
+[node name="ColorRect" type="ColorRect" parent="Control/Skills"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.784314)
+
+[node name="Points" type="RichTextLabel" parent="Control/Skills"]
+clip_contents = false
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -250.0
+offset_top = 84.0
+offset_right = 250.0
+offset_bottom = 132.0
+grow_horizontal = 2
+mouse_filter = 2
+theme = ExtResource("2_cd0nx")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+bbcode_enabled = true
+text = "[center]Выберете улучшение!"
+fit_content = true
+scroll_active = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Skills"]
+custom_minimum_size = Vector2(900, 400)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1

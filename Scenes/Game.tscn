@@ -1,68 +1,52 @@
-[gd_scene load_steps=15 format=3 uid="uid://cycif5o6ovikj"]
+[gd_scene load_steps=11 format=3 uid="uid://cycif5o6ovikj"]
 
-[ext_resource type="Script" path="res://Code/Game.cs" id="1_4mrl1"]
-[ext_resource type="PackedScene" uid="uid://dj6ej8wvocjor" path="res://Scenes/UI/HUD.tscn" id="1_67q3x"]
-[ext_resource type="PackedScene" uid="uid://k82wwl0t8p28" path="res://Scenes/UI/Pause.tscn" id="2_c7und"]
-[ext_resource type="Script" path="res://Code/World.cs" id="4_vaqct"]
-[ext_resource type="PackedScene" uid="uid://d0ot6x3rk7wx4" path="res://Scenes/player.tscn" id="5_0bvna"]
-[ext_resource type="Script" path="res://Code/MusicPlayer.cs" id="6_7et3u"]
-[ext_resource type="AudioStream" uid="uid://dwcoyddj3anmi" path="res://audio/music/biome1.mp3" id="7_53ja1"]
-[ext_resource type="PackedScene" uid="uid://c0ie6d8kmwven" path="res://Scenes/monster.tscn" id="7_xrk0u"]
-[ext_resource type="AudioStream" uid="uid://bjju5vhdpnmhw" path="res://audio/music/biome2.mp3" id="8_t4tsy"]
-[ext_resource type="AudioStream" uid="uid://c2j45txs5gmnq" path="res://audio/sfx/waga-na-wa-megumin-1.mp3" id="8_xuotb"]
-[ext_resource type="AudioStream" uid="uid://dclrjaq2o8o8t" path="res://audio/music/biome3.mp3" id="9_5ex5d"]
-[ext_resource type="Script" path="res://Code/SFXAudioStreamPlayer.cs" id="9_ugdfu"]
-[ext_resource type="AudioStream" uid="uid://dhqpri18imsvf" path="res://audio/sfx/click_1.ogg" id="13_wlxcp"]
-[ext_resource type="Script" path="res://Code/Metronome.cs" id="14_mv22e"]
+[ext_resource type="PackedScene" uid="uid://dj6ej8wvocjor" path="res://scenes/hud.tscn" id="1_67q3x"]
+[ext_resource type="Script" path="res://source/game.gd" id="1_m38ur"]
+[ext_resource type="PackedScene" uid="uid://k82wwl0t8p28" path="res://scenes/pause.tscn" id="2_c7und"]
+[ext_resource type="Script" path="res://source/world.gd" id="4_sgmi1"]
+[ext_resource type="PackedScene" uid="uid://d0ot6x3rk7wx4" path="res://scenes/player/player.tscn" id="5_0bvna"]
+[ext_resource type="Script" path="res://source/music_player.gd" id="7_xi8v7"]
+[ext_resource type="PackedScene" uid="uid://c0ie6d8kmwven" path="res://scenes/monster/monster.tscn" id="7_xrk0u"]
+[ext_resource type="AudioStream" uid="uid://dwcoyddj3anmi" path="res://audio/music/biome1.mp3" id="8_ppsjj"]
+[ext_resource type="AudioStream" uid="uid://bjju5vhdpnmhw" path="res://audio/music/biome2.mp3" id="9_af8ys"]
+[ext_resource type="AudioStream" uid="uid://dclrjaq2o8o8t" path="res://audio/music/biome3.mp3" id="10_7eap1"]
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("_hud", "_pause", "_world", "_player", "_monster")]
-script = ExtResource("1_4mrl1")
-_hud = NodePath("Hud")
-_pause = NodePath("Pause")
-_world = NodePath("World")
-_player = NodePath("World/Player")
-_monster = NodePath("World/Monster")
-_menuFile = "res://Scenes/UI/Menu.tscn"
-_endingFile = "res://Scenes/ending.tscn"
+[node name="Game" type="Node2D" node_paths=PackedStringArray("hud", "pause", "world", "player", "monster")]
+script = ExtResource("1_m38ur")
+hud = NodePath("Hud")
+pause = NodePath("Pause")
+world = NodePath("World")
+player = NodePath("World/Player")
+monster = NodePath("World/Monster")
+menu_scene_file = "res://Scenes/UI/Menu.tscn"
+ending_scene_file = "res://Scenes/ending.tscn"
 
-[node name="Hud" parent="." node_paths=PackedStringArray("_game") instance=ExtResource("1_67q3x")]
-_game = NodePath("..")
+[node name="Hud" parent="." node_paths=PackedStringArray("game") instance=ExtResource("1_67q3x")]
+game = NodePath("..")
 
 [node name="Pause" parent="." instance=ExtResource("2_c7und")]
 visible = false
 
-[node name="World" type="Node2D" parent="." node_paths=PackedStringArray("_game", "_player", "_monster", "_musicPlayer")]
+[node name="World" type="Node2D" parent="." node_paths=PackedStringArray("game", "player", "monster")]
 rotation = 1.37126e-05
-script = ExtResource("4_vaqct")
-_game = NodePath("..")
-_player = NodePath("Player")
-_monster = NodePath("Monster")
-_musicPlayer = NodePath("MusicStreamPlayer")
+script = ExtResource("4_sgmi1")
+game = NodePath("..")
+player = NodePath("Player")
+monster = NodePath("Monster")
 
-[node name="Player" parent="World" instance=ExtResource("5_0bvna")]
-
-[node name="MusicStreamPlayer" type="AudioStreamPlayer" parent="World" node_paths=PackedStringArray("_game")]
-autoplay = true
-bus = &"Music"
-script = ExtResource("6_7et3u")
-_game = NodePath("../..")
-_audio75bpm = ExtResource("7_53ja1")
-_audio100bpm = ExtResource("8_t4tsy")
-_audio120bpm = ExtResource("9_5ex5d")
-
-[node name="CanvasModulate" type="CanvasModulate" parent="World"]
-color = Color(0, 0, 0, 1)
+[node name="Player" parent="World" node_paths=PackedStringArray("_world") instance=ExtResource("5_0bvna")]
+_world = NodePath("..")
 
 [node name="Monster" parent="World" instance=ExtResource("7_xrk0u")]
 position = Vector2(0, -640)
 
-[node name="SFXAudioStreamPlayer" type="AudioStreamPlayer" parent="World"]
-stream = ExtResource("8_xuotb")
-bus = &"SFX"
-script = ExtResource("9_ugdfu")
+[node name="CanvasModulate" type="CanvasModulate" parent="World"]
+color = Color(0, 0, 0, 1)
 
-[node name="Metronome" type="AudioStreamPlayer" parent="World" node_paths=PackedStringArray("_game")]
-stream = ExtResource("13_wlxcp")
-bus = &"SFX"
-script = ExtResource("14_mv22e")
-_game = NodePath("../..")
+[node name="MusicStreamPlayer" type="AudioStreamPlayer" parent="World"]
+autoplay = true
+bus = &"Music"
+script = ExtResource("7_xi8v7")
+audio_bpm75 = ExtResource("8_ppsjj")
+audio_bpm100 = ExtResource("9_af8ys")
+audio_bpm120 = ExtResource("10_7eap1")

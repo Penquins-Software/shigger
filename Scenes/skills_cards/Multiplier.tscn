@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://ckod1xgrhpci"]
 
 [ext_resource type="Texture2D" uid="uid://cby6l3hd6s0x0" path="res://2D/skills/skill_background.png" id="1_fxf47"]
-[ext_resource type="Script" path="res://Code/PlayerSkills/SkillMultiplier.cs" id="2_nuvcl"]
+[ext_resource type="Script" path="res://source/skills/list/skill_multiplier.gd" id="2_0pehp"]
 [ext_resource type="Texture2D" uid="uid://l5g2twos4ruc" path="res://2D/items/icon.png" id="3_d4x7f"]
 [ext_resource type="Theme" uid="uid://cnni4p646elf0" path="res://main_theme.tres" id="4_w6bg6"]
 
@@ -21,7 +21,7 @@ grow_vertical = 2
 size_flags_horizontal = 6
 texture = ExtResource("1_fxf47")
 expand_mode = 1
-script = ExtResource("2_nuvcl")
+script = ExtResource("2_0pehp")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1

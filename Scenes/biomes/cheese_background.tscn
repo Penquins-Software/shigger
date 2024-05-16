@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://w8sgmseyvxg0"]
 
-[ext_resource type="Script" path="res://Code/BiomeBackground.cs" id="1_bv2up"]
+[ext_resource type="Script" path="res://source/biome/biome_background.gd" id="1_ubdd4"]
 [ext_resource type="Texture2D" uid="uid://b45e55m683q5t" path="res://2D/biomes/background3.png" id="2_vq42v"]
 
 [node name="EarthBackground" type="Node2D"]
 z_index = -4
-script = ExtResource("1_bv2up")
+script = ExtResource("1_ubdd4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_vq42v")

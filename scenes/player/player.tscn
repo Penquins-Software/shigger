@@ -1,0 +1,313 @@
+[gd_scene load_steps=32 format=3 uid="uid://d0ot6x3rk7wx4"]
+
+[ext_resource type="Script" path="res://source/player/player.gd" id="1_6l8q4"]
+[ext_resource type="Texture2D" uid="uid://bqjfoqrhuhjq8" path="res://2D/main/main1.png" id="2_wifcb"]
+[ext_resource type="Texture2D" uid="uid://d3bdtdalsfoac" path="res://2D/main/main2.png" id="3_45t7m"]
+[ext_resource type="Texture2D" uid="uid://cipgw4blinf8c" path="res://2D/main/main3.png" id="4_ruhum"]
+[ext_resource type="Texture2D" uid="uid://bywcd6uydmn7l" path="res://2D/main/main4.png" id="5_8nnb5"]
+[ext_resource type="Script" path="res://source/player/player_camera.gd" id="7_byilh"]
+[ext_resource type="Script" path="res://source/player/player_area.gd" id="8_jucyy"]
+[ext_resource type="Texture2D" uid="uid://dknlgi0dvoat0" path="res://2D/light.png" id="9_fjchg"]
+[ext_resource type="Texture2D" uid="uid://bs34d73ye4ak4" path="res://2D/Free Smoke Fx  Pixel 04.png" id="10_cgapy"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m3jx2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wifcb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_45t7m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ruhum")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_8nnb5")
+}],
+"loop": false,
+"name": &"digging",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wifcb")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8oge"]
+atlas = ExtResource("10_cgapy")
+region = Rect2(384, 320, 128, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hmemc"]
+atlas = ExtResource("10_cgapy")
+region = Rect2(0, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d812t"]
+atlas = ExtResource("10_cgapy")
+region = Rect2(64, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gu6a5"]
+atlas = ExtResource("10_cgapy")
+region = Rect2(128, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_newxh"]
+atlas = ExtResource("10_cgapy")
+region = Rect2(192, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_clawm"]
+atlas = ExtResource("10_cgapy")
+region = Rect2(256, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlrds"]
+atlas = ExtResource("10_cgapy")
+region = Rect2(320, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gdclq"]
+atlas = ExtResource("10_cgapy")
+region = Rect2(384, 320, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gtv2m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v8oge")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hmemc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d812t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gu6a5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_newxh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_clawm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlrds")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gdclq")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="Animation" id="Animation_f5yv8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.2, 1.2)]
+}
+
+[sub_resource type="Animation" id="Animation_irhnf"]
+resource_name = "Shake"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1.2, 1.2), Vector2(1.3, 1.3), Vector2(1.2, 1.2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nuqnv"]
+_data = {
+"RESET": SubResource("Animation_f5yv8"),
+"Shake": SubResource("Animation_irhnf")
+}
+
+[sub_resource type="Animation" id="Animation_7sxyy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.9, 0.9)]
+}
+
+[sub_resource type="Animation" id="Animation_qk1l0"]
+resource_name = "Shake"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.9, 0.9), Vector2(1, 1), Vector2(0.9, 0.9)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xuqti"]
+_data = {
+"RESET": SubResource("Animation_7sxyy"),
+"Shake": SubResource("Animation_qk1l0")
+}
+
+[sub_resource type="Animation" id="Animation_15pmj"]
+resource_name = "DoABarrelRoll"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 3.14159, 0.0349066, 6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_ronsg"]
+resource_name = "FlipFromLeft"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:rotation")
+tracks/0/interp = 4
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.5708, 3.14159]
+}
+
+[sub_resource type="Animation" id="Animation_28voc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_jutsu"]
+resource_name = "RotateToLeft"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:rotation")
+tracks/0/interp = 4
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.5708]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nf6hy"]
+_data = {
+"DoABarrelRoll": SubResource("Animation_15pmj"),
+"FlipFromLeft": SubResource("Animation_ronsg"),
+"RESET": SubResource("Animation_28voc"),
+"RotateToLeft": SubResource("Animation_jutsu")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ck4yl"]
+size = Vector2(48, 48)
+
+[node name="Player" type="Node2D" node_paths=PackedStringArray("shake_animation_player_1", "shake_animation_player_2", "character_animated_sprite", "effect_animated_sprite", "light", "area", "camera")]
+z_index = 1
+script = ExtResource("1_6l8q4")
+shake_animation_player_1 = NodePath("ShakeAnimationPlayer_1")
+shake_animation_player_2 = NodePath("ShakeAnimationPlayer_2")
+character_animated_sprite = NodePath("AnimatedSprite2D")
+effect_animated_sprite = NodePath("EffectAnimatedSprite2D")
+light = NodePath("PointLight2D")
+area = NodePath("Area2D")
+camera = NodePath("Camera2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_m3jx2")
+animation = &"digging"
+autoplay = "idle"
+centered = false
+
+[node name="EffectAnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_gtv2m")
+frame = 7
+frame_progress = 1.0
+centered = false
+offset = Vector2(0, 32)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(33, 32)
+ignore_rotation = false
+zoom = Vector2(0.9, 0.9)
+position_smoothing_enabled = true
+position_smoothing_speed = 2.0
+rotation_smoothing_enabled = true
+rotation_smoothing_speed = 2.0
+script = ExtResource("7_byilh")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 2.5
+shadow_color = Color(0, 0, 0, 0.631373)
+texture = ExtResource("9_fjchg")
+offset = Vector2(32, 32)
+texture_scale = 1.5
+
+[node name="ShakeAnimationPlayer_1" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nuqnv")
+}
+autoplay = "RESET"
+
+[node name="ShakeAnimationPlayer_2" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xuqti")
+}
+
+[node name="RotateAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nf6hy")
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("8_jucyy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(32, 32)
+shape = SubResource("RectangleShape2D_ck4yl")

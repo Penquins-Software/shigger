@@ -11,14 +11,17 @@ config_version=5
 [application]
 
 config/name="Shigger"
-run/main_scene="res://Scenes/UI/Intro.tscn"
+run/main_scene="res://scenes/intro.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://2D/icon.png"
 
 [autoload]
 
-Config="*res://Code/Settings/Config.cs"
-LootLockerNodeHandler="*res://Code/Web/LootLockerNodeHandler.cs"
+RhythmMachine="*res://source/globals/rhythm_machine.gd"
+SFXPlayer="*res://source/globals/sfx_player.gd"
+Settings="*res://source/settings/settings.gd"
+LootLockerClient="*res://source/web/loot_locker_client.gd"
+Constants="*res://source/globals/constants.gd"
 
 [display]
 
@@ -33,9 +36,14 @@ project/assembly_name="Godot-example-project-cs"
 
 folder_colors={
 "res://2D/": "green",
-"res://Code/": "red",
-"res://Scenes/": "blue",
-"res://audio/": "purple"
+"res://audio/": "purple",
+"res://scenes/": "blue",
+"res://scenes/biomes/": "green",
+"res://scenes/biomes/chunks/": "green",
+"res://scenes/items/": "green",
+"res://source/globals/": "green",
+"res://source/settings/": "green",
+"res://source/web/": "green"
 }
 
 [input]
@@ -72,4 +80,3 @@ dig={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-environment/defaults/default_clear_color=Color(0, 0, 0, 1)

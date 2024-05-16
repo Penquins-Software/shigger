@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://c785rv1378qf2"]
 
 [ext_resource type="Texture2D" uid="uid://di2x4ta1ypsls" path="res://2D/menu/titlefon.png" id="1_fqu8l"]
-[ext_resource type="Script" path="res://Code/Ending.cs" id="1_hc0q5"]
+[ext_resource type="Script" path="res://source/ending.gd" id="1_lexh2"]
 [ext_resource type="Texture2D" uid="uid://u75xxyydladp" path="res://2D/game_over/End1.png" id="2_fir2c"]
 [ext_resource type="AudioStream" uid="uid://be2i53g5fb30q" path="res://audio/sfx/overpop.mp3" id="3_mkgaq"]
 [ext_resource type="Texture2D" uid="uid://dbeeuo3i0isuo" path="res://2D/game_over/End2.png" id="3_w07ap"]
@@ -234,12 +234,12 @@ _data = {
 "ending": SubResource("Animation_oki5w")
 }
 
-[node name="Ending" type="Node2D" node_paths=PackedStringArray("_text", "_returnToMenu", "_animationPlayer")]
-script = ExtResource("1_hc0q5")
-_text = NodePath("CanvasLayer/Title")
-_returnToMenu = NodePath("CanvasLayer/Button")
-_animationPlayer = NodePath("AnimationPlayer")
-_menuSceneFile = "res://Scenes/UI/Menu.tscn"
+[node name="Ending" type="Node2D" node_paths=PackedStringArray("text", "return_to_menu_button", "animation_player")]
+script = ExtResource("1_lexh2")
+text = NodePath("CanvasLayer/Title")
+return_to_menu_button = NodePath("CanvasLayer/Button")
+animation_player = NodePath("AnimationPlayer")
+next_scene_file = "res://scenes/menu.tscn"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2191, 590)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bn610g1y3m6q4"]
+[gd_scene load_steps=21 format=3 uid="uid://bn610g1y3m6q4"]
 
 [ext_resource type="Script" path="res://source/menu.gd" id="1_y313j"]
 [ext_resource type="Texture2D" uid="uid://di2x4ta1ypsls" path="res://graphics/menu/title_background.png" id="2_5l2x8"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://source/settings/setting_audio_bus.gd" id="10_dvv5c"]
 [ext_resource type="Script" path="res://source/settings/setting_camera_shaking.gd" id="11_w1p6r"]
 [ext_resource type="Script" path="res://source/authors.gd" id="12_hpssp"]
+[ext_resource type="Script" path="res://source/settings/settins_return_to_menu.gd" id="12_yqn17"]
 [ext_resource type="AudioStream" uid="uid://bq5qg4cjkludu" path="res://audio/music/dig_down.mp3" id="13_dch44"]
 
 [sub_resource type="Animation" id="Animation_xwvgy"]
@@ -667,6 +668,7 @@ grow_vertical = 0
 mouse_default_cursor_shape = 2
 theme = ExtResource("5_qhpuc")
 text = "Вернуться"
+script = ExtResource("12_yqn17")
 
 [node name="Authors" type="Control" parent="."]
 visible = false

@@ -236,7 +236,6 @@ func _on_set_player_name(_r: int, _rc: int, _h: PackedStringArray, body: PackedB
 func submit_score(score: int) -> void:
 	if not _is_authenticated():
 		print("Player is not authorized.")
-		return
 	
 	if submitting_score or score <= 0:
 		return;

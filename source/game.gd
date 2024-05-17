@@ -99,6 +99,16 @@ func check_level() -> void:
 	elif not biomes.has(Biome.Biomes.CHEESE) and player._world_position.y >= Constants.LEVEL_MAGMA:
 		set_level(Biome.Biomes.CHEESE)
 		monster.set_size(9)
+	elif not biomes.has(Biome.Biomes.CENTER) and player._world_position.y >= Constants.LEVEL_CHEESE:
+		set_level(Biome.Biomes.CENTER)
+		player.camera.rotation_degrees = 90
+	elif not biomes.has(Biome.Biomes.BACK_CHEESE) and player._world_position.y >= Constants.LEVEL_CENTER:
+		set_level(Biome.Biomes.BACK_CHEESE)
+		player.camera.rotation_degrees = 180
+	elif not biomes.has(Biome.Biomes.BACK_MAGMA) and player._world_position.y >= Constants.LEVEL_BACK_CHEESE:
+		set_level(Biome.Biomes.BACK_MAGMA)
+	elif not biomes.has(Biome.Biomes.BACK_EARTH) and player._world_position.y >= Constants.LEVEL_BACK_MAGMA:
+		set_level(Biome.Biomes.BACK_EARTH)
 
 
 func check_monster_position() -> void:
@@ -112,6 +122,7 @@ func set_level(biome: Biome.Biomes) -> void:
 	var bpm = music_player.play_biome(biome)
 	monster.set_difficult(biome)
 	RhythmMachine.set_bpm(bpm)
+	player.set_animation_speed(bpm)
 	RhythmMachine.start(true)
 
 

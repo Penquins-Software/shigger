@@ -46,7 +46,6 @@ func create() -> void:
 
 
 func generate_next_biome(depth: int = 32) -> void:
-	print("Генерация нового биома. Текущий уровень: %s. Длина пути: %s" % [_get_path_level(), path.size()])
 	var biome = select_biome_by_level()
 	biome.generate(path, depth)
 	create_biome(biome)
@@ -62,8 +61,16 @@ func select_biome_by_level() -> Biome:
 		return BiomeMagma.new()
 	elif current_level < Constants.LEVEL_CHEESE:
 		return BiomeCheese.new()
+	elif current_level < Constants.LEVEL_CENTER:
+		return BiomeCenter.new()
+	elif current_level < Constants.LEVEL_BACK_CHEESE:
+		return BiomeBackCheese.new()
+	elif current_level < Constants.LEVEL_BACK_MAGMA:
+		return BiomeBackMagma.new()
+	elif current_level < Constants.LEVEL_BACK_EARTH:
+		return BiomeBackEarth.new()
 	else:
-		return BiomeCheese.new()
+		return BiomeBackEarth.new()
 
 
 func create_biome(biome: Biome) -> void:

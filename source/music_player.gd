@@ -4,6 +4,9 @@ extends AudioStreamPlayer
 @export var audio_earth: AudioStream
 @export var audio_magma: AudioStream
 @export var audio_cheese: AudioStream
+@export var audio_back_earth: AudioStream
+@export var audio_back_magma: AudioStream
+@export var audio_back_cheese: AudioStream
 
 
 func play_biome(biome: Biome.Biomes) -> RhythmMachine.BPM:
@@ -18,6 +21,18 @@ func play_biome(biome: Biome.Biomes) -> RhythmMachine.BPM:
 		Biome.Biomes.CHEESE:
 			stream = audio_cheese
 			bpm = RhythmMachine.BPM.BPM120
+		Biome.Biomes.CENTER:
+			stream = audio_cheese
+			bpm = RhythmMachine.BPM.BPM120
+		Biome.Biomes.BACK_CHEESE:
+			stream = audio_back_cheese
+			bpm = RhythmMachine.BPM.BPM120
+		Biome.Biomes.BACK_MAGMA:
+			stream = audio_back_magma
+			bpm = RhythmMachine.BPM.BPM100
+		Biome.Biomes.BACK_EARTH:
+			stream = audio_back_earth
+			bpm = RhythmMachine.BPM.BPM75
 		_:
 			return RhythmMachine.BPM.BPM75
 	play()

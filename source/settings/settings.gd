@@ -76,6 +76,7 @@ func _exit_tree():
 
 
 func save_config() -> void:
+	print("Saving settings.")
 	if config == null:
 		config = ConfigFile.new()
 	
@@ -97,6 +98,7 @@ func save_config() -> void:
 
 
 func load_config() -> void:
+	print("Loading settings.")
 	if config == null:
 		config = ConfigFile.new()
 	

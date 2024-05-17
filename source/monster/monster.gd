@@ -54,14 +54,26 @@ func move() -> void:
 func set_difficult(biome: Biome.Biomes) -> void:
 	match biome:
 		Biome.Biomes.EARTH:
-			max_distance_to_player = 6
+			max_distance_to_player = 12
 			audio_player.stream = audio_bpm75
 		Biome.Biomes.MAGMA:
-			max_distance_to_player = 6
+			max_distance_to_player = 10
 			audio_player.stream = audio_bpm100
 		Biome.Biomes.CHEESE:
 			max_distance_to_player = 8
 			audio_player.stream = audio_bpm120
+		Biome.Biomes.CENTER:
+			max_distance_to_player = 8
+			audio_player.stream = audio_bpm120
+		Biome.Biomes.BACK_CHEESE:
+			max_distance_to_player = 8
+			audio_player.stream = audio_bpm120
+		Biome.Biomes.BACK_MAGMA:
+			max_distance_to_player = 8
+			audio_player.stream = audio_bpm100
+		Biome.Biomes.BACK_EARTH:
+			max_distance_to_player = 8
+			audio_player.stream = audio_bpm75
 	audio_player.play()
 
 

@@ -48,6 +48,8 @@ func _ready():
 	RhythmMachine.bit_1_1.connect(bit_1_1)
 	RhythmMachine.bit_1_4.connect(bit_1_4)
 	RhythmMachine.bit_2_3.connect(bit_2_3)
+	
+	RhythmMachine.bit_changed.connect(bit_reset)
 
 
 func _input(event):
@@ -206,9 +208,13 @@ func get_flashlight() -> void:
 			item.turn_on_light()
 
 
-func bit_1_1() -> void:
+func bit_reset(_bpm: int = 0) -> void:
 	_bit_1_4 = true
 	_bit_2_3 = false
+
+
+func bit_1_1() -> void:
+	bit_reset()
 
 
 func bit_1_4() -> void:

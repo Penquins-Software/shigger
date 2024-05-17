@@ -1,0 +1,53 @@
+[gd_scene load_steps=11 format=3 uid="uid://cycif5o6ovikj"]
+
+[ext_resource type="PackedScene" uid="uid://dj6ej8wvocjor" path="res://content/hud.tscn" id="1_67q3x"]
+[ext_resource type="Script" path="res://source/game.gd" id="1_m38ur"]
+[ext_resource type="PackedScene" uid="uid://k82wwl0t8p28" path="res://content/pause.tscn" id="2_c7und"]
+[ext_resource type="Script" path="res://source/world.gd" id="4_sgmi1"]
+[ext_resource type="PackedScene" uid="uid://d0ot6x3rk7wx4" path="res://content/player/player.tscn" id="5_0bvna"]
+[ext_resource type="Script" path="res://source/music_player.gd" id="7_xi8v7"]
+[ext_resource type="PackedScene" uid="uid://c0ie6d8kmwven" path="res://content/monster/monster.tscn" id="7_xrk0u"]
+[ext_resource type="AudioStream" uid="uid://dwcoyddj3anmi" path="res://audio/music/biome1.mp3" id="8_ppsjj"]
+[ext_resource type="AudioStream" uid="uid://bjju5vhdpnmhw" path="res://audio/music/biome2.mp3" id="9_af8ys"]
+[ext_resource type="AudioStream" uid="uid://dclrjaq2o8o8t" path="res://audio/music/biome3.mp3" id="10_7eap1"]
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("hud", "pause", "world", "player", "monster", "music_player")]
+script = ExtResource("1_m38ur")
+hud = NodePath("Hud")
+pause = NodePath("Pause")
+world = NodePath("World")
+player = NodePath("World/Player")
+monster = NodePath("World/Monster")
+music_player = NodePath("World/MusicStreamPlayer")
+menu_scene_file = "res://content/menu.tscn"
+ending_scene_file = "res://content/ending.tscn"
+
+[node name="Hud" parent="." node_paths=PackedStringArray("game") instance=ExtResource("1_67q3x")]
+game = NodePath("..")
+
+[node name="Pause" parent="." instance=ExtResource("2_c7und")]
+visible = false
+
+[node name="World" type="Node2D" parent="." node_paths=PackedStringArray("game", "player", "monster")]
+rotation = 1.37126e-05
+script = ExtResource("4_sgmi1")
+game = NodePath("..")
+player = NodePath("Player")
+monster = NodePath("Monster")
+
+[node name="Player" parent="World" node_paths=PackedStringArray("_world") instance=ExtResource("5_0bvna")]
+_world = NodePath("..")
+
+[node name="Monster" parent="World" instance=ExtResource("7_xrk0u")]
+position = Vector2(0, -640)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="World"]
+color = Color(0, 0, 0, 1)
+
+[node name="MusicStreamPlayer" type="AudioStreamPlayer" parent="World"]
+autoplay = true
+bus = &"Music"
+script = ExtResource("7_xi8v7")
+audio_earth = ExtResource("8_ppsjj")
+audio_magma = ExtResource("9_af8ys")
+audio_cheese = ExtResource("10_7eap1")

@@ -92,6 +92,10 @@ func _on_authentication(_r: int, _rc: int, _h: PackedStringArray, body: PackedBy
 	json.parse(body.get_string_from_utf8())
 	var response = json.data
 	
+	if body == null or body.size() == 0:
+		print("Connection lost.")
+		return
+	
 	session_token = str(response["session_token"])
 	player_id = str(response["player_id"])
 	

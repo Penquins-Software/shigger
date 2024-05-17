@@ -11,9 +11,9 @@ config_version=5
 [application]
 
 config/name="Shigger"
-run/main_scene="res://scenes/intro.tscn"
-config/features=PackedStringArray("4.2", "C#", "Forward Plus")
-config/icon="res://2D/icon.png"
+run/main_scene="res://content/intro.tscn"
+config/features=PackedStringArray("4.2", "Forward Plus")
+config/icon="res://graphics/icon.png"
 
 [autoload]
 
@@ -35,15 +35,11 @@ project/assembly_name="Godot-example-project-cs"
 [file_customization]
 
 folder_colors={
-"res://2D/": "green",
 "res://audio/": "purple",
-"res://scenes/": "blue",
-"res://scenes/biomes/": "green",
-"res://scenes/biomes/chunks/": "green",
-"res://scenes/items/": "green",
-"res://source/globals/": "green",
-"res://source/settings/": "green",
-"res://source/web/": "green"
+"res://content/": "blue",
+"res://content/biomes/chunks/": "green",
+"res://graphics/": "orange",
+"res://source/": "pink"
 }
 
 [input]

@@ -2,12 +2,12 @@ class_name Item
 extends Node2D
 
 static var _item_scenes: Array[PackedScene] = [
-	ResourceLoader.load("res://scenes/items/stop_monster.tscn"),
-	ResourceLoader.load("res://scenes/items/treasure.tscn"),
-	ResourceLoader.load("res://scenes/items/dynamite.tscn"),
+	ResourceLoader.load("res://content/items/stop_monster.tscn"),
+	ResourceLoader.load("res://content/items/treasure.tscn"),
+	ResourceLoader.load("res://content/items/dynamite.tscn"),
 ]
 
-@export var area: Area2D
+@export var _area: Area2D
 @export var light: Light2D
 
 var _world_position: Vector2
@@ -25,7 +25,7 @@ func place(world_position: Vector2, player: Player, monster: Monster, world: Wor
 	_monster = monster
 	_world = world
 	
-	area.area_entered.connect(_on_area_entered)
+	_area.area_entered.connect(_on_area_entered)
 	
 	if not light == null:
 		light.visible = player.flashlight

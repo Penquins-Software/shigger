@@ -1,20 +1,24 @@
+class_name MusicPlayer
 extends AudioStreamPlayer
 
-@export var audio_bpm75: AudioStream
-@export var audio_bpm100: AudioStream
-@export var audio_bpm120: AudioStream
+@export var audio_earth: AudioStream
+@export var audio_magma: AudioStream
+@export var audio_cheese: AudioStream
 
 
-func play_bpm(bpm: RhythmMachine.BPM) -> void:
-	match bpm:
-		RhythmMachine.BPM.BPM75:
-			stream = audio_bpm75
-		RhythmMachine.BPM.BPM100:
-			stream = audio_bpm100
-		RhythmMachine.BPM.BPM120:
-			stream = audio_bpm120
-		RhythmMachine.BPM.BPM150:
-			pass
-		RhythmMachine.BPM.BPM200:
-			pass
+func play_biome(biome: Biome.Biomes) -> RhythmMachine.BPM:
+	var bpm: RhythmMachine.BPM
+	match biome:
+		Biome.Biomes.EARTH:
+			stream = audio_earth
+			bpm = RhythmMachine.BPM.BPM75
+		Biome.Biomes.MAGMA:
+			stream = audio_magma
+			bpm = RhythmMachine.BPM.BPM100
+		Biome.Biomes.CHEESE:
+			stream = audio_cheese
+			bpm = RhythmMachine.BPM.BPM120
+		_:
+			return RhythmMachine.BPM.BPM75
 	play()
+	return bpm

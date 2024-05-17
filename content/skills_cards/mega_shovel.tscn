@@ -1,0 +1,78 @@
+[gd_scene load_steps=5 format=3 uid="uid://c78edmtf2jw4t"]
+
+[ext_resource type="Texture2D" uid="uid://cby6l3hd6s0x0" path="res://graphics/skills/skill_background.png" id="1_75bwg"]
+[ext_resource type="Script" path="res://source/skills/list/skill_mega_shovel.gd" id="2_kaeep"]
+[ext_resource type="Texture2D" uid="uid://n0fj1o422l0m" path="res://graphics/skills/двойная лопата.png" id="3_mynb8"]
+[ext_resource type="Theme" uid="uid://cnni4p646elf0" path="res://main_theme.tres" id="3_yvlbb"]
+
+[node name="MegaShovel" type="TextureRect"]
+custom_minimum_size = Vector2(260, 400)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+texture = ExtResource("1_75bwg")
+expand_mode = 1
+script = ExtResource("2_kaeep")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.0
+offset_top = 20.0
+offset_right = 64.0
+offset_bottom = 148.0
+grow_horizontal = 2
+mouse_filter = 2
+texture = ExtResource("3_mynb8")
+
+[node name="Title" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -42.0
+offset_right = 121.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("3_yvlbb")
+theme_override_colors/default_color = Color(0.188235, 0.180392, 0.192157, 1)
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center]Мега лопата"
+fit_content = true
+scroll_active = false
+
+[node name="Description" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -129.5
+offset_top = 40.0
+offset_right = 130.5
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("3_yvlbb")
+theme_override_colors/default_color = Color(0.803922, 0.792157, 0.764706, 1)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]Лопата наносит двойной удар"
+fit_content = true
+scroll_active = false

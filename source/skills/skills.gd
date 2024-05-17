@@ -8,17 +8,17 @@ signal selected
 
 var _current_skills: Array[SkillCard]
 var _skill_cards: Array[SkillCard] = [
-	ResourceLoader.load("res://scenes/skills_cards/drill.tscn").instantiate() as SkillCard,
-	ResourceLoader.load("res://scenes/skills_cards/flashlight.tscn").instantiate() as SkillCard,
-	ResourceLoader.load("res://scenes/skills_cards/fugu.tscn").instantiate() as SkillCard,
-	ResourceLoader.load("res://scenes/skills_cards/mega_shovel.tscn").instantiate() as SkillCard,
-	ResourceLoader.load("res://scenes/skills_cards/sideways_shovel.tscn").instantiate() as SkillCard,
-	ResourceLoader.load("res://scenes/skills_cards/wide_shovel.tscn").instantiate() as SkillCard,
-	ResourceLoader.load("res://scenes/skills_cards/multiplier.tscn").instantiate() as SkillCard,
+	ResourceLoader.load("res://content/skills_cards/drill.tscn").instantiate() as SkillCard,
+	ResourceLoader.load("res://content/skills_cards/flashlight.tscn").instantiate() as SkillCard,
+	ResourceLoader.load("res://content/skills_cards/fugu.tscn").instantiate() as SkillCard,
+	ResourceLoader.load("res://content/skills_cards/mega_shovel.tscn").instantiate() as SkillCard,
+	ResourceLoader.load("res://content/skills_cards/sideways_shovel.tscn").instantiate() as SkillCard,
+	ResourceLoader.load("res://content/skills_cards/wide_shovel.tscn").instantiate() as SkillCard,
+	ResourceLoader.load("res://content/skills_cards/multiplier.tscn").instantiate() as SkillCard,
 ]
 
 
-func show_skills() -> void:
+func show_skills() -> void:	
 	show()
 	_current_skills.clear()
 	for child in _container.get_children():
@@ -36,6 +36,12 @@ func show_skills() -> void:
 
 func skill_selected(skill_card: SkillCard) -> void:
 	_current_skills.remove_at(_current_skills.find(skill_card))
+	for skill in _current_skills:
+		skill.selected.disconnect(skill_selected)
 	_skill_cards.append_array(_current_skills)
-	selected.emit()
 	hide()
+	selected.emit()
+
+
+func get_skills_count() -> int:
+	return _skill_cards.size()

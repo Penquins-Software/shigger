@@ -1,6 +1,12 @@
 class_name Biome
 extends Object
 
+enum Biomes {
+	START,
+	EARTH,
+	MAGMA,
+	CHEESE,
+}
 
 var back_chunk: PackedScene
 var base_chunks: Array[PackedScene]
@@ -21,12 +27,62 @@ var base_chunk_positions: PackedVector2Array
 var solid_chunk_positions: PackedVector2Array
 var items_positions: PackedVector2Array
 
-var start_point: Vector2
+var _start_point: Vector2
+var _last_point: Vector2
+var _prev_point: Vector2
 
 
-func generate(path: PackedVector2Array, start_index: int, depth: int = 32) -> void:
-	start_point = path[start_index]
-	for y in range(start_point.y, start_point.y + depth):
+func generate(path: PackedVector2Array, depth: int = 32) -> void:
+	_start_point = path[path.size() - 1]
+	
+	continue_path(path, depth)
+	create_biome(path, depth)
+
+
+func continue_path(path: PackedVector2Array, depth: int) -> void:
+	_last_point = _start_point
+	var temp_depth = depth
+	while temp_depth > 0:
+		var new_point = get_next_point()
+		if new_point.y > _last_point.y:
+			temp_depth -= 1
+		_prev_point = _last_point
+		_last_point = new_point
+		path.append(new_point)
+
+
+func get_next_point() -> Vector2:
+	var left: bool = _last_point.x > left_extreme_point and _prev_point.x != _last_point.x - 1
+	var right: bool = _last_point.x < right_extreme_point and _prev_point.x != _last_point.x + 1
+	var down: bool = not left and not right # Если нельзя влево или вправо, то сразу вниз.
+	
+	var new_point: Vector2 = Vector2.ZERO
+	
+	var direction: int = randi_range(0, 10)
+	if down or direction < 6:
+		# Вниз.
+		new_point.x = _last_point.x
+		new_point.y = _last_point.y + 1
+	else:
+		direction = randi_range(0, 1)
+		if left and direction == 0:
+			# Влево.
+			new_point.x = _last_point.x - 1
+			new_point.y = _last_point.y
+		elif right and direction == 1:
+			# Вправо.
+			new_point.x = _last_point.x + 1
+			new_point.y = _last_point.y
+		else:
+			# Вниз.
+			new_point.x = _last_point.x
+			new_point.y = _last_point.y + 1
+	
+	return new_point
+
+
+func create_biome(path: PackedVector2Array, depth: int) -> void:
+	for y in range(_start_point.y, _start_point.y + depth):
 		for x in range(left_extreme_point, right_extreme_point + 1):
 			var point = Vector2(x, y)
 			back_positions.append(point)

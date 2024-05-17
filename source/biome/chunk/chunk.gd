@@ -9,7 +9,7 @@ static var destroy_color: Color = Color(0.8, 0.2, 0.4)
 @export var hp: int = 1
 @export var points: int = 1
 
-@export var area: Area2D
+@export var _area: Area2D
 @export var destroy_animated_sprite: AnimatedSprite2D
 
 @export var destroy_sound: AudioStream
@@ -17,7 +17,7 @@ static var destroy_color: Color = Color(0.8, 0.2, 0.4)
 
 
 func _enter_tree():
-	area.area_entered.connect(_area_entered)
+	_area.area_entered.connect(_area_entered)
 
 
 func hit() -> void:
@@ -49,4 +49,4 @@ func dig(player: Player) -> bool:
 
 func _area_entered(area: Area2D) -> void:
 	if area is MonsterArea:
-		destoy()
+		destoy(true)

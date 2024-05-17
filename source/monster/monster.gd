@@ -23,8 +23,8 @@ var current_bits: int = 0
 var max_distance_to_player: int = 16
 
 
-#func _ready():
-	#RhythmMachine.bit_1_1.connect(move)
+func _ready():
+	RhythmMachine.bit_1_1.connect(move)
 
 
 func place(w_pos: Vector2) -> void:
@@ -43,7 +43,7 @@ func move() -> void:
 	current_bits += 1
 	if current_bits >= bits_per_move:
 		current_bits = 0
-		place(world_position + Vector2.UP)
+		place(world_position + Vector2.DOWN)
 	
 	if bits_duration > 0:
 		bits_duration -= 1
@@ -51,21 +51,17 @@ func move() -> void:
 			set_default_speed()
 
 
-func set_difficult(bpm: RhythmMachine.BPM) -> void:
-	match bpm:
-		RhythmMachine.BPM.BPM75:
-			max_distance_to_player = 16
+func set_difficult(biome: Biome.Biomes) -> void:
+	match biome:
+		Biome.Biomes.EARTH:
+			max_distance_to_player = 6
 			audio_player.stream = audio_bpm75
-		RhythmMachine.BPM.BPM100:
-			max_distance_to_player = 12
+		Biome.Biomes.MAGMA:
+			max_distance_to_player = 6
 			audio_player.stream = audio_bpm100
-		RhythmMachine.BPM.BPM120:
+		Biome.Biomes.CHEESE:
 			max_distance_to_player = 8
 			audio_player.stream = audio_bpm120
-		RhythmMachine.BPM.BPM150:
-			max_distance_to_player = 8
-		RhythmMachine.BPM.BPM200:
-			max_distance_to_player = 8
 	audio_player.play()
 
 

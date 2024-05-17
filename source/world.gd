@@ -11,8 +11,6 @@ var backs: Dictionary = {}
 var chunks: Dictionary = {}
 var items: Array[Item] = []
 
-var current_level: int = 0
-
 
 func _ready():
 	RhythmMachine.bit_1_1.connect(bit)
@@ -23,17 +21,17 @@ func _get_prev_point() -> Vector2:
 	if path.size() > 1:
 		return path[path.size() - 2] as Vector2
 	else:
-		return Vector2.ZERO
+		return Constants.START_POINT
 	
 	
 func _get_last_point() -> Vector2:
 	if path.size() > 0:
 		return path[path.size() - 1] as Vector2
 	else:
-		return Vector2.ZERO
+		return Constants.START_POINT
 
 
-func _get_path_level() -> int:
+func _get_path_level() -> float:
 	return _get_last_point().y
 
 
@@ -41,64 +39,21 @@ func create() -> void:
 	randomize()
 	
 	var background = BiomeStart.s_background.instantiate() as BiomeBackground
-	background.place(Vector2(Constants.MIDDLE_POINT, -64) * Constants.FACTOR, player)
+	background.place(Vector2(Constants.MIDDLE_POINT, -32), player)
 	add_child(background)
 	
-	path.append(Vector2(Constants.MIDDLE_POINT, 0))
-	path.append(Vector2(Constants.MIDDLE_POINT, 1))
-	path.append(Vector2(Constants.MIDDLE_POINT, 2))
-	path.append(Vector2(Constants.MIDDLE_POINT, 3))
-	
-	generate_next_biome(28)
+	generate_next_biome()
 
 
 func generate_next_biome(depth: int = 32) -> void:
-	continue_path(depth)
+	print("Генерация нового биома. Текущий уровень: %s. Длина пути: %s" % [_get_path_level(), path.size()])
 	var biome = select_biome_by_level()
-	biome.generate(path, current_level)
-	current_level += depth
+	biome.generate(path, depth)
 	create_biome(biome)
 
 
-func continue_path(depth: int = 32) -> void:
-	var prev_point: Vector2 = _get_prev_point()
-	var last_point: Vector2 = _get_last_point()
-	while depth > 0:
-		var new_point = get_next_point(prev_point, last_point)
-		if new_point.y > last_point.y:
-			depth -= 1
-		prev_point = last_point
-		last_point = new_point
-		path.append(new_point)
-
-
-func get_next_point(prev_point: Vector2, last_point: Vector2) -> Vector2:
-	var left: bool = last_point.x > Constants.LEFT_POINT and prev_point.x != last_point.x - 1
-	var right: bool = last_point.x < Constants.RIGHT_POINT and prev_point.x != last_point.x + 1
-	var down: bool = not left and not right # Если нельзя влево или вправо, то сразу вниз.
-	
-	var new_point: Vector2
-	
-	var direction: int = randi_range(0, 10)
-	if down or direction < 6:
-		# Вниз.
-		new_point.x = last_point.x
-		new_point.y = last_point.y + 1
-	else:
-		direction = randi_range(0, 1)
-		if left and direction == 0:
-			# Влево.
-			new_point.x = last_point.x - 1
-			new_point.y = last_point.y
-		elif right and direction == 1:
-			# Вправо.
-			new_point.x = last_point.x + 1
-			new_point.y = last_point.y
-	
-	return new_point
-
-
 func select_biome_by_level() -> Biome:
+	var current_level = _get_path_level()
 	if current_level < Constants.LEVEL_START:
 		return BiomeStart.new()
 	elif current_level < Constants.LEVEL_EARTH:
@@ -130,17 +85,18 @@ func create_biome(biome: Biome) -> void:
 		add_child(item)
 		item.place(item_position, player, monster, self)
 	var background = biome.get_background()
-	background.place(Vector2(Constants.MIDDLE_POINT, biome.start_point.y), player)
+	background.place(Vector2(Constants.MIDDLE_POINT, biome._start_point.y), player)
 	add_child(background)
 
 
 func add_chunk(world_position: Vector2, chunk: Node2D) -> void:
+	add_child(chunk)
 	chunk.position = world_position * Constants.FACTOR
 
 
 func bit() -> void:
 	if player._world_position.y + 64 > _get_path_level():
-		generate_next_biome(64)
+		generate_next_biome()
 
 
 func destroy_chunk_by_position(world_position: Vector2, explode: bool) -> int:

@@ -47,6 +47,9 @@ func _ready():
 	exit_confirmation_dialog.confirmed.connect(exit_game)
 	
 	enter_nickname.pressed.connect(set_nickname)
+	
+	if OS.has_feature("web"):
+		exit_button.hide()
 
 
 func _show_menu_element(menu_element: Control) -> void:

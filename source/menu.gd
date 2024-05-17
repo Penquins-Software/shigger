@@ -25,6 +25,7 @@ extends Control
 @export_group("Other")
 @export var exit_confirmation_dialog: ConfirmationDialog
 @export var nickname_edit: LineEdit
+@export var score: RichTextLabel
 
 @export_group("Scenes")
 @export_file("*.tscn") var game_scene_file
@@ -47,6 +48,8 @@ func _ready():
 	exit_confirmation_dialog.confirmed.connect(exit_game)
 	
 	enter_nickname.pressed.connect(set_nickname)
+	
+	LootLockerClient.get_leaderboards_completed.connect(show_score)
 	
 	if OS.has_feature("web"):
 		exit_button.hide()
@@ -85,3 +88,13 @@ func set_nickname() -> void:
 	Settings.player_name = nickname_edit.text
 	LootLockerClient.set_player_name(Settings.player_name)
 	_start_game()
+
+
+func show_score(response) -> void:
+	if LootLockerClient.player_score == "":
+		return
+		
+	var score_value = int(LootLockerClient.player_score)
+	if score_value > 0:
+		score.show()
+		score.text = "[center]Вы прокапали на [color=red]%s[/color] очков" % score_value

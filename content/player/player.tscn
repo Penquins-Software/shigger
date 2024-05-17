@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://d0ot6x3rk7wx4"]
+[gd_scene load_steps=24 format=3 uid="uid://d0ot6x3rk7wx4"]
 
 [ext_resource type="Script" path="res://source/player/player.gd" id="1_6l8q4"]
 [ext_resource type="Texture2D" uid="uid://bqjfoqrhuhjq8" path="res://graphics/main/main1.png" id="2_wifcb"]
@@ -139,75 +139,6 @@ _data = {
 "Shake": SubResource("Animation_irhnf")
 }
 
-[sub_resource type="Animation" id="Animation_15pmj"]
-resource_name = "DoABarrelRoll"
-length = 4.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera2D:rotation")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2, 3, 4),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 3.14159, 0.0349066, 6.28319]
-}
-
-[sub_resource type="Animation" id="Animation_ronsg"]
-resource_name = "FlipFromLeft"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera2D:rotation")
-tracks/0/interp = 4
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [1.5708, 3.14159]
-}
-
-[sub_resource type="Animation" id="Animation_28voc"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera2D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
-[sub_resource type="Animation" id="Animation_jutsu"]
-resource_name = "RotateToLeft"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera2D:rotation")
-tracks/0/interp = 4
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1.5708]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_nf6hy"]
-_data = {
-"DoABarrelRoll": SubResource("Animation_15pmj"),
-"FlipFromLeft": SubResource("Animation_ronsg"),
-"RESET": SubResource("Animation_28voc"),
-"RotateToLeft": SubResource("Animation_jutsu")
-}
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ck4yl"]
 size = Vector2(48, 48)
 
@@ -241,7 +172,7 @@ zoom = Vector2(1.2, 1.2)
 position_smoothing_enabled = true
 position_smoothing_speed = 2.0
 rotation_smoothing_enabled = true
-rotation_smoothing_speed = 2.0
+rotation_smoothing_speed = 4.0
 script = ExtResource("7_byilh")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
@@ -256,11 +187,6 @@ libraries = {
 "": SubResource("AnimationLibrary_nuqnv")
 }
 autoplay = "RESET"
-
-[node name="RotateAnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_nf6hy")
-}
 
 [node name="Area2D" type="Area2D" parent="."]
 script = ExtResource("8_jucyy")

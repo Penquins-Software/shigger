@@ -90,7 +90,7 @@ func set_nickname() -> void:
 	_start_game()
 
 
-func show_score(response) -> void:
+func show_score(_response) -> void:
 	if LootLockerClient.player_score == "":
 		return
 		

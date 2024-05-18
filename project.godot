@@ -22,6 +22,7 @@ SFXPlayer="*res://source/globals/sfx_player.gd"
 Settings="*res://source/settings/settings.gd"
 LootLockerClient="*res://source/web/loot_locker_client.gd"
 Constants="*res://source/globals/constants.gd"
+HelpFunctions="*res://source/globals/help_functions.gd"
 
 [display]
 

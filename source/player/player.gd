@@ -110,6 +110,11 @@ func try_move_in_world(direction: Vector2) -> void:
 func dig() -> void:
 	var new_position = _world_position + Vector2.DOWN
 	if _world.chunks.has(new_position):
+		## Вибрация контролера.
+		## Может не работать, обещают исправить в версии 4.3.
+		## --------------------------------------------------
+		Input.start_joy_vibration(0, 0.5, 1, 0.2)
+		## --------------------------------------------------
 		play_dig_animation()
 		series_of_hits += 1
 		hit_chunk(new_position)

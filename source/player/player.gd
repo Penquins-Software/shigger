@@ -167,6 +167,7 @@ func play_dig_animation() -> void:
 	if Settings.camera_shaking:
 		shake_animation_player.play("Shake")
 	
+	character_animated_sprite.frame = 0
 	character_animated_sprite.play("digging")
 	character_animated_sprite.modulate = Color(0.7, 0.7, 0.7)
 	effect_animated_sprite.play("default")

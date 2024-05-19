@@ -85,13 +85,13 @@ func _process(delta):
 
 func reset(time: float = 0) -> void:
 	current_time = time
-	_bit_1_5 = false
-	_bit_1_4 = false
-	_bit_1_3 = false
-	_bit_1_2 = false
-	_bit_2_3 = false
-	_bit_3_4 = false
-	_bit_4_5 = false
+	_bit_1_5 = time > bpm_in_seconds_1_5
+	_bit_1_4 = time > bpm_in_seconds_1_4
+	_bit_1_3 = time > bpm_in_seconds_1_3
+	_bit_1_2 = time > bpm_in_seconds_1_2
+	_bit_2_3 = time > bpm_in_seconds_2_3
+	_bit_3_4 = time > bpm_in_seconds_3_4
+	_bit_4_5 = time > bpm_in_seconds_4_5
 
 
 func set_bpm(bpm: BPM) -> void:
@@ -116,3 +116,7 @@ func start(from_start: bool) -> void:
 
 func stop() -> void:
 	playing = false
+
+
+func get_current_bpm_in_seconds() -> float:
+	return bpm_in_seconds[current_bpm]

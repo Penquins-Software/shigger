@@ -207,6 +207,8 @@ func get_flashlight() -> void:
 	animation_shake.track_set_key_value(0, 1, Vector2.ONE)
 	animation_shake.track_set_key_value(0, 2, Vector2(0.9, 0.9))
 	
+	shake_animation_player.play("RESET")
+	
 	light.scale = Vector2(1.5, 1.5)
 	
 	for item in _world.items:

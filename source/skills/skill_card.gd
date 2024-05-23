@@ -4,6 +4,7 @@ extends Control
 signal selected(skill_card: SkillCard)
 
 @export var _texture: Texture2D
+@export var _arrow_label: RichTextLabel
 
 var player: Player
 
@@ -39,6 +40,14 @@ func bit_1_1() -> void:
 
 func _accept() -> void:
 	selected.emit(self)
+
+
+func left() -> void:
+	_arrow_label.text = "[center]←"
+
+
+func right() -> void:
+	_arrow_label.text = "[center]→"
 
 
 func _on_mouse_entered() -> void:

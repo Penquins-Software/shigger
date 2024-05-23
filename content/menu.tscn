@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://8lslqdkpfjs2" path="res://graphics/menu/title_hero.png" id="4_vdowo"]
 [ext_resource type="Theme" uid="uid://cnni4p646elf0" path="res://main_theme.tres" id="5_qhpuc"]
 [ext_resource type="Script" path="res://source/leaderboard.gd" id="6_47hxt"]
-[ext_resource type="Script" path="res://content/menu_element.gd" id="6_m0paf"]
+[ext_resource type="Script" path="res://source/menu_element.gd" id="6_m0paf"]
 [ext_resource type="Script" path="res://source/settings/setting_player_name.gd" id="7_3q4m3"]
 [ext_resource type="Script" path="res://source/settings/setting_language.gd" id="8_23hq7"]
 [ext_resource type="Script" path="res://source/settings/setting_screen_mode.gd" id="9_uj1h1"]
@@ -14,7 +14,7 @@
 [ext_resource type="Script" path="res://source/settings/setting_camera_shaking.gd" id="11_w1p6r"]
 [ext_resource type="Script" path="res://source/authors.gd" id="12_hpssp"]
 [ext_resource type="Script" path="res://source/settings/settins_return_to_menu.gd" id="12_yqn17"]
-[ext_resource type="AudioStream" uid="uid://bq5qg4cjkludu" path="res://audio/music/dig_down.mp3" id="13_dch44"]
+[ext_resource type="AudioStream" uid="uid://ds4qod44dht6f" path="res://audio/sfx/kick75.mp3" id="15_26a6a"]
 
 [sub_resource type="Animation" id="Animation_xwvgy"]
 resource_name = "Idle"
@@ -225,8 +225,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 1152.0
-offset_bottom = 648.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_gu6l7")
@@ -238,8 +236,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 1152.0
-offset_bottom = 648.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_vdowo")
@@ -412,6 +408,7 @@ fit_content = true
 scroll_active = false
 
 [node name="Scores" type="RichTextLabel" parent="Main"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -430,7 +427,7 @@ theme = ExtResource("5_qhpuc")
 theme_override_colors/default_color = Color(0.937255, 0.937255, 0.0235294, 1)
 theme_override_font_sizes/normal_font_size = 14
 bbcode_enabled = true
-text = "[center]Вы прокапали на [color=red]232 411[/color] очков"
+text = "[center]Вы прокопали на [color=red]232 411[/color] очков"
 fit_content = true
 scroll_active = false
 
@@ -451,7 +448,7 @@ theme = ExtResource("5_qhpuc")
 theme_override_colors/default_color = Color(0.393086, 0.393086, 0.393085, 1)
 theme_override_font_sizes/normal_font_size = 12
 bbcode_enabled = true
-text = "Версия 1.0.5"
+text = "Версия 1.0.6"
 fit_content = true
 scroll_active = false
 
@@ -643,7 +640,7 @@ item_count = 2
 popup/item_0/text = "Windowed"
 popup/item_0/id = 0
 popup/item_1/text = "Fullscreen"
-popup/item_1/id = 3
+popup/item_1/id = 4
 script = ExtResource("9_uj1h1")
 
 [node name="MasterVolume" type="HBoxContainer" parent="Settings/VBoxContainer" node_paths=PackedStringArray("slider", "spin_box")]
@@ -927,6 +924,6 @@ libraries = {
 autoplay = "Pulse"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("13_dch44")
+stream = ExtResource("15_26a6a")
 autoplay = true
 bus = &"Music"

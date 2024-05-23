@@ -8,6 +8,7 @@ extends Node
 @export var player: Player
 @export var monster: Monster
 @export var music_player: MusicPlayer
+@export var kick_player: KickPlayer
 
 @export_file("*.tscn") var menu_scene_file
 @export_file("*.tscn") var ending_scene_file
@@ -87,6 +88,7 @@ func show_preparation_menu() -> void:
 	hud.preparation_screen.show_screen()
 	RhythmMachine.start(true)
 	hud.rhythm.helper.spawn_all_elements()
+	kick_player.play_kicking(RhythmMachine.current_bpm)
 
 
 func end_preparation_menu(check_player_hit: bool = true) -> void:
@@ -96,14 +98,17 @@ func end_preparation_menu(check_player_hit: bool = true) -> void:
 		monster.call_deferred("move")
 		if check_player_hit:
 			player.call_deferred("check_hit_queue")
+		kick_player.stop()
 
 
 func to_menu() -> void:
+	RhythmMachine.stop()
 	LootLockerClient.submit_score(points)
 	get_tree().call_deferred("change_scene_to_file", menu_scene_file)
 
 
 func end_game() -> void:
+	RhythmMachine.stop()
 	LootLockerClient.submit_score(points)
 	get_tree().call_deferred("change_scene_to_file", ending_scene_file)
 
@@ -172,6 +177,7 @@ func check_skills() -> void:
 	if first_element_points <= points:
 		skills.remove_at(0)
 		hud.skills.show_skills()
+		kick_player.play_kicking(RhythmMachine.current_bpm)
 		set_pause(true)
 
 

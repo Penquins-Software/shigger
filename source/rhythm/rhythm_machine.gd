@@ -55,7 +55,10 @@ var _bit_4_5: bool = false
 
 var _action: bool = false
 
-var _miss_sound: AudioStream = ResourceLoader.load("res://audio/sfx/powerup.mp3")
+var _miss_sounds: Array[AudioStream] = [
+	ResourceLoader.load("res://audio/sfx/miss1.mp3"),
+	ResourceLoader.load("res://audio/sfx/miss2.mp3"),
+] 
 
 
 func _process(delta):
@@ -95,7 +98,7 @@ func _process(delta):
 
 
 func _input(event):
-	if _action:
+	if not playing or _action:
 		return
 	
 	if event.is_action_pressed("left"):
@@ -111,7 +114,7 @@ func check_action(event: InputEvent) -> void:
 	if _bit_2_3 or not _bit_1_4:
 		hit.emit(event)
 	else:
-		SFXPlayer.play(_miss_sound)
+		SFXPlayer.play(_miss_sounds.pick_random())
 		miss.emit()
 
 

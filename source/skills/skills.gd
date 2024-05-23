@@ -87,7 +87,9 @@ func show_skills() -> void:
 		_container.remove_child(child)
 	
 	_left_skill = place_random_skill()
+	_left_skill.left()
 	_right_skill = place_random_skill()
+	_right_skill.right()
 	
 	_restore()
 

@@ -55,6 +55,8 @@ var _bit_4_5: bool = false
 
 var _action: bool = false
 
+var _miss_sound: AudioStream = ResourceLoader.load("res://audio/sfx/powerup.mp3")
+
 
 func _process(delta):
 	if not playing:
@@ -109,6 +111,7 @@ func check_action(event: InputEvent) -> void:
 	if _bit_2_3 or not _bit_1_4:
 		hit.emit(event)
 	else:
+		SFXPlayer.play(_miss_sound)
 		miss.emit()
 
 

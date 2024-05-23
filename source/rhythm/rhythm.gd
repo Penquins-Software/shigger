@@ -24,5 +24,5 @@ func bit_1_1() -> void:
 	rhythm_button.scale = increased_size
 
 
-func pressed_in_bit(event: InputEvent) -> void:
+func pressed_in_bit(_event: InputEvent) -> void:
 	rhythm_button.texture = hover_texture

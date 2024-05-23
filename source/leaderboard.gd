@@ -1,8 +1,5 @@
 class_name Leaderboard
-extends Node
-
-
-@export var leaderboard_container: RichTextLabel
+extends RichTextLabel
 
 
 func _ready():
@@ -22,4 +19,4 @@ func set_leaderboards(data: Array[LeaderboardData]) -> void:
 		leaderboard_cells += "[cell]%s[/cell]" % item.player_name
 		leaderboard_cells += "[cell][left]%s[/left][/cell]" % HelpFunctions.format_integer(int(item.score))
 	
-	leaderboard_container.text = "[center][table=3]%s[/table]" % leaderboard_cells
+	text = "[center][table=3]%s[/table]" % leaderboard_cells

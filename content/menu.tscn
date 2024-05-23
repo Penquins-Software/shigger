@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bn610g1y3m6q4"]
+[gd_scene load_steps=22 format=3 uid="uid://bn610g1y3m6q4"]
 
 [ext_resource type="Script" path="res://source/menu.gd" id="1_y313j"]
 [ext_resource type="Texture2D" uid="uid://di2x4ta1ypsls" path="res://graphics/menu/title_background.png" id="2_5l2x8"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://8lslqdkpfjs2" path="res://graphics/menu/title_hero.png" id="4_vdowo"]
 [ext_resource type="Theme" uid="uid://cnni4p646elf0" path="res://main_theme.tres" id="5_qhpuc"]
 [ext_resource type="Script" path="res://source/leaderboard.gd" id="6_47hxt"]
+[ext_resource type="Script" path="res://content/menu_element.gd" id="6_m0paf"]
 [ext_resource type="Script" path="res://source/settings/setting_player_name.gd" id="7_3q4m3"]
 [ext_resource type="Script" path="res://source/settings/setting_language.gd" id="8_23hq7"]
 [ext_resource type="Script" path="res://source/settings/setting_screen_mode.gd" id="9_uj1h1"]
@@ -209,21 +210,23 @@ grow_vertical = 2
 texture = ExtResource("2_5l2x8")
 expand_mode = 1
 
-[node name="Main" type="Control" parent="."]
+[node name="Main" type="Control" parent="." node_paths=PackedStringArray("focus_element")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("6_m0paf")
+focus_element = NodePath("StartButton")
 
 [node name="Cat" type="TextureRect" parent="Main"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 18432.0
-offset_bottom = 10368.0
+offset_right = 20736.0
+offset_bottom = 11664.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_gu6l7")
@@ -235,8 +238,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 18432.0
-offset_bottom = 10368.0
+offset_right = 20736.0
+offset_bottom = 11664.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_vdowo")
@@ -254,6 +257,7 @@ offset_top = -45.28
 offset_right = -308.0
 offset_bottom = -5.28
 pivot_offset = Vector2(124, 20)
+focus_neighbor_bottom = NodePath("../VBoxContainer/LeaderboardButton")
 mouse_default_cursor_shape = 2
 theme = ExtResource("5_qhpuc")
 theme_override_font_sizes/font_size = 32
@@ -306,6 +310,8 @@ grow_vertical = 2
 
 [node name="LeaderboardButton" type="Button" parent="Main/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../StartButton")
+focus_neighbor_bottom = NodePath("../SettingsButton")
 mouse_default_cursor_shape = 2
 theme = ExtResource("5_qhpuc")
 text = "Лидеры"
@@ -314,6 +320,8 @@ alignment = 0
 
 [node name="SettingsButton" type="Button" parent="Main/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../LeaderboardButton")
+focus_neighbor_bottom = NodePath("../AuthorsButton")
 mouse_default_cursor_shape = 2
 theme = ExtResource("5_qhpuc")
 text = "Настройки"
@@ -322,6 +330,8 @@ alignment = 0
 
 [node name="AuthorsButton" type="Button" parent="Main/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../SettingsButton")
+focus_neighbor_bottom = NodePath("../ExitButton")
 mouse_default_cursor_shape = 2
 theme = ExtResource("5_qhpuc")
 text = "Авторы"
@@ -330,6 +340,7 @@ alignment = 0
 
 [node name="ExitButton" type="Button" parent="Main/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../AuthorsButton")
 mouse_default_cursor_shape = 2
 theme = ExtResource("5_qhpuc")
 text = "Выход"
@@ -401,7 +412,6 @@ fit_content = true
 scroll_active = false
 
 [node name="Scores" type="RichTextLabel" parent="Main"]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -424,7 +434,7 @@ text = "[center]Вы прокапали на [color=red]232 411[/color] очко
 fit_content = true
 scroll_active = false
 
-[node name="Leaderboard" type="Control" parent="." node_paths=PackedStringArray("leaderboard_container")]
+[node name="Leaderboard" type="Control" parent="." node_paths=PackedStringArray("focus_element")]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -432,8 +442,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("6_47hxt")
-leaderboard_container = NodePath("ScrollContainer/Table")
+script = ExtResource("6_m0paf")
+focus_element = NodePath("BackButton")
 
 [node name="Title" type="RichTextLabel" parent="Leaderboard"]
 custom_minimum_size = Vector2(600, 30)
@@ -471,11 +481,13 @@ custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+focus_neighbor_bottom = NodePath("../../BackButton")
 theme = ExtResource("5_qhpuc")
 bbcode_enabled = true
 text = "[center]Идёт получение данных..."
 fit_content = true
 scroll_active = false
+script = ExtResource("6_47hxt")
 
 [node name="BackButton" type="Button" parent="Leaderboard"]
 layout_mode = 1
@@ -490,11 +502,12 @@ offset_right = 22.5
 offset_bottom = -80.0
 grow_horizontal = 2
 grow_vertical = 0
+focus_neighbor_top = NodePath("../ScrollContainer/Table")
 mouse_default_cursor_shape = 2
 theme = ExtResource("5_qhpuc")
 text = "Вернуться"
 
-[node name="Settings" type="Control" parent="."]
+[node name="Settings" type="Control" parent="." node_paths=PackedStringArray("focus_element")]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -502,6 +515,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("6_m0paf")
+focus_element = NodePath("BackButton")
 
 [node name="Title" type="RichTextLabel" parent="Settings"]
 custom_minimum_size = Vector2(600, 30)
@@ -553,6 +568,7 @@ confirm_button = NodePath("../Button")
 
 [node name="Button" type="Button" parent="Settings/VBoxContainer/Nickname"]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../../Localization/MenuButton")
 mouse_default_cursor_shape = 2
 theme = ExtResource("5_qhpuc")
 text = "Применить"
@@ -567,13 +583,15 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme = ExtResource("5_qhpuc")
-text = "Язык локализации"
+text = "Язык"
 fit_content = true
 
 [node name="MenuButton" type="MenuButton" parent="Settings/VBoxContainer/Localization"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+focus_neighbor_top = NodePath("../../Nickname/Button")
+focus_neighbor_bottom = NodePath("../../WindowMode/MenuButton")
 mouse_default_cursor_shape = 2
 theme = ExtResource("5_qhpuc")
 text = "Russian"
@@ -594,6 +612,8 @@ fit_content = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+focus_neighbor_top = NodePath("../../Localization/MenuButton")
+focus_neighbor_bottom = NodePath("../../MasterVolume/HSlider")
 mouse_default_cursor_shape = 2
 theme = ExtResource("5_qhpuc")
 text = "Windowed"
@@ -623,6 +643,8 @@ fit_content = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+focus_neighbor_top = NodePath("../../WindowMode/MenuButton")
+focus_neighbor_bottom = NodePath("../../SFXVolume/HSlider")
 mouse_default_cursor_shape = 2
 theme = ExtResource("5_qhpuc")
 
@@ -650,6 +672,8 @@ fit_content = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+focus_neighbor_top = NodePath("../../MasterVolume/HSlider")
+focus_neighbor_bottom = NodePath("../../MusicVolume/HSlider")
 mouse_default_cursor_shape = 2
 theme = ExtResource("5_qhpuc")
 
@@ -677,6 +701,8 @@ fit_content = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+focus_neighbor_top = NodePath("../../SFXVolume/HSlider")
+focus_neighbor_bottom = NodePath("../../Shaking/CheckBox")
 mouse_default_cursor_shape = 2
 theme = ExtResource("5_qhpuc")
 
@@ -698,6 +724,8 @@ fit_content = true
 
 [node name="CheckBox" type="CheckBox" parent="Settings/VBoxContainer/Shaking"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../MusicVolume/HSlider")
+focus_neighbor_bottom = NodePath("../../../BackButton")
 mouse_default_cursor_shape = 2
 script = ExtResource("11_w1p6r")
 
@@ -714,12 +742,13 @@ offset_right = 22.5
 offset_bottom = -80.0
 grow_horizontal = 2
 grow_vertical = 0
+focus_neighbor_top = NodePath("../VBoxContainer/Shaking/CheckBox")
 mouse_default_cursor_shape = 2
 theme = ExtResource("5_qhpuc")
 text = "Вернуться"
 script = ExtResource("12_yqn17")
 
-[node name="Authors" type="Control" parent="."]
+[node name="Authors" type="Control" parent="." node_paths=PackedStringArray("focus_element")]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -727,6 +756,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("6_m0paf")
+focus_element = NodePath("BackButton")
 
 [node name="Title" type="RichTextLabel" parent="Authors"]
 custom_minimum_size = Vector2(600, 30)

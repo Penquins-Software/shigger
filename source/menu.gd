@@ -3,10 +3,10 @@ extends Control
 
 
 @export_group("Containers")
-@export var main: Control
-@export var leaderboard: Control
-@export var settings: Control
-@export var authors: Control
+@export var main: MenuElement
+@export var leaderboard: MenuElement
+@export var settings: MenuElement
+@export var authors: MenuElement
 @export var nickname: Control
 
 @export_group("Buttons")
@@ -51,17 +51,19 @@ func _ready():
 	
 	LootLockerClient.get_leaderboards_completed.connect(show_score)
 	
+	main.show_and_focus()
+	
 	if OS.has_feature("web"):
 		exit_button.hide()
 
 
-func _show_menu_element(menu_element: Control) -> void:
+func _show_menu_element(menu_element: MenuElement) -> void:
 	main.hide()
-	menu_element.show()
+	menu_element.show_and_focus()
 
 
 func _show_main_menu(menu_element: Control) -> void:
-	main.show()
+	main.show_and_focus()
 	menu_element.hide()
 
 

@@ -11,7 +11,8 @@ signal get_score_completed(score: int)
 const PATH_TO_DATA_FILE: String = "user://LootLocker.data"
 
 const API_KEY: String = "dev_fb7eb641411a4264ba4d9add7ead7815"
-const LEADERBOARD_KEY: String = "22174"
+#const LEADERBOARD_KEY: String = "22174"
+const LEADERBOARD_KEY: String = "22173"
 #const LEADERBOARD_KEY_OLD: String = "22174"
 const GAME_VERSION: String = "0.0.0.1"
 const DEVELOPMENT_MODE: bool = true

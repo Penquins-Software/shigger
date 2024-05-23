@@ -52,6 +52,7 @@ func _ready():
 func pause_game() -> void:
 	hud.hide()
 	pause.show()
+	pause.continue_button.grab_focus()
 	pause.result_label.text = "[center]Ваш результат: %s очков!" % points
 	RhythmMachine.stop()
 	set_pause(true)
@@ -65,7 +66,7 @@ func continue_game(is_preparation: bool) -> void:
 	else:
 		RhythmMachine.start(true)
 		hud.rhythm.helper.spawn_all_elements()
-		music_player.play_from_playback(rhythm_time)
+		music_player.play_from_playback()
 
 
 func set_pause(value: bool, is_preparation: bool = true) -> void:
@@ -91,7 +92,7 @@ func show_preparation_menu() -> void:
 func end_preparation_menu(check_player_hit: bool = true) -> void:
 	if not pause.visible:
 		world.call_deferred("set_process_mode", Node.PROCESS_MODE_INHERIT)
-		music_player.play_from_playback(rhythm_time)
+		music_player.play_from_playback()
 		monster.call_deferred("move")
 		if check_player_hit:
 			player.call_deferred("check_hit_queue")

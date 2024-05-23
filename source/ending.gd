@@ -15,6 +15,7 @@ func _ready():
 func _input(event):
 	if event.is_action_pressed("ui_accept") or event.is_action_pressed("mouse_left"):
 		animation_player.play("RESET")
+		return_to_menu_button.grab_focus()
 
 
 func load_next_scene() -> void:

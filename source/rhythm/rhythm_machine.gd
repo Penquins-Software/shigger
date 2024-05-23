@@ -11,6 +11,9 @@ signal bit_4_5
 
 signal bit_changed(bpm: BPM)
 
+signal hit(event: InputEvent)
+signal miss()
+
 enum BPM {
 	BPM75,
 	BPM100,
@@ -50,6 +53,9 @@ var _bit_3_4: bool = false
 var _bit_4_5: bool = false
 
 
+var _action: bool = false
+
+
 func _process(delta):
 	if not playing:
 		return
@@ -62,6 +68,9 @@ func _process(delta):
 	elif not _bit_1_4 and current_time > bpm_in_seconds_1_4:
 		bit_1_4.emit()
 		_bit_1_4 = true
+		if not _action:
+			miss.emit()
+		_action = false
 	elif not _bit_1_3 and current_time > bpm_in_seconds_1_3:
 		bit_1_3.emit()
 		_bit_1_3 = true
@@ -81,6 +90,26 @@ func _process(delta):
 	if current_time > bpm_in_seconds_1_1:
 		bit_1_1.emit()
 		reset(current_time - bpm_in_seconds_1_1)
+
+
+func _input(event):
+	if _action:
+		return
+	
+	if event.is_action_pressed("left"):
+		check_action(event)
+	elif event.is_action_pressed("right"):
+		check_action(event)
+	elif event.is_action_pressed("dig"):
+		check_action(event)
+
+
+func check_action(event: InputEvent) -> void:
+	_action = true
+	if _bit_2_3 or not _bit_1_4:
+		hit.emit(event)
+	else:
+		miss.emit()
 
 
 func reset(time: float = 0) -> void:
@@ -106,6 +135,7 @@ func set_bpm(bpm: BPM) -> void:
 	reset()
 	current_bpm = bpm
 	bit_changed.emit(bpm)
+	_action = false
 
 
 func start(from_start: bool) -> void:

@@ -109,8 +109,10 @@ func bit() -> void:
 func destroy_chunk_by_position(world_position: Vector2, explode: bool) -> int:
 	if not chunks.has(world_position):
 		return 0
+	if chunks[world_position] == null or chunks[world_position].is_queued_for_deletion():
+		return 0 
 	var chunk = chunks[world_position] as Chunk
 	chunks.erase(world_position)
-	var points = game.add_points(chunk.points, false)
+	var points = game.add_points(chunk.points, world_position * Constants.FACTOR, false)
 	chunk.destoy(explode)
 	return points

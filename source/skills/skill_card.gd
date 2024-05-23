@@ -3,14 +3,38 @@ extends Control
 
 signal selected(skill_card: SkillCard)
 
+@export var _texture: Texture2D
 
 var player: Player
 
+var increased_size: Vector2 = Vector2(1.05, 1.05)
+
 
 func _ready():
-	mouse_entered.connect(_on_mouse_entered)
-	mouse_exited.connect(_on_mouse_exited)
-	gui_input.connect(_on_gui_input)
+	pass
+
+
+func _enter_tree():
+	RhythmMachine.bit_1_5.connect(bit_1_5)
+	RhythmMachine.bit_1_1.connect(bit_1_1)
+
+
+func _exit_tree():
+	RhythmMachine.bit_1_5.disconnect(bit_1_5)
+	RhythmMachine.bit_1_1.disconnect(bit_1_1)
+
+
+func press() -> void:
+	modulate = Color.INDIAN_RED
+
+
+func bit_1_5() -> void:
+	scale = Vector2.ONE
+	modulate = Color.WHITE
+
+
+func bit_1_1() -> void:
+	scale = increased_size
 
 
 func _accept() -> void:

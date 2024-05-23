@@ -33,6 +33,9 @@ func place(w_pos: Vector2) -> void:
 
 
 func move() -> void:
+	if not get_parent().process_mode == PROCESS_MODE_INHERIT:
+		return
+	
 	if stop:
 		stop_bits -= 1
 		if stop_bits <= 0:

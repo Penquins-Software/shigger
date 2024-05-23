@@ -17,7 +17,7 @@ config/icon="res://graphics/icon.png"
 
 [autoload]
 
-RhythmMachine="*res://source/globals/rhythm_machine.gd"
+RhythmMachine="*res://source/rhythm/rhythm_machine.gd"
 SFXPlayer="*res://source/globals/sfx_player.gd"
 Settings="*res://source/settings/settings.gd"
 LootLockerClient="*res://source/web/loot_locker_client.gd"

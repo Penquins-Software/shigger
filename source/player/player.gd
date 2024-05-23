@@ -2,7 +2,6 @@ class_name Player
 extends Node2D
 
 signal die
-signal in_bit
 
 @export var _world: World
 
@@ -18,11 +17,6 @@ signal in_bit
 @export var camera: PlayerCamera
 
 
-var _action: bool = false
-var _bit_1_4: bool = false
-var _bit_2_3: bool = false
-
-
 var _world_position: Vector2
 var series_of_hits: int = 0
 
@@ -36,6 +30,9 @@ var wide_shovel: bool = false
 var sideways_shovel: bool = false
 var drill: bool = false
 
+var hit_queue: InputEvent
+var first_bit: bool = true
+
 
 func _ready():
 	camera.position_smoothing_enabled = Settings.camera_shaking
@@ -45,37 +42,42 @@ func _ready():
 	
 	character_animated_sprite.animation_finished.connect(_on_animation_finished)
 	
-	RhythmMachine.bit_1_1.connect(bit_1_1)
-	RhythmMachine.bit_1_4.connect(bit_1_4)
-	RhythmMachine.bit_2_3.connect(bit_2_3)
-	
-	RhythmMachine.bit_changed.connect(bit_reset)
+	RhythmMachine.hit.connect(hit)
+	RhythmMachine.miss.connect(miss)
 
 
-func _input(event):
-	if _action:
+func hit(event: InputEvent) -> void:
+	if not get_parent().process_mode == PROCESS_MODE_INHERIT:
+		hit_queue = event
 		return
 	
+	if first_bit:
+		first_bit = false
+	
 	if event.is_action_pressed("left"):
-		if check_action():
-			move_left()
+		move_left()
 	elif event.is_action_pressed("right"):
-		if check_action():
-			move_right()
+		move_right()
 	elif event.is_action_pressed("dig"):
-		if check_action():
-			dig()
+		dig()
 
 
-func check_action() -> bool:
-	_action = true
-	var result = _bit_2_3 or _bit_1_4
-	if not result:
-		series_of_hits = 0
-		Message.create(self, position, "[color=purple]Мимо...")
-	else:
-		in_bit.emit()
-	return result
+func miss() -> void:
+	if not get_parent().process_mode == PROCESS_MODE_INHERIT:
+		hit_queue = null
+		return
+	
+	if first_bit:
+		first_bit = false
+		return
+	
+	series_of_hits = 0
+	Message.create(self, position, "[color=purple]Мимо...")
+
+
+func check_hit_queue() -> void:
+	if hit_queue != null:
+		hit(hit_queue);
 
 
 func move_left() -> void:
@@ -123,13 +125,13 @@ func dig() -> void:
 
 
 func hit_chunk(chunk_position: Vector2, apply_modificators: bool = true) -> bool:
-	if not _world.chunks.has(chunk_position):
+	if not _world.chunks.has(chunk_position) or _world.chunks[chunk_position] == null:
 		return false
 	var chunk = _world.chunks[chunk_position]
 	var result = chunk.dig(self)
 	if result:
 		_world.chunks.erase(chunk_position)
-		_world.game.add_points(chunk.points * extra_multiplier)
+		_world.game.add_points(chunk.points, chunk_position * Constants.FACTOR)
 		chunk.destoy()
 	
 	if apply_modificators:
@@ -182,6 +184,7 @@ func _on_area_entered(area: Area2D) -> void:
 			monster.place(monster.world_position - Vector2(0, 4))
 			Message.create(self, position, "[color=green]Вас спасла рыба ФУГУ!")
 			place(_world_position + Vector2.DOWN)
+			_world.game.hud.remove_skill_icon("Fugu")
 		else:
 			die.emit()
 
@@ -214,26 +217,6 @@ func get_flashlight() -> void:
 	for item in _world.items:
 		if not item == null:
 			item.turn_on_light()
-
-
-func bit_reset(_bpm: int = 0) -> void:
-	_bit_1_4 = true
-	_bit_2_3 = false
-
-
-func bit_1_1() -> void:
-	bit_reset()
-
-
-func bit_1_4() -> void:
-	_bit_1_4 = false
-	if not _action:
-		series_of_hits = 0
-	_action = false
-
-
-func bit_2_3() -> void:
-	_bit_2_3 = true
 
 
 func set_animation_speed(bpm: RhythmMachine.BPM) -> void:

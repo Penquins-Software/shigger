@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddahxon0eyss0"]
+
+[ext_resource type="Script" path="res://source/rhythm/rhythm_helper_element.gd" id="1_bysxk"]
+
+[node name="RhythmHelperElement" type="ColorRect"]
+custom_minimum_size = Vector2(10, 60)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -30.0
+offset_right = 5.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(5, 30)
+color = Color(1, 0.411765, 1, 1)
+script = ExtResource("1_bysxk")

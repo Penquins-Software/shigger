@@ -37,3 +37,7 @@ func play_biome(biome: Biome.Biomes) -> RhythmMachine.BPM:
 			return RhythmMachine.BPM.BPM75
 	play()
 	return bpm
+
+
+func play_from_playback(rhythm_time: float) -> void:
+	play(get_playback_position() - rhythm_time)

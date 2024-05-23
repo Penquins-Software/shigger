@@ -14,10 +14,12 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(130, 200)
 size_flags_horizontal = 6
 texture = ExtResource("1_pffpv")
 expand_mode = 1
 script = ExtResource("2_6c321")
+_texture = ExtResource("3_h0d2p")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1

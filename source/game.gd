@@ -27,21 +27,24 @@ var skills: Array = [
 
 var biomes: Array[Biome.Biomes]
 
+var rhythm_time: float
+
 
 func _ready():
 	s_points = 0
 	
 	hud.pause_button.pressed.connect(pause_game)
-	hud.skills.selected.connect(continue_game)
-	pause.continue_button.pressed.connect(continue_game)
+	hud.skills.selected.connect(continue_game.bind(false))
+	hud.preparation_screen.complete.connect(end_preparation_menu)
+	pause.continue_button.pressed.connect(continue_game.bind(true))
 	pause.return_button.pressed.connect(to_menu)
 	
 	player.die.connect(end_game)
-	player.in_bit.connect(hud.rhythm.pressed_in_bit)
 	
 	player.place(Constants.START_POINT)
 	monster.place(Constants.START_POINT - Vector2(0, 16))
 	
+	RhythmMachine.hit.connect(hud.rhythm.pressed_in_bit)
 	RhythmMachine.bit_1_1.connect(bit)
 	set_level(Biome.Biomes.EARTH)
 
@@ -50,23 +53,48 @@ func pause_game() -> void:
 	hud.hide()
 	pause.show()
 	pause.result_label.text = "[center]Ваш результат: %s очков!" % points
+	RhythmMachine.stop()
 	set_pause(true)
 
 
-func continue_game() -> void:
+func continue_game(is_preparation: bool) -> void:
 	hud.show()
 	pause.hide()
 	if not hud.skills.visible:
-		set_pause(false)
+		set_pause(false, is_preparation)
+	else:
+		RhythmMachine.start(true)
+		hud.rhythm.helper.spawn_all_elements()
+		music_player.play_from_playback(rhythm_time)
 
 
-func set_pause(value: bool) -> void:
+func set_pause(value: bool, is_preparation: bool = true) -> void:
 	if value:
 		world.call_deferred("set_process_mode", Node.PROCESS_MODE_DISABLED)
-		RhythmMachine.stop()
+		
+		if hud.preparation_screen.visible:
+			hud.preparation_screen.hide()
+		else:
+			rhythm_time = RhythmMachine.current_time
+	elif is_preparation:
+		show_preparation_menu()
 	else:
+		end_preparation_menu(false)
+
+
+func show_preparation_menu() -> void:
+	hud.preparation_screen.show_screen()
+	RhythmMachine.start(true)
+	hud.rhythm.helper.spawn_all_elements()
+
+
+func end_preparation_menu(check_player_hit: bool = true) -> void:
+	if not pause.visible:
 		world.call_deferred("set_process_mode", Node.PROCESS_MODE_INHERIT)
-		RhythmMachine.start(false)
+		music_player.play_from_playback(rhythm_time)
+		monster.call_deferred("move")
+		if check_player_hit:
+			player.call_deferred("check_hit_queue")
 
 
 func to_menu() -> void:
@@ -121,16 +149,16 @@ func set_level(biome: Biome.Biomes) -> void:
 	biomes.append(biome)
 	var bpm = music_player.play_biome(biome)
 	monster.set_difficult(biome)
-	RhythmMachine.set_bpm(bpm)
 	player.set_animation_speed(bpm)
-	RhythmMachine.start(true)
+	RhythmMachine.set_bpm(bpm)
+	RhythmMachine.start(false)
 
 
-func add_points(value: int, show_message: bool = true) -> int:
+func add_points(value: int, pos: Vector2, show_message: bool = true) -> int:
 	value = value * multiplier
 	points += value
 	if show_message:
-		Message.create(self, player.position, "[color=gray]+" + str(value))
+		Message.create(self, pos, "[color=gray]+" + str(value))
 	check_skills()
 	s_points = points
 	return value

@@ -17,5 +17,5 @@ func format_integer(number: int) -> String:
 	result.reverse()
 	var result_s = ""
 	for r in result:
-		result_s += r + " " 
-	return result_s
+		result_s += r + " "
+	return result_s.substr(0, result_s.length() - 1)

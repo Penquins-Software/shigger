@@ -9,6 +9,6 @@ func _ready():
 
 
 func _set_screen_mode(index: int) -> void:
-	Settings.screen_mode = get_popup().get_item_id(index)
+	Settings.screen_mode = get_popup().get_item_id(index) as DisplayServer.WindowMode
 	text = get_popup().get_item_text(index);
 	

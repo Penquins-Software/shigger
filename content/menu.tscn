@@ -225,6 +225,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 2304.0
+offset_bottom = 1296.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_gu6l7")
@@ -236,6 +238,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 2304.0
+offset_bottom = 1296.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_vdowo")
@@ -253,7 +257,7 @@ offset_top = -45.28
 offset_right = -308.0
 offset_bottom = -5.28
 pivot_offset = Vector2(124, 20)
-focus_neighbor_bottom = NodePath("../VBoxContainer/LeaderboardButton")
+focus_neighbor_bottom = NodePath("../VBoxContainer/StoryComicButton")
 mouse_default_cursor_shape = 2
 theme = ExtResource("5_qhpuc")
 theme_override_font_sizes/font_size = 32
@@ -300,13 +304,23 @@ anchor_bottom = 0.5
 offset_left = -516.0
 offset_top = 36.0
 offset_right = -364.0
-offset_bottom = 144.0
+offset_bottom = 172.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LeaderboardButton" type="Button" parent="Main/VBoxContainer"]
+[node name="StoryComicButton" type="Button" parent="Main/VBoxContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../../StartButton")
+focus_neighbor_bottom = NodePath("../LeaderboardButton")
+mouse_default_cursor_shape = 2
+theme = ExtResource("5_qhpuc")
+text = "Комикс"
+flat = true
+alignment = 0
+
+[node name="LeaderboardButton" type="Button" parent="Main/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../StoryComicButton")
 focus_neighbor_bottom = NodePath("../SettingsButton")
 mouse_default_cursor_shape = 2
 theme = ExtResource("5_qhpuc")

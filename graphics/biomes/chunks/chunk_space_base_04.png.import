@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dp43afm4qy2rp"
-path="res://.godot/imported/earth_background.png-06e5bb70ccc144264c55813af136cef8.ctex"
+uid="uid://dcgmegd7b4pfr"
+path="res://.godot/imported/chunk_space_base_04.png-9b7110a2e111567247545cd5c176121a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/biomes/chunks/earth_background.png"
-dest_files=["res://.godot/imported/earth_background.png-06e5bb70ccc144264c55813af136cef8.ctex"]
+source_file="res://graphics/biomes/chunks/chunk_space_base_04.png"
+dest_files=["res://.godot/imported/chunk_space_base_04.png-9b7110a2e111567247545cd5c176121a.ctex"]
 
 [params]
 

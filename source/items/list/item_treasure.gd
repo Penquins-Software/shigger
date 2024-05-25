@@ -6,5 +6,5 @@ extends Item
 
 func use() -> void:
 	var points: int = _world.game.add_points(_points, position, false)
-	Message.create(_world, _player.position, "[color=gold]%s +%s" % [tr("Treasure"), points])
+	Message.create(_world, _player.position, "[color=gold]%s +%s" % [tr("Сокровище!"), points])
 	queue_free()

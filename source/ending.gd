@@ -8,7 +8,7 @@ extends Node2D
 
 
 func _ready():
-	text.text = "[center]%s\n\n%s" % [tr("EatenMessage"), tr("ResultPoints") % Game.s_points];
+	text.text = "[center]%s\n\n%s" % [tr("Вас съели!"), tr("Ваш результат: %s очков.") %  HelpFunctions.format_integer(Game.s_points)];
 	return_to_menu_button.pressed.connect(load_next_scene)
 
 

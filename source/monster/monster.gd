@@ -77,6 +77,9 @@ func set_difficult(biome: Biome.Biomes) -> void:
 		Biome.Biomes.BACK_EARTH:
 			max_distance_to_player = 8
 			audio_player.stream = audio_bpm75
+		_:
+			max_distance_to_player = 8
+			audio_player.stream = audio_bpm100
 	audio_player.play()
 
 

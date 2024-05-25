@@ -1,0 +1,284 @@
+# Translation of Shigger in English
+# This file is distributed under the same license as the Shigger package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2024-05-25 11:46:29+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/4.0.1\n"
+"Language: en_US\n"
+"Project-Id-Version: Shigger\n"
+
+#: content/menu.tscn
+msgid "Начать!"
+msgstr "Start!"
+
+#: source/player/player.gd
+msgid "Вас спасла рыба ФУГУ!"
+msgstr "Fugu saved you!"
+
+#: source/player/player.gd
+msgid "Мимо..."
+msgstr "Miss..."
+
+#: content/menu.tscn
+msgid "[center]ЛОП[color=red]А[/color]ТЕЛЬ"
+msgstr "[center]SH[color=red]I[/color]GGER"
+
+#: content/skills_cards/wide_shovel.tscn
+msgid ""
+"[center]Лопата прокапывает внизу строчку из трёх блоков\n"
+"(Хорошо для кантиков)"
+msgstr "[center]Shovel digs a line of three blocks below"
+
+#: content/skills_cards/wide_shovel.tscn
+msgid "[center]Широкая лопата"
+msgstr "[center]Wide shovel"
+
+#: content/skills_cards/sideways_shovel.tscn
+msgid "[center]Лопата одновременно копает в трёх направлениях"
+msgstr "[center]Shovel digs in three directions"
+
+#: content/skills_cards/sideways_shovel.tscn
+msgid "[center]Боковая лопата"
+msgstr "[center]Side shovel"
+
+#: content/skills_cards/multiplier.tscn
+msgid "[center]Удваивает получаемые очки"
+msgstr "[center]Doubles the points you gain"
+
+#: content/skills_cards/multiplier.tscn
+msgid "[center]X2"
+msgstr "[center]X2"
+
+#: content/skills_cards/mega_shovel.tscn
+msgid "[center]Лопата наносит двойной удар"
+msgstr "[center]Shovel strikes twice as hard"
+
+#: content/skills_cards/mega_shovel.tscn
+msgid "[center]Мегалопата"
+msgstr "[center]Megashovel"
+
+#: content/skills_cards/fugu.tscn
+msgid ""
+"[center]Парализует котомедузу, когда она вас настигает.\n"
+"Одноразовая."
+msgstr ""
+"[center]Paralyzes the Jellyfish Cat when it reaches you.\n"
+"Single-use item."
+
+#: content/skills_cards/fugu.tscn
+msgid "[center]Рыба Фугу"
+msgstr "[center]Fugu"
+
+#: content/skills_cards/flashlight.tscn
+msgid "[center]Увеличивает радиус обзора и подсвечивает предметы."
+msgstr "[center]Increases view range and highlights items."
+
+#: content/skills_cards/flashlight.tscn
+msgid "[center]Фонарик"
+msgstr "[center]Flashlight"
+
+#: content/skills_cards/drill.tscn
+msgid "[center]Лопата прокапывает два блока вниз."
+msgstr "[center]Shovel digs two blocks down"
+
+#: content/skills_cards/drill.tscn
+msgid "[center]Бур"
+msgstr "[center]Drill"
+
+#: content/pause.tscn
+msgid "Продолжить"
+msgstr "Continue"
+
+#: content/menu.tscn
+msgid "Вы уверены?"
+msgstr "Are you sure?"
+
+#: content/menu.tscn
+msgid "Подтвердите действие"
+msgstr "Confirm action"
+
+#: content/menu.tscn
+msgid ""
+"[center]Программирование: [url=https://ozkitsune.itch.io/]Oz Fox[/url]\n"
+"\n"
+"Геймдизайн и сценарий: [url=https://itch.io/profile/aki-ona]Akiona[/url]\n"
+"\n"
+"Графика: [url=https://vk.com/ankelran]RANKEL[/url], [url=https://vk.com/agnialoo]Василий Василич[/url]\n"
+"\n"
+"Музыка и звуки: [url=https://vk.com/musical_output]lexander[/url]"
+msgstr ""
+"[center]Programming: [url=https://ozkitsune.itch.io/]Oz Fox[/url]\n"
+"\n"
+"GD and Story: [url=https://itch.io/profile/aki-ona]Akiona[/url]\n"
+"\n"
+"2D Art and Fonts: [url=https://vk.com/ankelran]RANKEL[/url], [url=https://vk.com/agnialoo]Vasily Vasilich[/url]\n"
+"\n"
+"Music and Sound Design: [url=https://vk.com/musical_output]lexander[/url]"
+
+#: content/menu.tscn
+msgid "[center]Авторы"
+msgstr "[center]Authors"
+
+#: content/menu.tscn
+msgid "Тряска камеры"
+msgstr "Screen shake"
+
+#: content/menu.tscn
+msgid "Громкость музыки"
+msgstr "Music volume"
+
+#: content/menu.tscn
+msgid "Громкость эффектов"
+msgstr "SFX volume"
+
+#: content/menu.tscn
+msgid "Общая громкость"
+msgstr "General volume"
+
+#: content/menu.tscn
+msgid "Режим экрана"
+msgstr "Screen mode"
+
+#: content/menu.tscn
+msgid "Язык"
+msgstr "Language"
+
+#: content/menu.tscn
+msgid "Введите имя..."
+msgstr "Enter name..."
+
+#: content/menu.tscn
+msgid "[center]Настройки"
+msgstr "[center]Settings"
+
+#: content/menu.tscn
+msgid "Вернуться"
+msgstr "Return"
+
+#: content/menu.tscn
+msgid "[center]Получение данных..."
+msgstr "[center]Retrieving data..."
+
+#: content/menu.tscn
+msgid "[center]Таблица лидеров"
+msgstr "[center]Leaderboard"
+
+#: content/menu.tscn
+msgid "Выход"
+msgstr "Exit"
+
+#: content/menu.tscn
+msgid "Авторы"
+msgstr "Authors"
+
+#: content/menu.tscn
+msgid "Настройки"
+msgstr "Settings"
+
+#: content/menu.tscn
+msgid "Лидеры"
+msgstr "Leaders"
+
+#: content/menu.tscn
+msgid "Комикс"
+msgstr "Comic strip"
+
+#: content/menu.tscn
+msgid "ИГРАТЬ"
+msgstr "PLAY"
+
+#: content/menu.tscn
+msgid "КОПАТЬ"
+msgstr "DIG"
+
+#: content/hud.tscn
+msgid "Пауза"
+msgstr "Pause"
+
+#: content/hud.tscn
+msgid "[center]Выберите улучшение!"
+msgstr "[center]Choose an upgrade!"
+
+#: content/ending.tscn content/pause.tscn
+msgid "Вернуться в меню"
+msgstr "Return to menu"
+
+#: source/items/list/item_treasure.gd
+msgid "Сокровище!"
+msgstr "Treasure!"
+
+#: source/items/list/item_stop.gd
+msgid "Монстр замедлен!"
+msgstr "The monster is slowed down!"
+
+#: source/items/list/item_random_rotation.gd
+msgid "Круговорот!"
+msgstr "Rotation!"
+
+#: source/items/list/item_dynamite.gd
+msgid "ВЗРЫВ!"
+msgstr "EXPLOSION!"
+
+#: source/version.gd
+msgid "Версия"
+msgstr "Version"
+
+#: source/leaderboard.gd content/menu.tscn
+msgid "Количество очков"
+msgstr "Scores"
+
+#: source/leaderboard.gd content/menu.tscn
+msgid "Игрок"
+msgstr "Player"
+
+#: source/leaderboard.gd content/menu.tscn
+msgid "Ранг"
+msgstr "Rank"
+
+#: source/hud.gd
+msgid "Серия"
+msgstr "Series"
+
+#: source/hud.gd
+msgid "Очков"
+msgstr "Scores"
+
+#: source/ending.gd
+msgid "Вас съели!"
+msgstr "You got eaten!"
+
+#: source/game.gd source/ending.gd
+msgid "Ваш результат: %s очков."
+msgstr "Your result: %s points."
+
+#: content/tutorial.tscn
+msgid "Я всё понял!"
+msgstr "Got it!"
+
+#: content/tutorial.tscn
+msgid ""
+"[center]​Нажимай клавиши A и D ИЛИ стрелочки ←​ и →​ для передвижения вправо и влево.\n"
+"\n"
+"Нажимай клавишу S ИЛИ стрелочку ↓,\n"
+"чтобы вскопать блок под персонажем​ или переместиться вниз.\n"
+"\n"
+"[color=red]Не забывай попадать в ритм, чтобы произвести действие!"
+msgstr ""
+"[center]​Press [A] and [D] OR [←​] and [→​] to move left and right.\n"
+"\n"
+"Press [S] OR [↓]\n"
+"to dig the block below or move down.\n"
+"\n"
+"[color=red]Don't forget to keep up with the beat!"
+
+#: content/menu.tscn
+msgid "Имя игрока"
+msgstr "Player name"
+
+#: source/menu.gd content/menu.tscn
+msgid "[center]Вы прокопали на [color=red]%s[/color] очков"
+msgstr "[center]You dug for [color=red]%s[/color] points"

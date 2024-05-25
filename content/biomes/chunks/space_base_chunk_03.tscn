@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3 uid="uid://0snul5rc282e"]
+
+[ext_resource type="Script" path="res://source/biome/chunk/chunk.gd" id="1_e1ix0"]
+[ext_resource type="AudioStream" uid="uid://b0cpr82d62fg6" path="res://audio/sfx/break1.mp3" id="2_lcrd6"]
+[ext_resource type="AudioStream" uid="uid://drl1dd1hsfa1c" path="res://audio/sfx/dig_1.mp3" id="3_fxesg"]
+[ext_resource type="Texture2D" uid="uid://j5ps3lwyn36u" path="res://graphics/biomes/chunks/chunk_space_base_03.png" id="4_gyvy1"]
+[ext_resource type="PackedScene" uid="uid://cpt4tcy3n6p0a" path="res://content/explode.tscn" id="5_sfl6k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_47j3p"]
+size = Vector2(64, 64)
+
+[node name="EarthBaseChunk" type="Node2D" node_paths=PackedStringArray("_area", "destroy_animated_sprite")]
+script = ExtResource("1_e1ix0")
+points = 64
+_area = NodePath("Area2D")
+destroy_animated_sprite = NodePath("Explode")
+destroy_sound = ExtResource("2_lcrd6")
+dig_sound = ExtResource("3_fxesg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("4_gyvy1")
+centered = false
+
+[node name="Explode" parent="." instance=ExtResource("5_sfl6k")]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(32, 32)
+shape = SubResource("RectangleShape2D_47j3p")

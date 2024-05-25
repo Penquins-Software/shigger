@@ -11,9 +11,9 @@ const LEVEL_CENTER: int = 223;
 const LEVEL_BACK_CHEESE: int = 255;
 const LEVEL_BACK_MAGMA: int = 287;
 const LEVEL_BACK_EARTH: int = 319;
-const LEVEL_SEA: int = 351;
-#const SKY: int = 479;
-#const SPACE: int = 575;
+const LEVEL_SEA: int = 415;
+const LEVEL_SKY: int = 511;
+const LEVEL_SPACE: int = 607;
 
 const LEFT_POINT: int = 0
 const MIDDLE_POINT: int = 4

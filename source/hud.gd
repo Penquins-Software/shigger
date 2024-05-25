@@ -20,7 +20,7 @@ func _ready():
 func set_points(value: int, multiplier: int, hits: int) -> void:
 	var format_value = HelpFunctions.format_integer(value)
 	var format_hits = HelpFunctions.format_integer(hits)
-	points.text = "[center]%s: %s\n\n%s: %s (X%s)" % [tr("Score"), format_value, tr("Series"), format_hits, multiplier]
+	points.text = "[center]%s: %s\n\n%s: %s (X%s)" % [tr("Очков"), format_value, tr("Серия"), format_hits, multiplier]
 
 
 func add_skill_icon(skill_card: SkillCard) -> void:

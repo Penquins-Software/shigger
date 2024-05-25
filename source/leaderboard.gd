@@ -24,7 +24,7 @@ func show_table() -> void:
 	if _data.size() == 0:
 		return
 	
-	var leaderboard_cells = "[cell]%s[/cell][cell]        %s        [/cell][cell]%s[/cell]" % [tr("Rank"), tr("Player"), tr("Scores")]
+	var leaderboard_cells = "[cell]%s[/cell][cell]        %s        [/cell][cell]%s[/cell]" % [tr("Ранг"), tr("Игрок"), tr("Количество очков")]
 	
 	for item in _data:
 		leaderboard_cells += "[cell][right]%s.[/right][/cell]" % item.rank

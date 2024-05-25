@@ -6,5 +6,5 @@ extends Item
 
 func use() -> void:
 	_monster.set_speed(8, bits)
-	Message.create(_world, _player.position, "[color=orange]%s" % tr("MonsterSlowed"))
+	Message.create(_world, _player.position, "[color=orange]%s" % tr("Монстр замедлен!"))
 	queue_free()

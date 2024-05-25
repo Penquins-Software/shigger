@@ -72,7 +72,7 @@ func miss() -> void:
 		return
 	
 	series_of_hits = 0
-	Message.create(self, position, "[color=purple]%s" % tr("Miss"))
+	Message.create(self, position, "[color=purple]%s" % tr("Мимо..."))
 
 
 func check_hit_queue() -> void:
@@ -180,7 +180,7 @@ func _on_area_entered(area: Area2D) -> void:
 			var monster = area.get_parent() as Monster
 			monster.set_speed(8, 24)
 			monster.place(monster.world_position - Vector2(0, 4))
-			Message.create(self, position, "[color=green]%s" % tr("FuguSaved"))
+			Message.create(self, position, "[color=green]%s" % tr("Вас спасла рыба ФУГУ!"))
 			place(_world_position + Vector2.DOWN)
 			_world.game.hud.remove_skill_icon("Fugu")
 		else:

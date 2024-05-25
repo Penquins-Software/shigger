@@ -69,8 +69,14 @@ func select_biome_by_level() -> Biome:
 		return BiomeBackMagma.new()
 	elif current_level < Constants.LEVEL_BACK_EARTH:
 		return BiomeBackEarth.new()
+	elif current_level < Constants.LEVEL_SEA:
+		return BiomeSea.new()
+	elif current_level < Constants.LEVEL_SKY:
+		return BiomeSky.new()
+	elif current_level < Constants.LEVEL_SPACE:
+		return BiomeSpace.new()
 	else:
-		return BiomeBackEarth.new()
+		return BiomeSpace.new()
 
 
 func create_biome(biome: Biome) -> void:

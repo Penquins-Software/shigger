@@ -1,0 +1,340 @@
+# LANGUAGE translation for Shigger for the following files:
+# res://source/game.gd
+# res://source/authors.gd
+# res://source/ending.gd
+# res://source/hud.gd
+# res://source/intro.gd
+# res://source/kick_player.gd
+# res://source/leaderboard.gd
+# res://source/menu.gd
+# res://source/menu_element.gd
+# res://source/message.gd
+# res://source/music_player.gd
+# res://source/pause.gd
+# res://source/preparation_screen.gd
+# res://source/tutorial.gd
+# res://source/version.gd
+# res://source/world.gd
+# res://source/comic/comic.gd
+# res://source/comic/comic_page.gd
+# res://source/items/list/item_dynamite.gd
+# res://source/items/list/item_random_rotation.gd
+# res://source/items/list/item_stop.gd
+# res://source/items/list/item_treasure.gd
+# res://source/monster/monster.gd
+# res://source/player/player.gd
+# res://source/player/player_area.gd
+# res://source/player/player_camera.gd
+# res://source/rhythm/rhythm.gd
+# res://source/rhythm/rhythm_helper.gd
+# res://source/rhythm/rhythm_helper_element.gd
+# res://source/rhythm/rhythm_machine.gd
+# res://source/settings/settings.gd
+# res://source/settings/setting_audio_bus.gd
+# res://source/settings/setting_camera_shaking.gd
+# res://source/settings/setting_language.gd
+# res://source/settings/setting_player_name.gd
+# res://source/settings/setting_screen_mode.gd
+# res://source/settings/settins_return_to_menu.gd
+# res://source/skills/list/skill_drill.gd
+# res://source/skills/list/skill_flashlight.gd
+# res://source/skills/list/skill_fugu.gd
+# res://source/skills/list/skill_mega_shovel.gd
+# res://source/skills/list/skill_multiplier.gd
+# res://source/skills/list/skill_sideways_shovel.gd
+# res://source/skills/list/skill_wide_shovel.gd
+# res://source/skills/skills.gd
+# res://content/ending.tscn
+# res://content/explode.tscn
+# res://content/game.tscn
+# res://content/hud.tscn
+# res://content/intro.tscn
+# res://content/menu.tscn
+# res://content/message.tscn
+# res://content/pause.tscn
+# res://content/tutorial.tscn
+# res://content/skills_cards/drill.tscn
+# res://content/skills_cards/flashlight.tscn
+# res://content/skills_cards/fugu.tscn
+# res://content/skills_cards/mega_shovel.tscn
+# res://content/skills_cards/multiplier.tscn
+# res://content/skills_cards/sideways_shovel.tscn
+# res://content/skills_cards/wide_shovel.tscn
+# res://content/rhythm/rhythm_helper_element.tscn
+# res://content/items/dynamite.tscn
+# res://content/items/random_rotation.tscn
+# res://content/items/stop_monster.tscn
+# res://content/items/treasure.tscn
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Shigger\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8-bit\n"
+
+#: source/game.gd
+#: source/ending.gd
+msgid "Ваш результат: %s очков."
+msgstr ""
+
+#: source/ending.gd
+msgid "Вас съели!"
+msgstr ""
+
+#: source/hud.gd
+msgid "Очков"
+msgstr ""
+
+#: source/hud.gd
+msgid "Серия"
+msgstr ""
+
+#: source/leaderboard.gd
+#: content/menu.tscn
+msgid "Ранг"
+msgstr ""
+
+#: source/leaderboard.gd
+#: content/menu.tscn
+msgid "Игрок"
+msgstr ""
+
+#: source/leaderboard.gd
+#: content/menu.tscn
+msgid "Количество очков"
+msgstr ""
+
+#: source/menu.gd
+#: content/menu.tscn
+msgid "[center]Вы прокопали на [color=red]%s[/color] очков"
+msgstr ""
+
+#: source/version.gd
+msgid "Версия"
+msgstr ""
+
+#: source/items/list/item_dynamite.gd
+msgid "ВЗРЫВ!"
+msgstr ""
+
+#: source/items/list/item_random_rotation.gd
+msgid "Круговорот!"
+msgstr ""
+
+#: source/items/list/item_stop.gd
+msgid "Монстр замедлен!"
+msgstr ""
+
+#: source/items/list/item_treasure.gd
+msgid "Сокровище!"
+msgstr ""
+
+#: source/player/player.gd
+msgid "Мимо..."
+msgstr ""
+
+#: source/player/player.gd
+msgid "Вас спасла рыба ФУГУ!"
+msgstr ""
+
+#: content/ending.tscn
+#: content/pause.tscn
+msgid "Вернуться в меню"
+msgstr ""
+
+#: content/hud.tscn
+msgid "[center]Выберите улучшение!"
+msgstr ""
+
+#: content/hud.tscn
+msgid "Пауза"
+msgstr ""
+
+#: content/menu.tscn
+msgid "КОПАТЬ"
+msgstr ""
+
+#: content/menu.tscn
+msgid "ИГРАТЬ"
+msgstr ""
+
+#: content/menu.tscn
+msgid "Комикс"
+msgstr ""
+
+#: content/menu.tscn
+msgid "Лидеры"
+msgstr ""
+
+#: content/menu.tscn
+msgid "Настройки"
+msgstr ""
+
+#: content/menu.tscn
+msgid "Авторы"
+msgstr ""
+
+#: content/menu.tscn
+msgid "Выход"
+msgstr ""
+
+#: content/menu.tscn
+msgid "[center]ЛОП[color=red]А[/color]ТЕЛЬ"
+msgstr ""
+
+#: content/menu.tscn
+msgid "[center]Таблица лидеров"
+msgstr ""
+
+#: content/menu.tscn
+msgid "[center]Получение данных..."
+msgstr ""
+
+#: content/menu.tscn
+msgid "Вернуться"
+msgstr ""
+
+#: content/menu.tscn
+msgid "[center]Настройки"
+msgstr ""
+
+#: content/menu.tscn
+msgid "Имя игрока"
+msgstr ""
+
+#: content/menu.tscn
+msgid "Введите имя..."
+msgstr ""
+
+#: content/menu.tscn
+msgid "Язык"
+msgstr ""
+
+#: content/menu.tscn
+msgid "Режим экрана"
+msgstr ""
+
+#: content/menu.tscn
+msgid "Общая громкость"
+msgstr ""
+
+#: content/menu.tscn
+msgid "Громкость эффектов"
+msgstr ""
+
+#: content/menu.tscn
+msgid "Громкость музыки"
+msgstr ""
+
+#: content/menu.tscn
+msgid "Тряска камеры"
+msgstr ""
+
+#: content/menu.tscn
+msgid "[center]Авторы"
+msgstr ""
+
+#: content/menu.tscn
+msgid ""
+"[center]Программирование: [url=https://ozkitsune.itch.io/]Oz Fox[/url]\n"
+"\n"
+"Геймдизайн и сценарий: [url=https://itch.io/profile/aki-ona]Akiona[/url]\n"
+"\n"
+"Графика: [url=https://vk.com/ankelran]RANKEL[/url], [url=https://vk.com/agnialoo]Василий Василич[/url]\n"
+"\n"
+"Музыка и звуки: [url=https://vk.com/musical_output]lexander[/url]"
+msgstr ""
+
+#: content/menu.tscn
+msgid "Начать!"
+msgstr ""
+
+#: content/menu.tscn
+msgid "Подтвердите действие"
+msgstr ""
+
+#: content/menu.tscn
+msgid "Вы уверены?"
+msgstr ""
+
+#: content/pause.tscn
+msgid "Продолжить"
+msgstr ""
+
+#: content/tutorial.tscn
+msgid ""
+"[center]​Нажимай клавиши A и D ИЛИ стрелочки ←​ и →​ для передвижения вправо и влево.\n"
+"\n"
+"Нажимай клавишу S ИЛИ стрелочку ↓,\n"
+"чтобы вскопать блок под персонажем​ или переместиться вниз.\n"
+"\n"
+"[color=red]Не забывай попадать в ритм, чтобы произвести действие!"
+msgstr ""
+
+#: content/tutorial.tscn
+msgid "Я всё понял!"
+msgstr ""
+
+#: content/skills_cards/drill.tscn
+msgid "[center]Бур"
+msgstr ""
+
+#: content/skills_cards/drill.tscn
+msgid "[center]Лопата прокапывает два блока вниз."
+msgstr ""
+
+#: content/skills_cards/flashlight.tscn
+msgid "[center]Фонарик"
+msgstr ""
+
+#: content/skills_cards/flashlight.tscn
+msgid "[center]Увеличивает радиус обзора и подсвечивает предметы."
+msgstr ""
+
+#: content/skills_cards/fugu.tscn
+msgid "[center]Рыба Фугу"
+msgstr ""
+
+#: content/skills_cards/fugu.tscn
+msgid ""
+"[center]Парализует котомедузу, когда она вас настигает.\n"
+"Одноразовая."
+msgstr ""
+
+#: content/skills_cards/mega_shovel.tscn
+msgid "[center]Мегалопата"
+msgstr ""
+
+#: content/skills_cards/mega_shovel.tscn
+msgid "[center]Лопата наносит двойной удар"
+msgstr ""
+
+#: content/skills_cards/multiplier.tscn
+msgid "[center]X2"
+msgstr ""
+
+#: content/skills_cards/multiplier.tscn
+msgid "[center]Удваивает получаемые очки"
+msgstr ""
+
+#: content/skills_cards/sideways_shovel.tscn
+msgid "[center]Боковая лопата"
+msgstr ""
+
+#: content/skills_cards/sideways_shovel.tscn
+msgid "[center]Лопата одновременно копает в трёх направлениях"
+msgstr ""
+
+#: content/skills_cards/wide_shovel.tscn
+msgid "[center]Широкая лопата"
+msgstr ""
+
+#: content/skills_cards/wide_shovel.tscn
+msgid ""
+"[center]Лопата прокапывает внизу строчку из трёх блоков\n"
+"(Хорошо для кантиков)"
+msgstr ""

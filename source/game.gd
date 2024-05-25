@@ -56,7 +56,7 @@ func pause_game() -> void:
 	hud.hide()
 	pause.show()
 	pause.continue_button.grab_focus()
-	pause.result_label.text = "[center]%s" % (tr("ResultPoints") % HelpFunctions.format_integer(points))
+	pause.result_label.text = "[center]%s" % (tr("Ваш результат: %s очков.") % HelpFunctions.format_integer(points))
 	RhythmMachine.stop()
 	set_pause(true)
 
@@ -145,6 +145,12 @@ func check_level() -> void:
 		set_level(Biome.Biomes.BACK_MAGMA)
 	elif not biomes.has(Biome.Biomes.BACK_EARTH) and player._world_position.y >= Constants.LEVEL_BACK_MAGMA:
 		set_level(Biome.Biomes.BACK_EARTH)
+	elif not biomes.has(Biome.Biomes.SEA) and player._world_position.y >= Constants.LEVEL_BACK_EARTH:
+		set_level(Biome.Biomes.SEA)
+	elif not biomes.has(Biome.Biomes.SKY) and player._world_position.y >= Constants.LEVEL_SEA:
+		set_level(Biome.Biomes.SKY)
+	elif not biomes.has(Biome.Biomes.SPACE) and player._world_position.y >= Constants.LEVEL_SKY:
+		set_level(Biome.Biomes.SPACE)
 
 
 func check_monster_position() -> void:

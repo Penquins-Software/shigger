@@ -10,6 +10,9 @@ enum Biomes {
 	BACK_CHEESE,
 	BACK_MAGMA,
 	BACK_EARTH,
+	SEA,
+	SKY,
+	SPACE,
 }
 
 var back_chunk: PackedScene

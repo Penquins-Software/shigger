@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bj3wmlwm3rnh"]
+
+[ext_resource type="Script" path="res://source/biome/biome_background.gd" id="1_rdhkr"]
+[ext_resource type="Texture2D" uid="uid://dl2dxjtqyh415" path="res://graphics/biomes/background6.png" id="2_fsrdj"]
+
+[node name="SeaBackground" type="Node2D"]
+z_index = -4
+script = ExtResource("1_rdhkr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("2_fsrdj")
+offset = Vector2(0, 540)

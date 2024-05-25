@@ -61,7 +61,7 @@ theme = ExtResource("4_w6bg6")
 theme_override_colors/default_color = Color(0.188235, 0.180392, 0.192157, 1)
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
-text = "[center]SkillPointsX"
+text = "[center]X2"
 fit_content = true
 scroll_active = false
 
@@ -83,7 +83,7 @@ theme = ExtResource("4_w6bg6")
 theme_override_colors/default_color = Color(0.803922, 0.792157, 0.764706, 1)
 theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
-text = "[center]SkillPointsXDesc"
+text = "[center]Удваивает получаемые очки"
 fit_content = true
 scroll_active = false
 
@@ -102,6 +102,7 @@ offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(50, 16)
+auto_translate = false
 mouse_filter = 2
 theme = ExtResource("4_w6bg6")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)

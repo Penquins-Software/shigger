@@ -108,7 +108,7 @@ func show_score(_response = null) -> void:
 	var score_value = int(LootLockerClient.player_score)
 	if score_value > 0:
 		score.show()
-		score.text = tr("BestResult") % HelpFunctions.format_integer(score_value)
+		score.text = tr("[center]Вы прокопали на [color=red]%s[/color] очков") % HelpFunctions.format_integer(score_value)
 
 
 func silence_bit() -> void:

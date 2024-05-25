@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bw8ev0fofl0w7"]
+
+[ext_resource type="Texture2D" uid="uid://dcgmegd7b4pfr" path="res://graphics/biomes/chunks/chunk_space_base_04.png" id="1_qs40i"]
+
+[node name="EarthBaseChunk" type="Node2D"]
+z_index = -2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.577008, 0.577008, 0.577008, 1)
+texture = ExtResource("1_qs40i")
+centered = false

@@ -9,4 +9,4 @@ func _ready():
 
 
 func set_version() -> void:
-	text = "%s %s" % [tr("Version"), _version]
+	text = "%s: %s" % [tr("Версия"), _version]

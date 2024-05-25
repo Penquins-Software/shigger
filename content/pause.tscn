@@ -43,6 +43,7 @@ offset_top = 240.0
 offset_right = 300.0
 offset_bottom = 270.0
 grow_horizontal = 2
+auto_translate = false
 theme = ExtResource("1_b8nco")
 bbcode_enabled = true
 text = "[center]Ваш результат: 525 очков!"
@@ -66,10 +67,10 @@ layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("1_b8nco")
 shortcut = SubResource("Shortcut_4m0hu")
-text = "Continue"
+text = "Продолжить"
 
 [node name="ReturnButton" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("1_b8nco")
-text = "BackToMenu"
+text = "Вернуться в меню"

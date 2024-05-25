@@ -24,6 +24,7 @@ offset_bottom = -301.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(100, 10)
+auto_translate = false
 theme = ExtResource("1_nd0x8")
 bbcode_enabled = true
 text = "[center][color=orange]ВЗРЫВ!"

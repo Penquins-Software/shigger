@@ -11,7 +11,6 @@ func _ready():
 	
 	if (locales.size() < 2):
 		menu_button.disabled = true
-		#hide()
 		return
 	
 	for locale in locales:

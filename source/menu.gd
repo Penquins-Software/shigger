@@ -4,6 +4,7 @@ extends Control
 
 @export_group("Containers")
 @export var main: MenuElement
+@export var comic: Comic
 @export var leaderboard: MenuElement
 @export var settings: MenuElement
 @export var authors: MenuElement
@@ -11,6 +12,7 @@ extends Control
 
 @export_group("Buttons")
 @export var start_button: Button
+@export var comic_button: Button
 @export var leaderboard_button: Button
 @export var settings_button: Button
 @export var authors_button: Button
@@ -35,6 +37,11 @@ extends Control
 func _ready():
 	start_button.pressed.connect(_start_game)
 	
+	comic_button.pressed.connect(_show_menu_element.bind(comic))
+	comic_button.pressed.connect(silence_bit)
+	comic.exit_button.pressed.connect(_show_main_menu.bind(comic))
+	comic.exit_button.pressed.connect(turn_up_bit)
+	
 	leaderboard_button.pressed.connect(_show_menu_element.bind(leaderboard))
 	return_from_leaderboard_button.pressed.connect(_show_main_menu.bind(leaderboard))
 	
@@ -52,6 +59,8 @@ func _ready():
 	LootLockerClient.get_leaderboards_completed.connect(show_score)
 	
 	main.show_and_focus()
+	
+	Settings.locale_was_changed.connect(show_score)
 	
 	if OS.has_feature("web"):
 		exit_button.hide()
@@ -92,11 +101,19 @@ func set_nickname() -> void:
 	_start_game()
 
 
-func show_score(_response) -> void:
+func show_score(_response = null) -> void:
 	if LootLockerClient.player_score == "":
 		return
 		
 	var score_value = int(LootLockerClient.player_score)
 	if score_value > 0:
 		score.show()
-		score.text = "[center]Вы прокопали на [color=red]%s[/color] очков" % HelpFunctions.format_integer(score_value)
+		score.text = tr("BestResult") % HelpFunctions.format_integer(score_value)
+
+
+func silence_bit() -> void:
+	$AudioStreamPlayer.volume_db = -INF
+
+
+func turn_up_bit() -> void:
+	$AudioStreamPlayer.volume_db = 0

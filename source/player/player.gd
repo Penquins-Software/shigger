@@ -35,8 +35,8 @@ var first_bit: bool = true
 
 
 func _ready():
-	camera.position_smoothing_enabled = Settings.camera_shaking
-	camera.rotation_smoothing_enabled = Settings.camera_shaking
+	#camera.position_smoothing_enabled = Settings.camera_shaking
+	#camera.rotation_smoothing_enabled = Settings.camera_shaking
 	
 	_area.area_entered.connect(_on_area_entered)
 	
@@ -72,7 +72,7 @@ func miss() -> void:
 		return
 	
 	series_of_hits = 0
-	Message.create(self, position, "[color=purple]Мимо...")
+	Message.create(self, position, "[color=purple]%s" % tr("Miss"))
 
 
 func check_hit_queue() -> void:
@@ -119,11 +119,11 @@ func dig() -> void:
 		place(new_position)
 
 
-func hit_chunk(chunk_position: Vector2, apply_modificators: bool = true) -> bool:
+func hit_chunk(chunk_position: Vector2, apply_modificators: bool = true, play_sound: bool = true) -> bool:
 	if not _world.chunks.has(chunk_position) or _world.chunks[chunk_position] == null:
 		return false
 	var chunk = _world.chunks[chunk_position]
-	var result = chunk.dig(self)
+	var result = chunk.dig(self, play_sound)
 	if result:
 		_world.chunks.erase(chunk_position)
 		_world.game.add_points(chunk.points, chunk_position * Constants.FACTOR)
@@ -144,23 +144,23 @@ func _apply_wide_shovel(hit_position: Vector2) -> void:
 	if not wide_shovel:
 		return
 	
-	hit_chunk(hit_position + Vector2.LEFT, false)
-	hit_chunk(hit_position + Vector2.RIGHT, false)
+	hit_chunk(hit_position + Vector2.LEFT, false, false)
+	hit_chunk(hit_position + Vector2.RIGHT, false, false)
 
 
 func _apply_sideways_shovel(hit_position: Vector2) -> void:
 	if not sideways_shovel:
 		return
 	
-	hit_chunk(hit_position + Vector2(-1, -1), false)
-	hit_chunk(hit_position + Vector2(1, -1), false)
+	hit_chunk(hit_position + Vector2(-1, -1), false, false)
+	hit_chunk(hit_position + Vector2(1, -1), false, false)
 
 
 func _apply_drill(hit_position: Vector2) -> void:
 	if not drill:
 		return
 	
-	hit_chunk(hit_position + Vector2.DOWN, false)
+	hit_chunk(hit_position + Vector2.DOWN, false, false)
 
 
 func play_dig_animation() -> void:
@@ -180,7 +180,7 @@ func _on_area_entered(area: Area2D) -> void:
 			var monster = area.get_parent() as Monster
 			monster.set_speed(8, 24)
 			monster.place(monster.world_position - Vector2(0, 4))
-			Message.create(self, position, "[color=green]Вас спасла рыба ФУГУ!")
+			Message.create(self, position, "[color=green]%s" % tr("FuguSaved"))
 			place(_world_position + Vector2.DOWN)
 			_world.game.hud.remove_skill_icon("Fugu")
 		else:
@@ -213,8 +213,8 @@ func get_flashlight() -> void:
 	light.scale = Vector2(1.5, 1.5)
 	
 	for item in _world.items:
-		if not item == null:
-			item.turn_on_light()
+		if not _world.items[item] == null and not _world.items[item].is_queued_for_deletion():
+			_world.items[item].turn_on_light()
 
 
 func set_animation_speed(bpm: RhythmMachine.BPM) -> void:

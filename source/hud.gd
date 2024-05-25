@@ -13,8 +13,14 @@ extends CanvasLayer
 var info_skills: Dictionary 
 
 
+func _ready():
+	set_points(0, 1, 0)
+
+
 func set_points(value: int, multiplier: int, hits: int) -> void:
-	points.text = "[center]Очков: %s\n\nСерия: %s (X%s)" % [value, hits, multiplier]
+	var format_value = HelpFunctions.format_integer(value)
+	var format_hits = HelpFunctions.format_integer(hits)
+	points.text = "[center]%s: %s\n\n%s: %s (X%s)" % [tr("Score"), format_value, tr("Series"), format_hits, multiplier]
 
 
 func add_skill_icon(skill_card: SkillCard) -> void:

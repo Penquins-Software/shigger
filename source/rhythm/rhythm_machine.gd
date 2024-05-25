@@ -55,6 +55,11 @@ var _bit_4_5: bool = false
 
 var _action: bool = false
 
+var _hit_sounds: Array[AudioStream] = [
+	ResourceLoader.load("res://audio/sfx/move1.mp3"),
+	ResourceLoader.load("res://audio/sfx/move2.mp3"),
+] 
+
 var _miss_sounds: Array[AudioStream] = [
 	ResourceLoader.load("res://audio/sfx/miss1.mp3"),
 	ResourceLoader.load("res://audio/sfx/miss2.mp3"),
@@ -113,9 +118,9 @@ func check_action(event: InputEvent) -> void:
 	_action = true
 	if _bit_2_3 or not _bit_1_4:
 		hit.emit(event)
+		SFXPlayer.play(_hit_sounds.pick_random())
 	else:
 		SFXPlayer.play(_miss_sounds.pick_random())
-		miss.emit()
 
 
 func reset(time: float = 0) -> void:

@@ -17,7 +17,7 @@ func _init():
 	width = 3
 	base_chunk_possibility = 0.75
 	solid_chunk_possibility = 0.1
-	item_possibility = 0.02
+	item_possibility = 0.025
 	
 	left_extreme_point = 3
 	right_extreme_point = 5

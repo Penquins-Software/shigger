@@ -20,30 +20,31 @@ func _enter_tree():
 	_area.area_entered.connect(_area_entered)
 
 
-func hit() -> void:
+func hit(play_sound: bool = true) -> void:
 	modulate = hit_color
-	SFXPlayer.play(dig_sound)
+	if play_sound:
+		SFXPlayer.play(dig_sound)
 	await RhythmMachine.bit_1_2
 	modulate = Color.WHITE
 
 
-func destoy(explode: bool = false) -> void:
+func destoy(explode: bool = false, play_sound: bool = true) -> void:
 	modulate = destroy_color
 	if explode:
 		destroy_animated_sprite.play()
-	else:
+	elif play_sound:
 		SFXPlayer.play(destroy_sound)
 	await RhythmMachine.bit_1_2
 	queue_free()
 
 
-func dig(player: Player) -> bool:
+func dig(player: Player, play_sound: bool = true) -> bool:
 	hp -= player.damage
 	if hp <= 0:
-		destoy()
+		destoy(false, play_sound)
 		return true
 	
-	hit()
+	hit(play_sound)
 	return false
 
 

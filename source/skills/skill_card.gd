@@ -11,10 +11,6 @@ var player: Player
 var increased_size: Vector2 = Vector2(1.05, 1.05)
 
 
-func _ready():
-	pass
-
-
 func _enter_tree():
 	RhythmMachine.bit_1_5.connect(bit_1_5)
 	RhythmMachine.bit_1_1.connect(bit_1_1)
@@ -48,6 +44,10 @@ func left() -> void:
 
 func right() -> void:
 	_arrow_label.text = "[center]→"
+
+
+func get_texture() -> Texture2D:
+	return _texture
 
 
 func _on_mouse_entered() -> void:

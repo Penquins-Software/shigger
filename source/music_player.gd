@@ -4,38 +4,27 @@ extends AudioStreamPlayer
 @export var audio_earth: AudioStream
 @export var audio_magma: AudioStream
 @export var audio_cheese: AudioStream
-@export var audio_back_earth: AudioStream
-@export var audio_back_magma: AudioStream
 @export var audio_back_cheese: AudioStream
+@export var audio_back_magma: AudioStream
+@export var audio_back_earth: AudioStream
+
+@onready var audio_by_biome: Dictionary = {
+	Biome.Biomes.EARTH : [audio_earth, RhythmMachine.BPM.BPM75],
+	Biome.Biomes.MAGMA : [audio_magma, RhythmMachine.BPM.BPM100],
+	Biome.Biomes.CHEESE : [audio_cheese, RhythmMachine.BPM.BPM120],
+	Biome.Biomes.CENTER : [audio_cheese, RhythmMachine.BPM.BPM120],
+	Biome.Biomes.BACK_CHEESE : [audio_back_cheese, RhythmMachine.BPM.BPM120],
+	Biome.Biomes.BACK_MAGMA : [audio_back_magma, RhythmMachine.BPM.BPM100],
+	Biome.Biomes.BACK_EARTH : [audio_back_earth, RhythmMachine.BPM.BPM75],
+}
 
 
 func play_biome(biome: Biome.Biomes) -> RhythmMachine.BPM:
-	var bpm: RhythmMachine.BPM
-	match biome:
-		Biome.Biomes.EARTH:
-			stream = audio_earth
-			bpm = RhythmMachine.BPM.BPM75
-		Biome.Biomes.MAGMA:
-			stream = audio_magma
-			bpm = RhythmMachine.BPM.BPM100
-		Biome.Biomes.CHEESE:
-			stream = audio_cheese
-			bpm = RhythmMachine.BPM.BPM120
-		Biome.Biomes.CENTER:
-			stream = audio_cheese
-			bpm = RhythmMachine.BPM.BPM120
-		Biome.Biomes.BACK_CHEESE:
-			stream = audio_back_cheese
-			bpm = RhythmMachine.BPM.BPM120
-		Biome.Biomes.BACK_MAGMA:
-			stream = audio_back_magma
-			bpm = RhythmMachine.BPM.BPM100
-		Biome.Biomes.BACK_EARTH:
-			stream = audio_back_earth
-			bpm = RhythmMachine.BPM.BPM75
-		_:
-			return RhythmMachine.BPM.BPM75
-	play()
+	var audio: AudioStream = audio_by_biome[biome][0]
+	var bpm: RhythmMachine.BPM = audio_by_biome[biome][1]
+	if not audio == stream:
+		stream = audio
+		play()
 	return bpm
 
 

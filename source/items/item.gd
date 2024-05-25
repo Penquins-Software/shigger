@@ -1,11 +1,12 @@
 class_name Item
 extends Node2D
 
-static var _item_scenes: Array[PackedScene] = [
-	ResourceLoader.load("res://content/items/stop_monster.tscn"),
-	ResourceLoader.load("res://content/items/treasure.tscn"),
-	ResourceLoader.load("res://content/items/dynamite.tscn"),
-]
+static var _items: Dictionary = {
+	0.1 : ResourceLoader.load("res://content/items/dynamite.tscn"),
+	0.3 : ResourceLoader.load("res://content/items/stop_monster.tscn"),
+	0.4 : ResourceLoader.load("res://content/items/random_rotation.tscn"),
+	1.0 : ResourceLoader.load("res://content/items/treasure.tscn"),
+}
 
 @export var _area: Area2D
 @export var light: Light2D
@@ -52,5 +53,13 @@ func _on_area_entered(area: Area2D) -> void:
 		use()
 
 
+func explode() -> void:
+	queue_free()
+
+
 static func create_random_item() -> Item:
-	return _item_scenes.pick_random().instantiate() as Item
+	var random = randf_range(0.0, 1.0)
+	for item in _items:
+		if item > random:
+			return _items[item].instantiate() as Item
+	return _items.values().pick_random().instantiate() as Item

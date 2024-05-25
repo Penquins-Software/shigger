@@ -16,7 +16,7 @@ static var s_background: PackedScene = ResourceLoader.load("res://content/biomes
 func _init():
 	width = 9
 	base_chunk_possibility = 0.95
-	solid_chunk_possibility = 0.5
+	solid_chunk_possibility = 0.55
 	item_possibility = 0.00
 	
 	left_extreme_point = 0

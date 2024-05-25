@@ -99,6 +99,10 @@ down={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://translation/translation.en.translation", "res://translation/translation.ru.translation")
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

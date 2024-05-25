@@ -66,10 +66,10 @@ layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("1_b8nco")
 shortcut = SubResource("Shortcut_4m0hu")
-text = "Продолжить"
+text = "Continue"
 
 [node name="ReturnButton" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("1_b8nco")
-text = "Вернуться в меню"
+text = "BackToMenu"

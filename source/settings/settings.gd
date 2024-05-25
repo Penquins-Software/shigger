@@ -1,5 +1,6 @@
 extends Node
 
+signal locale_was_changed
 
 const PATH_TO_CONFIG = "user://config.ini"
 
@@ -37,6 +38,7 @@ func _set_player_name(new_name: String) -> void:
 func _set_locale(new_locale: String) -> void:
 	locale = new_locale
 	TranslationServer.set_locale(locale)
+	locale_was_changed.emit()
 	print("Locale: %s" % locale);
 
 func _set_screen_mode(mode: DisplayServer.WindowMode) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bn610g1y3m6q4"]
+[gd_scene load_steps=24 format=3 uid="uid://bn610g1y3m6q4"]
 
 [ext_resource type="Script" path="res://source/menu.gd" id="1_y313j"]
 [ext_resource type="Texture2D" uid="uid://di2x4ta1ypsls" path="res://graphics/menu/title_background.png" id="2_5l2x8"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" path="res://source/leaderboard.gd" id="6_47hxt"]
 [ext_resource type="Script" path="res://source/menu_element.gd" id="6_m0paf"]
 [ext_resource type="Script" path="res://source/settings/setting_player_name.gd" id="7_3q4m3"]
+[ext_resource type="Script" path="res://source/version.gd" id="7_cgacl"]
+[ext_resource type="PackedScene" uid="uid://balg7a8de0qb2" path="res://content/story_comic.tscn" id="7_qt4s1"]
 [ext_resource type="Script" path="res://source/settings/setting_language.gd" id="8_23hq7"]
 [ext_resource type="Script" path="res://source/settings/setting_screen_mode.gd" id="9_uj1h1"]
 [ext_resource type="Script" path="res://source/settings/setting_audio_bus.gd" id="10_dvv5c"]
@@ -164,7 +166,7 @@ _data = {
 "RESET": SubResource("Animation_y5e6k")
 }
 
-[node name="Menu" type="Control" node_paths=PackedStringArray("main", "leaderboard", "settings", "authors", "nickname", "start_button", "leaderboard_button", "settings_button", "authors_button", "exit_button", "return_from_leaderboard_button", "return_from_settings_button", "return_from_authors_button", "enter_nickname", "exit_confirmation_dialog", "nickname_edit", "score")]
+[node name="Menu" type="Control" node_paths=PackedStringArray("main", "comic", "leaderboard", "settings", "authors", "nickname", "start_button", "comic_button", "leaderboard_button", "settings_button", "authors_button", "exit_button", "return_from_leaderboard_button", "return_from_settings_button", "return_from_authors_button", "enter_nickname", "exit_confirmation_dialog", "nickname_edit", "score")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -173,11 +175,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_y313j")
 main = NodePath("Main")
+comic = NodePath("Comic")
 leaderboard = NodePath("Leaderboard")
 settings = NodePath("Settings")
 authors = NodePath("Authors")
 nickname = NodePath("Nickname")
 start_button = NodePath("Main/StartButton")
+comic_button = NodePath("Main/VBoxContainer/StoryComicButton")
 leaderboard_button = NodePath("Main/VBoxContainer/LeaderboardButton")
 settings_button = NodePath("Main/VBoxContainer/SettingsButton")
 authors_button = NodePath("Main/VBoxContainer/AuthorsButton")
@@ -225,8 +229,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 2304.0
-offset_bottom = 1296.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_gu6l7")
@@ -238,8 +240,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 2304.0
-offset_bottom = 1296.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_vdowo")
@@ -261,10 +261,10 @@ focus_neighbor_bottom = NodePath("../VBoxContainer/StoryComicButton")
 mouse_default_cursor_shape = 2
 theme = ExtResource("5_qhpuc")
 theme_override_font_sizes/font_size = 32
-text = "КОПАТЬ"
+text = "DIG"
 flat = true
 
-[node name="StartButton2" type="Button" parent="Main"]
+[node name="PlayButton" type="Button" parent="Main"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -280,16 +280,16 @@ mouse_default_cursor_shape = 2
 theme = ExtResource("5_qhpuc")
 theme_override_font_sizes/font_size = 24
 disabled = true
-text = "ИГРАТЬ"
+text = "PLAY"
 flat = true
 
-[node name="Line2D" type="Line2D" parent="Main/StartButton2"]
+[node name="Line2D" type="Line2D" parent="Main/PlayButton"]
 position = Vector2(3, 3)
 points = PackedVector2Array(37, 5, 206, 32)
 width = 4.0
 default_color = Color(1, 0, 0, 1)
 
-[node name="Line2D2" type="Line2D" parent="Main/StartButton2"]
+[node name="Line2D2" type="Line2D" parent="Main/PlayButton"]
 points = PackedVector2Array(38, 35, 212, 5)
 width = 4.0
 default_color = Color(1, 0, 0, 1)
@@ -314,7 +314,7 @@ focus_neighbor_top = NodePath("../../StartButton")
 focus_neighbor_bottom = NodePath("../LeaderboardButton")
 mouse_default_cursor_shape = 2
 theme = ExtResource("5_qhpuc")
-text = "Комикс"
+text = "Comic"
 flat = true
 alignment = 0
 
@@ -324,7 +324,7 @@ focus_neighbor_top = NodePath("../StoryComicButton")
 focus_neighbor_bottom = NodePath("../SettingsButton")
 mouse_default_cursor_shape = 2
 theme = ExtResource("5_qhpuc")
-text = "Лидеры"
+text = "Leaders"
 flat = true
 alignment = 0
 
@@ -334,7 +334,7 @@ focus_neighbor_top = NodePath("../LeaderboardButton")
 focus_neighbor_bottom = NodePath("../AuthorsButton")
 mouse_default_cursor_shape = 2
 theme = ExtResource("5_qhpuc")
-text = "Настройки"
+text = "Settings"
 flat = true
 alignment = 0
 
@@ -344,7 +344,7 @@ focus_neighbor_top = NodePath("../SettingsButton")
 focus_neighbor_bottom = NodePath("../ExitButton")
 mouse_default_cursor_shape = 2
 theme = ExtResource("5_qhpuc")
-text = "Авторы"
+text = "Authors"
 flat = true
 alignment = 0
 
@@ -353,7 +353,7 @@ layout_mode = 2
 focus_neighbor_top = NodePath("../AuthorsButton")
 mouse_default_cursor_shape = 2
 theme = ExtResource("5_qhpuc")
-text = "Выход"
+text = "Exit"
 flat = true
 alignment = 0
 
@@ -417,7 +417,7 @@ theme = ExtResource("5_qhpuc")
 theme_override_colors/default_color = Color(0.937255, 0.937255, 0.0235294, 1)
 theme_override_font_sizes/normal_font_size = 68
 bbcode_enabled = true
-text = "ЛОП[color=red]А[/color]ТЕЛЬ"
+text = "[center]SHIGGER"
 fit_content = true
 scroll_active = false
 
@@ -462,9 +462,15 @@ theme = ExtResource("5_qhpuc")
 theme_override_colors/default_color = Color(0.393086, 0.393086, 0.393085, 1)
 theme_override_font_sizes/normal_font_size = 12
 bbcode_enabled = true
-text = "Версия 1.0.6"
+text = "Версия 1.0.7"
 fit_content = true
 scroll_active = false
+script = ExtResource("7_cgacl")
+_version = "1.0.8"
+
+[node name="Comic" parent="." instance=ExtResource("7_qt4s1")]
+visible = false
+layout_mode = 1
 
 [node name="Leaderboard" type="Control" parent="." node_paths=PackedStringArray("focus_element")]
 visible = false
@@ -490,7 +496,7 @@ offset_bottom = 110.0
 grow_horizontal = 2
 theme = ExtResource("5_qhpuc")
 bbcode_enabled = true
-text = "[center]Таблица лидеров"
+text = "[center]Leaderboard"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Leaderboard"]
 custom_minimum_size = Vector2(800, 380)
@@ -516,7 +522,7 @@ size_flags_vertical = 3
 focus_neighbor_bottom = NodePath("../../BackButton")
 theme = ExtResource("5_qhpuc")
 bbcode_enabled = true
-text = "[center]Идёт получение данных..."
+text = "[center]ReceivingData"
 fit_content = true
 scroll_active = false
 script = ExtResource("6_47hxt")
@@ -537,7 +543,7 @@ grow_vertical = 0
 focus_neighbor_top = NodePath("../ScrollContainer/Table")
 mouse_default_cursor_shape = 2
 theme = ExtResource("5_qhpuc")
-text = "Вернуться"
+text = "Return"
 
 [node name="Settings" type="Control" parent="." node_paths=PackedStringArray("focus_element")]
 visible = false
@@ -563,7 +569,7 @@ offset_bottom = 110.0
 grow_horizontal = 2
 theme = ExtResource("5_qhpuc")
 bbcode_enabled = true
-text = "[center]Настройки"
+text = "[center]Settings"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Settings"]
 custom_minimum_size = Vector2(680, 0)
@@ -587,23 +593,24 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("5_qhpuc")
-text = "Имя игрока"
+text = "PlayerName"
 fit_content = true
 
 [node name="LineEdit" type="LineEdit" parent="Settings/VBoxContainer/Nickname" node_paths=PackedStringArray("confirm_button")]
-custom_minimum_size = Vector2(182, 0)
+custom_minimum_size = Vector2(305, 0)
 layout_mode = 2
 theme = ExtResource("5_qhpuc")
-placeholder_text = "Введите имя..."
+placeholder_text = "TypeName"
 script = ExtResource("7_3q4m3")
 confirm_button = NodePath("../Button")
 
 [node name="Button" type="Button" parent="Settings/VBoxContainer/Nickname"]
 layout_mode = 2
+tooltip_text = "Accept"
 focus_neighbor_bottom = NodePath("../../Localization/MenuButton")
 mouse_default_cursor_shape = 2
 theme = ExtResource("5_qhpuc")
-text = "Применить"
+text = "✔️"
 
 [node name="Localization" type="HBoxContainer" parent="Settings/VBoxContainer" node_paths=PackedStringArray("menu_button")]
 layout_mode = 2
@@ -615,7 +622,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme = ExtResource("5_qhpuc")
-text = "Язык"
+text = "Language"
 fit_content = true
 
 [node name="MenuButton" type="MenuButton" parent="Settings/VBoxContainer/Localization"]
@@ -626,7 +633,6 @@ focus_neighbor_top = NodePath("../../Nickname/Button")
 focus_neighbor_bottom = NodePath("../../WindowMode/MenuButton")
 mouse_default_cursor_shape = 2
 theme = ExtResource("5_qhpuc")
-text = "Russian"
 flat = false
 
 [node name="WindowMode" type="HBoxContainer" parent="Settings/VBoxContainer"]
@@ -637,7 +643,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme = ExtResource("5_qhpuc")
-text = "Режим экрана"
+text = "ScreenMode"
 fit_content = true
 
 [node name="MenuButton" type="MenuButton" parent="Settings/VBoxContainer/WindowMode"]
@@ -668,7 +674,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme = ExtResource("5_qhpuc")
-text = "Общая громокость"
+text = "GeneralVolume"
 fit_content = true
 
 [node name="HSlider" type="HSlider" parent="Settings/VBoxContainer/MasterVolume"]
@@ -697,7 +703,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme = ExtResource("5_qhpuc")
-text = "Громкость эффектов"
+text = "EffectsVolume"
 fit_content = true
 
 [node name="HSlider" type="HSlider" parent="Settings/VBoxContainer/SFXVolume"]
@@ -726,7 +732,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme = ExtResource("5_qhpuc")
-text = "Громкость музыки"
+text = "MusicVolume"
 fit_content = true
 
 [node name="HSlider" type="HSlider" parent="Settings/VBoxContainer/MusicVolume"]
@@ -751,7 +757,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme = ExtResource("5_qhpuc")
-text = "Тряска камеры"
+text = "CameraShaking"
 fit_content = true
 
 [node name="CheckBox" type="CheckBox" parent="Settings/VBoxContainer/Shaking"]
@@ -777,7 +783,7 @@ grow_vertical = 0
 focus_neighbor_top = NodePath("../VBoxContainer/Shaking/CheckBox")
 mouse_default_cursor_shape = 2
 theme = ExtResource("5_qhpuc")
-text = "Вернуться"
+text = "Return"
 script = ExtResource("12_yqn17")
 
 [node name="Authors" type="Control" parent="." node_paths=PackedStringArray("focus_element")]
@@ -804,7 +810,7 @@ offset_bottom = 110.0
 grow_horizontal = 2
 theme = ExtResource("5_qhpuc")
 bbcode_enabled = true
-text = "[center]Авторы"
+text = "[center]Authors"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Authors"]
 custom_minimum_size = Vector2(600, 0)
@@ -814,8 +820,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -300.0
-offset_right = 300.0
+offset_left = -400.0
+offset_top = -60.0
+offset_right = 400.0
+offset_bottom = 60.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -824,13 +832,7 @@ custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 theme = ExtResource("5_qhpuc")
 bbcode_enabled = true
-text = "[center]Программирование: [url=https://ozkitsune.itch.io/]Oz Fox[/url]
-
-Геймдизайн и сценарий: [url=https://itch.io/profile/aki-ona]Akiona[/url]
-
-Графика: [url=https://vk.com/ankelran]RANKEL[/url], [url=https://vk.com/agnialoo]Василий Василич[/url]
-
-Музыка и звуки: [url=https://vk.com/musical_output]lexander[/url]"
+text = "AuthorsList"
 fit_content = true
 script = ExtResource("12_hpssp")
 
@@ -849,7 +851,7 @@ grow_horizontal = 2
 grow_vertical = 0
 mouse_default_cursor_shape = 2
 theme = ExtResource("5_qhpuc")
-text = "Вернуться"
+text = "Return"
 
 [node name="Exit" type="Control" parent="."]
 visible = false
@@ -910,20 +912,20 @@ custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("5_qhpuc")
-placeholder_text = "Введите имя..."
+placeholder_text = "TypeName"
 
 [node name="Button" type="Button" parent="Nickname/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("5_qhpuc")
-text = "Начать!"
+text = "Start"
 
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
-title = "Подтвердите действие"
+title = "ConfirmAction"
 initial_position = 4
 size = Vector2i(360, 90)
 theme = ExtResource("5_qhpuc")
-dialog_text = "Вы уверены?"
+dialog_text = "AreYouSure"
 
 [node name="BackgroundAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

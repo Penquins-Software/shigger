@@ -4,11 +4,11 @@
 [ext_resource type="Theme" uid="uid://cnni4p646elf0" path="res://main_theme.tres" id="2_cd0nx"]
 [ext_resource type="Script" path="res://source/rhythm/rhythm.gd" id="3_gjadg"]
 [ext_resource type="Script" path="res://source/preparation_screen.gd" id="3_os5rx"]
-[ext_resource type="Texture2D" uid="uid://did5hpwtole3t" path="res://graphics/rhythm/2_1.png" id="4_deqmw"]
-[ext_resource type="Texture2D" uid="uid://0kv0o1btx4jt" path="res://graphics/rhythm/2_2.png" id="5_xbu7f"]
 [ext_resource type="Script" path="res://source/rhythm/rhythm_helper.gd" id="6_1jctb"]
 [ext_resource type="Script" path="res://source/skills/skills.gd" id="6_d7hfr"]
 [ext_resource type="PackedScene" uid="uid://ddahxon0eyss0" path="res://content/rhythm/rhythm_helper_element.tscn" id="6_otuj0"]
+[ext_resource type="Texture2D" uid="uid://osu45a1ynqde" path="res://graphics/rhythm/1_1.png" id="6_wqv6d"]
+[ext_resource type="Texture2D" uid="uid://seduqnnbsrfn" path="res://graphics/rhythm/1_2.png" id="7_h284y"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_njc70"]
 action = &"pause"
@@ -112,7 +112,7 @@ theme = ExtResource("2_cd0nx")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 bbcode_enabled = true
-text = "[center]Выберете улучшение!"
+text = "[center]ChooseUpgrade"
 fit_content = true
 scroll_active = false
 
@@ -215,8 +215,8 @@ mouse_filter = 2
 script = ExtResource("3_gjadg")
 helper = NodePath("Helper")
 rhythm_button = NodePath("RhythmTextureRect")
-idle_texture = ExtResource("4_deqmw")
-hover_texture = ExtResource("5_xbu7f")
+idle_texture = ExtResource("6_wqv6d")
+hover_texture = ExtResource("7_h284y")
 
 [node name="Helper" type="Control" parent="Control/Rhythm" node_paths=PackedStringArray("container")]
 custom_minimum_size = Vector2(1000, 0)
@@ -250,6 +250,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ColorRect" type="ColorRect" parent="Control/Rhythm/Helper"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -279,14 +280,14 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -122.0
-offset_right = 40.0
-offset_bottom = -42.0
+offset_left = -60.0
+offset_top = -142.0
+offset_right = 60.0
+offset_bottom = -22.0
 grow_horizontal = 2
 grow_vertical = 0
-pivot_offset = Vector2(40, 40)
-texture = ExtResource("4_deqmw")
+pivot_offset = Vector2(60, 60)
+texture = ExtResource("6_wqv6d")
 expand_mode = 3
 stretch_mode = 5
 
@@ -299,4 +300,4 @@ offset_bottom = 41.0
 mouse_default_cursor_shape = 2
 theme = ExtResource("2_cd0nx")
 shortcut = SubResource("Shortcut_21tut")
-text = "Пауза"
+text = "Pause"

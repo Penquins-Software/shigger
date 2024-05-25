@@ -24,6 +24,8 @@ var skills: Array = [
 	2048,
 	8192,
 	32768,
+	131072,
+	#524288,
 ]
 
 var biomes: Array[Biome.Biomes]
@@ -54,7 +56,7 @@ func pause_game() -> void:
 	hud.hide()
 	pause.show()
 	pause.continue_button.grab_focus()
-	pause.result_label.text = "[center]Ваш результат: %s очков!" % points
+	pause.result_label.text = "[center]%s" % (tr("ResultPoints") % HelpFunctions.format_integer(points))
 	RhythmMachine.stop()
 	set_pause(true)
 
@@ -135,10 +137,10 @@ func check_level() -> void:
 		monster.set_size(9)
 	elif not biomes.has(Biome.Biomes.CENTER) and player._world_position.y >= Constants.LEVEL_CHEESE:
 		set_level(Biome.Biomes.CENTER)
-		player.camera.rotation_degrees = 90
+		player.camera.set_degrees(90)
 	elif not biomes.has(Biome.Biomes.BACK_CHEESE) and player._world_position.y >= Constants.LEVEL_CENTER:
 		set_level(Biome.Biomes.BACK_CHEESE)
-		player.camera.rotation_degrees = 180
+		player.camera.set_degrees(0)
 	elif not biomes.has(Biome.Biomes.BACK_MAGMA) and player._world_position.y >= Constants.LEVEL_BACK_CHEESE:
 		set_level(Biome.Biomes.BACK_MAGMA)
 	elif not biomes.has(Biome.Biomes.BACK_EARTH) and player._world_position.y >= Constants.LEVEL_BACK_MAGMA:

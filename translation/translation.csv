@@ -1,0 +1,75 @@
+keys,ru,en
+DIG,КОПАТЬ,DIG
+PLAY,ИГРАТЬ,PLAY
+Comic,Комикс,Comic strip
+Leaders,Лидеры,Leaders
+Settings,Настройки,Settings
+[center]Settings,[center]Настройки,[center]Settings
+Authors,Авторы,Authors
+[center]Authors,[center]Авторы,[center]Authors
+Exit,Выход,Exit
+[center]SHIGGER,[center]ЛОП[color=red]А[/color]ТЕЛЬ,[center]SH[color=red]I[/color]GGER
+Version,Версия,Version
+[center]Leaderboard,[center]Таблица лидеров,[center]Leaderboard
+Rank,Ранг,Rank
+Player,Игрок,Player
+Scores,Количество очков,Scores
+Return,Вернуться,Return
+PlayerName,Имя игрока,Player name
+Accept,Применить,Accept
+Language,Язык,Language
+ScreenMode,Режим экрана,Screen mode
+GeneralVolume,Общая громкость,General volume
+EffectsVolume,Громкость эффектов,SFX volume
+MusicVolume,Громкость музыки,Music volume
+CameraShaking,Тряска камеры,Screen shake
+ConfirmAction,Подтвердите действие,Confirm action
+AreYouSure,Вы уверены?,Are you sure?
+AuthorsList,"[center]Программирование: [url=https://ozkitsune.itch.io/]Oz Fox[/url]
+
+Геймдизайн и сценарий: [url=https://itch.io/profile/aki-ona]Akiona[/url]
+
+Графика: [url=https://vk.com/ankelran]RANKEL[/url], [url=https://vk.com/agnialoo]Василий Василич[/url]
+
+Музыка и звуки: [url=https://vk.com/musical_output]lexander[/url]","[center]Programming: [url=https://ozkitsune.itch.io/]Oz Fox[/url]
+
+GD and Story: [url=https://itch.io/profile/aki-ona]Akiona[/url]
+
+2D Art and Fonts: [url=https://vk.com/ankelran]RANKEL[/url], [url=https://vk.com/agnialoo]Vasily Vasilich[/url]
+
+Music and Sound Design: [url=https://vk.com/musical_output]lexander[/url]"
+Continue,Продолжить,Continue
+BackToMenu,Вернуться в меню,Return to menu
+Pause,Пауза,Pause
+Miss,Мимо...,Miss...
+Score,Очков,Score
+Series,Серия,Series
+Treasure,Сокровище!,Treasure!
+EXPLOSION,ВЗРЫВ!,EXPLOSION!
+MonsterSlowed,Монстр замедлен!,The monster is slowed down!
+FuguSaved,Вас спасла рыба ФУГУ!,Fugu saved you!
+EatenMessage,Вас съели!,You got eaten!
+ResultPoints,Ваш результат: %s очков.,Your result: %s points.
+[center]SkillDrill,[center]Бур,[center]Drill
+[center]SkillDrillDesc,[center]Лопата прокапывает два блока вниз,[center]Shovel digs two blocks down
+[center]SkillFlashlight,[center]Фонарик,[center]Flashlight
+[center]SkillFlashlightDesc,[center]Увеличивает радиус обзора и подсвечивает предметы.,[center]Increases view range and highlights items.
+[center]SkillFugu,[center]Рыба Фугу,[center]Fugu
+[center]SkillFuguDesc,"[center]Парализует котомедузу, когда она вас настигает.
+Одноразовая.","[center]Paralyzes the Jellyfish Cat when it reaches you.
+Single-use item."
+[center]SkillMegaShovel,[center]Мегалопата,[center]Megashovel
+[center]SkillMegaShovelDesc,[center]Лопата наносит двойной удар,[center]Shovel strikes twice as hard
+[center]SkillPointsX,[center]X2,[center]X2
+[center]SkillPointsXDesc,[center]Удваивает получаемые очки,[center]Doubles the points you gain
+[center]SkillSideShovel,[center]Боковая лопата,[center]Side shovel
+[center]SkillSideShovelDesc,[center]Лопата одновременно копает в трёх направлениях,[center]Shovel digs in three directions
+[center]SkillWideShovel,[center]Широкая лопата,[center]Wide shovel
+[center]SkillWideShovelDesc,"[center]Лопата прокапывает внизу строчку из трёх блоков
+(Хорошо для кантиков)",[center]Shovel digs a line of three blocks below
+[center]ChooseUpgrade,[center]Выберите улучшение!,[center]Choose an upgrade!
+BestResult,[center]Вы прокопали на [color=red]%s[/color] очков,[center]You dug for [color=red]%s[/color] points
+[center]ReceivingData,[center]Получение данных...,[center]Receiving data...
+TypeName,Введите имя...,Type name...
+Start,Начать!,Start!
+ItemRandomRotation,Круговорот!,Rotation!

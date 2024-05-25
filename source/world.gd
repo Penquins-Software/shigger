@@ -9,7 +9,7 @@ var path: PackedVector2Array
 
 var backs: Dictionary = {}
 var chunks: Dictionary = {}
-var items: Array[Item] = []
+var items: Dictionary = {}
 
 
 func _ready():
@@ -88,7 +88,7 @@ func create_biome(biome: Biome) -> void:
 		add_chunk(solid_chunk_position, solid)
 	for item_position in biome.items_positions:
 		var item = Item.create_random_item()
-		items.append(item)
+		items[item_position] = item
 		add_child(item)
 		item.place(item_position, player, monster, self)
 	var background = biome.get_background()
@@ -116,3 +116,18 @@ func destroy_chunk_by_position(world_position: Vector2, explode: bool) -> int:
 	var points = game.add_points(chunk.points, world_position * Constants.FACTOR, false)
 	chunk.destoy(explode)
 	return points
+
+
+func destroy_item_by_position(world_position: Vector2) -> void:
+	if not items.has(world_position):
+		return
+	if items[world_position] == null or items[world_position].is_queued_for_deletion():
+		return 
+	var item = items[world_position] as Item
+	items.erase(world_position)
+	item.explode()
+
+
+func destroy_all_in_position(world_position: Vector2, explode: bool) -> int:
+	destroy_item_by_position(world_position)
+	return destroy_chunk_by_position(world_position, explode)

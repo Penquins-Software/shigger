@@ -229,8 +229,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 1152.0
-offset_bottom = 648.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_gu6l7")
@@ -242,8 +240,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 1152.0
-offset_bottom = 648.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_vdowo")
@@ -470,7 +466,7 @@ text = "Версия 1.0.7"
 fit_content = true
 scroll_active = false
 script = ExtResource("7_cgacl")
-_version = "1.0.8"
+_version = "1.0.9"
 
 [node name="Comic" parent="." instance=ExtResource("7_qt4s1")]
 visible = false

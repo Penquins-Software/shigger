@@ -54,6 +54,7 @@ var _bit_4_5: bool = false
 
 
 var _action: bool = false
+var _missing: bool = false
 
 var _hit_sounds: Array[AudioStream] = [
 	ResourceLoader.load("res://audio/sfx/move1.mp3"),
@@ -78,7 +79,7 @@ func _process(delta):
 	elif not _bit_1_4 and current_time > bpm_in_seconds_1_4:
 		bit_1_4.emit()
 		_bit_1_4 = true
-		if not _action:
+		if not _action or _missing:
 			miss.emit()
 		_action = false
 	elif not _bit_1_3 and current_time > bpm_in_seconds_1_3:
@@ -117,9 +118,11 @@ func _input(event):
 func check_action(event: InputEvent) -> void:
 	_action = true
 	if _bit_2_3 or not _bit_1_4:
+		_missing = false
 		hit.emit(event)
 		SFXPlayer.play(_hit_sounds.pick_random())
 	else:
+		_missing = true
 		SFXPlayer.play(_miss_sounds.pick_random())
 
 
@@ -147,6 +150,7 @@ func set_bpm(bpm: BPM) -> void:
 	current_bpm = bpm
 	bit_changed.emit(bpm)
 	_action = false
+	_missing = false
 
 
 func start(from_start: bool) -> void:

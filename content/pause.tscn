@@ -33,7 +33,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.392157)
 
 [node name="Result" type="RichTextLabel" parent="Control"]
-custom_minimum_size = Vector2(600, 30)
+custom_minimum_size = Vector2(800, 30)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5

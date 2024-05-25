@@ -35,7 +35,7 @@ grow_vertical = 2
 
 [node name="Points" type="RichTextLabel" parent="Control"]
 clip_contents = false
-custom_minimum_size = Vector2(500, 0)
+custom_minimum_size = Vector2(800, 0)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5

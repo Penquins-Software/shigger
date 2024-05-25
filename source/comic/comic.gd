@@ -19,7 +19,6 @@ func _ready():
 
 func show_and_focus() -> void:
 	show()
-	focus_element.grab_focus()
 	_to_first()
 
 

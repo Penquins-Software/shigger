@@ -869,20 +869,20 @@ alignment = 1
 
 [node name="LeftButton" type="Button" parent="HBoxContainer"]
 layout_mode = 2
-focus_neighbor_top = NodePath("../../ExitButton")
-focus_neighbor_right = NodePath("../RightButton")
+focus_mode = 0
 mouse_default_cursor_shape = 2
 theme = ExtResource("13_1vlo3")
 shortcut = SubResource("Shortcut_cyngk")
+shortcut_in_tooltip = false
 text = "<"
 
 [node name="RightButton" type="Button" parent="HBoxContainer"]
 layout_mode = 2
-focus_neighbor_left = NodePath("../LeftButton")
-focus_neighbor_top = NodePath("../../ExitButton")
+focus_mode = 0
 mouse_default_cursor_shape = 2
 theme = ExtResource("13_1vlo3")
 shortcut = SubResource("Shortcut_4bed4")
+shortcut_in_tooltip = false
 text = ">"
 
 [node name="ExitButton" type="Button" parent="."]
@@ -899,8 +899,9 @@ offset_bottom = -280.0
 grow_horizontal = 2
 grow_vertical = 2
 tooltip_text = "Exit"
-focus_neighbor_bottom = NodePath("../HBoxContainer/RightButton")
+focus_mode = 0
 mouse_default_cursor_shape = 2
 theme = ExtResource("13_1vlo3")
 shortcut = SubResource("Shortcut_ars17")
+shortcut_in_tooltip = false
 text = "x"

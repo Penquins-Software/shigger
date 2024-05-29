@@ -15,8 +15,8 @@ static var s_background: PackedScene = ResourceLoader.load("res://content/biomes
 
 func _init():
 	width = 9
-	base_chunk_possibility = 0.9
-	solid_chunk_possibility = 0.55
+	base_chunk_possibility = 0.95
+	solid_chunk_possibility = 0.6
 	item_possibility = 0.06
 	
 	left_extreme_point = 0
@@ -26,4 +26,70 @@ func _init():
 	base_chunks = s_base_chunks
 	solid_chunk = s_solid_chunk
 	background = s_background
+	
+	_patterns.append_array(Constants.BASE_PATTERNS)
+	_specific_patterns.append_array([
+	{
+		"base" : [],
+		"solid" : [ 
+			Vector2(1, 3), 
+			Vector2(2, 2), Vector2(2, 3), Vector2(2, 4),
+			Vector2(3, 1), Vector2(3, 2), Vector2(3, 3),
+			Vector2(4, 2), Vector2(4, 3), Vector2(4, 4),
+			Vector2(5, 3),
+			],
+		"items" : [],
+		"empty" : [
+			Vector2(0, 3), Vector2(1, 2), Vector2(1, 4), Vector2(2, 1), Vector2(2, 5),
+			Vector2(3, 0), Vector2(3, 4), Vector2(4, 1), Vector2(4, 5),
+			Vector2(5, 2), Vector2(5, 4), Vector2(6, 3),
+			Vector2(0, 2), Vector2(1, 1), Vector2(2, 0),
+			Vector2(4, 0), Vector2(5, 1), Vector2(6, 2),
+			Vector2(0, 4), Vector2(1, 5), Vector2(2, 6),
+			Vector2(3, 5), Vector2(4, 6), Vector2(5, 5),
+			Vector2(6, 4)
+		],
+		"indestructible" : [],
+	},
+	{
+		"base" : [],
+		"solid" : [ 
+			Vector2(1, 2), 
+			Vector2(2, 1), Vector2(2, 2),
+			Vector2(3, 2),
+			],
+		"items" : [],
+		"empty" : [
+			Vector2(0, 2), 
+			Vector2(1, 2), Vector2(1, 3),
+			Vector2(2, 0), Vector2(2, 3),
+			Vector2(3, 1), Vector2(3, 3), 
+			Vector2(4, 2),
+			Vector2(0, 1), Vector2(1, 0), Vector2(3, 0), Vector2(4, 1),
+			Vector2(0, 3), Vector2(4, 0),
+		],
+		"indestructible" : [],
+	},
+	{
+		"base" : [],
+		"solid" : [ 
+			Vector2(1, 2), 
+			Vector2(2, 1), Vector2(2, 2),
+			Vector2(3, 1), Vector2(3, 2),
+			Vector2(4, 2),
+			],
+		"items" : [],
+		"empty" : [
+			Vector2(0, 2), 
+			Vector2(1, 2), Vector2(1, 3),
+			Vector2(2, 0), Vector2(2, 3),
+			Vector2(3, 0), Vector2(3, 3),
+			Vector2(4, 1), Vector2(4, 3), 
+			Vector2(5, 2),
+			Vector2(0, 1), Vector2(1, 0), Vector2(4, 0), Vector2(5, 1),
+			Vector2(0, 3), Vector2(5, 0),
+		],
+		"indestructible" : [],
+	},
+	])
 	

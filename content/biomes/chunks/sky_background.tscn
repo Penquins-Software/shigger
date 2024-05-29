@@ -6,6 +6,6 @@
 z_index = -2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.20871, 0.20871, 0.20871, 1)
+modulate = Color(0.548963, 0.548963, 0.548963, 1)
 texture = ExtResource("1_tpbvq")
 centered = false

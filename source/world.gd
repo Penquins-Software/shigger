@@ -92,6 +92,10 @@ func create_biome(biome: Biome) -> void:
 		var solid = biome.get_solid_chunk()
 		chunks[solid_chunk_position] = solid
 		add_chunk(solid_chunk_position, solid)
+	for indestructible_pos in biome.indestructible_positions:
+		var indestructible = biome.s_indestructible.instantiate() as Chunk
+		chunks[indestructible_pos] = indestructible
+		add_chunk(indestructible_pos, indestructible)
 	for item_position in biome.items_positions:
 		var item = Item.create_random_item()
 		items[item_position] = item
@@ -128,6 +132,8 @@ func destroy_item_by_position(world_position: Vector2) -> void:
 	if not items.has(world_position):
 		return
 	if items[world_position] == null or items[world_position].is_queued_for_deletion():
+		return
+	if items[world_position] is ItemDynamite:
 		return 
 	var item = items[world_position] as Item
 	items.erase(world_position)

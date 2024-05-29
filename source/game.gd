@@ -7,6 +7,7 @@ extends Node
 @export var world: World
 @export var player: Player
 @export var monster: Monster
+@export var game_canvas: GameCanvas
 @export var music_player: MusicPlayer
 @export var kick_player: KickPlayer
 
@@ -18,15 +19,21 @@ var points: int = 0
 var multiplier: int = 1
 var extra_multiplier: int = 1
 
-var skills: Array = [
-	64,
-	512,
-	2048,
-	8192,
-	32768,
-	131072,
-	#524288,
-]
+var points_to_skill = 64
+var max_multiplier = 32
+
+var points_color = {
+	16 : Color.CORNSILK,
+	32 : Color.INDIAN_RED,
+	64 : Color.LIGHT_CORAL,
+	128 : Color.SALMON,
+	256 : Color.DARK_SALMON,
+	512 : Color.LIGHT_SALMON,
+	1024 : Color.CRIMSON,
+	2048 : Color.RED,
+	4096 : Color.FIREBRICK,
+	8192 : Color.DARK_RED,
+}
 
 var biomes: Array[Biome.Biomes]
 
@@ -49,6 +56,7 @@ func _ready():
 	
 	RhythmMachine.hit.connect(hud.rhythm.pressed_in_bit)
 	RhythmMachine.bit_1_1.connect(bit)
+	RhythmMachine.miss.connect(miss)
 	set_level(Biome.Biomes.EARTH)
 
 
@@ -58,6 +66,7 @@ func pause_game() -> void:
 	pause.continue_button.grab_focus()
 	pause.result_label.text = "[center]%s" % (tr("Ваш результат: %s очков.") % HelpFunctions.format_integer(points))
 	RhythmMachine.stop()
+	kick_player.stop()
 	set_pause(true)
 
 
@@ -68,8 +77,9 @@ func continue_game(is_preparation: bool) -> void:
 		set_pause(false, is_preparation)
 	else:
 		RhythmMachine.start(true)
+		kick_player.play_kicking(RhythmMachine.current_bpm)
 		hud.rhythm.helper.spawn_all_elements()
-		music_player.play_from_playback()
+		#music_player.play_from_playback()
 
 
 func set_pause(value: bool, is_preparation: bool = true) -> void:
@@ -122,7 +132,15 @@ func bit() -> void:
 	check_level()
 	check_monster_position()
 	set_multiplier(player.series_of_hits)
-	hud.set_points(points, multiplier * extra_multiplier, player.series_of_hits)
+	hud.set_points(points, multiplier * extra_multiplier, player.series_of_hits, get_series_part())
+
+
+func miss() -> void:
+	if pause.visible or hud.skills.visible:
+		return
+	
+	set_multiplier(player.series_of_hits)
+	hud.set_points(points, multiplier * extra_multiplier, player.series_of_hits, get_series_part())
 
 
 func check_level() -> void:
@@ -147,6 +165,8 @@ func check_level() -> void:
 		set_level(Biome.Biomes.BACK_EARTH)
 	elif not biomes.has(Biome.Biomes.SEA) and player._world_position.y >= Constants.LEVEL_BACK_EARTH:
 		set_level(Biome.Biomes.SEA)
+		game_canvas.start_lightened(1, 32)
+		player.start_darkened(1, 32)
 	elif not biomes.has(Biome.Biomes.SKY) and player._world_position.y >= Constants.LEVEL_SEA:
 		set_level(Biome.Biomes.SKY)
 	elif not biomes.has(Biome.Biomes.SPACE) and player._world_position.y >= Constants.LEVEL_SKY:
@@ -172,36 +192,39 @@ func add_points(value: int, pos: Vector2, show_message: bool = true) -> int:
 	value = value * multiplier
 	points += value
 	if show_message:
-		Message.create(self, pos, "[color=gray]+" + str(value))
+		Message.create(self, pos, "[color=%s]+" % get_color_by_points(value).to_html() + str(value))
 	check_skills()
 	s_points = points
+	set_multiplier(player.series_of_hits)
+	hud.set_points(points, multiplier * extra_multiplier, player.series_of_hits, get_series_part())
 	return value
 
 
 func check_skills() -> void:
-	if skills.size() == 0 or hud.skills.get_skills_count() == 0:
+	if hud.skills.visible or hud.skills.get_skills_count() < 2:
 		return
-	var first_element_points = skills[0]
-	if first_element_points <= points:
-		skills.remove_at(0)
+	if points_to_skill <= points:
+		points_to_skill *= 4
 		hud.skills.show_skills()
 		kick_player.play_kicking(RhythmMachine.current_bpm)
 		set_pause(true)
 
 
 func set_multiplier(hits: int) -> void:
-	var factor: int = 1
-	if hits > 255:
-		factor = 32
-	elif hits > 127:
-		factor = 16
-	elif hits > 63:
-		factor = 8
-	elif hits > 31:
-		factor = 4
-	elif hits > 15:
-		factor = 2
-	else:
-		factor = 1
-		
+	var factor: int = hits / 4 + 1
+	if factor > max_multiplier:
+		factor = max_multiplier
 	multiplier = factor * extra_multiplier * player.extra_multiplier
+
+
+func get_series_part() -> int:
+	if player.series_of_hits >= 127:
+		return 4
+	return player.series_of_hits % 4 + 1
+
+
+func get_color_by_points(pnts: int) -> Color:
+	for point_color in points_color:
+		if pnts < point_color:
+			return points_color[point_color]
+	return points_color[points_color.keys()[-1]]

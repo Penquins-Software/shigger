@@ -10,6 +10,7 @@ static var _items: Dictionary = {
 
 @export var _area: Area2D
 @export var light: Light2D
+@export var increased_size: Vector2 = Vector2(1.2, 1.2)
 
 var _world_position: Vector2
 
@@ -18,9 +19,23 @@ var _monster: Monster
 var _world: World
 
 
+
+func _ready():
+	RhythmMachine.bit_1_5.connect(bit_1_5)
+	RhythmMachine.bit_1_1.connect(bit_1_1)
+
+
+func bit_1_5() -> void:
+	scale = Vector2.ONE
+
+
+func bit_1_1() -> void:
+	scale = increased_size
+
+
 func place(world_position: Vector2, player: Player, monster: Monster, world: World) -> void:
 	_world_position = world_position
-	position = world_position * Constants.FACTOR
+	position = world_position * Constants.FACTOR + Constants.HALF_FACTOR_VECTOR
 	
 	_player = player
 	_monster = monster

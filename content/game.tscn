@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cycif5o6ovikj"]
+[gd_scene load_steps=20 format=3 uid="uid://cycif5o6ovikj"]
 
 [ext_resource type="PackedScene" uid="uid://dj6ej8wvocjor" path="res://content/hud.tscn" id="1_67q3x"]
 [ext_resource type="Script" path="res://source/game.gd" id="1_m38ur"]
@@ -16,16 +16,18 @@
 [ext_resource type="AudioStream" uid="uid://bjju5vhdpnmhw" path="res://audio/music/biome2.mp3" id="9_af8ys"]
 [ext_resource type="AudioStream" uid="uid://dclrjaq2o8o8t" path="res://audio/music/biome3.mp3" id="10_7eap1"]
 [ext_resource type="AudioStream" uid="uid://c54t8f8qxqfbx" path="res://audio/music/biome1_rev.mp3" id="11_ugnd5"]
+[ext_resource type="Script" path="res://source/canvas_modulate.gd" id="12_sncfd"]
 [ext_resource type="AudioStream" uid="uid://d2uustjaknysu" path="res://audio/music/biome2_rev.mp3" id="12_yqh1m"]
 [ext_resource type="AudioStream" uid="uid://b6ug0f8tdmbnq" path="res://audio/music/biome3_rev.mp3" id="13_ye78f"]
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("hud", "pause", "world", "player", "monster", "music_player", "kick_player")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("hud", "pause", "world", "player", "monster", "game_canvas", "music_player", "kick_player")]
 script = ExtResource("1_m38ur")
 hud = NodePath("Hud")
 pause = NodePath("Pause")
 world = NodePath("World")
 player = NodePath("World/Player")
 monster = NodePath("World/Monster")
+game_canvas = NodePath("World/CanvasModulate")
 music_player = NodePath("World/MusicStreamPlayer")
 kick_player = NodePath("KickPlayer")
 menu_scene_file = "res://content/menu.tscn"
@@ -60,6 +62,7 @@ position = Vector2(0, -640)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="World"]
 color = Color(0, 0, 0, 1)
+script = ExtResource("12_sncfd")
 
 [node name="MusicStreamPlayer" type="AudioStreamPlayer" parent="World"]
 autoplay = true

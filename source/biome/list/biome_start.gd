@@ -16,8 +16,9 @@ static var s_background: PackedScene = ResourceLoader.load("res://content/biomes
 func _init():
 	width = 3
 	base_chunk_possibility = 0.75
-	solid_chunk_possibility = 0.1
+	solid_chunk_possibility = 0.05
 	item_possibility = 0.025
+	pattern_possibility = 0.1
 	
 	left_extreme_point = 3
 	right_extreme_point = 5
@@ -26,6 +27,20 @@ func _init():
 	base_chunks = s_base_chunks
 	solid_chunk = s_solid_chunk
 	background = s_background
+	
+	_patterns.append_array(Constants.BASE_PATTERNS)
+	_patterns.append_array([
+		{
+			"base" : [
+				Vector2(0, 0), Vector2(1, 0), Vector2(2, 0),
+				Vector2(0, 1),                Vector2(2, 1),
+				Vector2(0, 2), Vector2(1, 2), Vector2(2, 2)],
+			"solid" : [],
+			"items" : [
+				Vector2(1, 1)],
+			"empty" : [],
+		},
+	])
 
 
 func generate(path: PackedVector2Array, depth: int = 32) -> void:

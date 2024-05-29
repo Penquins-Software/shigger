@@ -1,7 +1,7 @@
 class_name SkillCard
 extends Control
 
-signal selected(skill_card: SkillCard)
+signal selected(skill_card: SkillCard, next_card: SkillCard)
 
 @export var _texture: Texture2D
 @export var _arrow_label: RichTextLabel
@@ -35,7 +35,7 @@ func bit_1_1() -> void:
 
 
 func _accept() -> void:
-	selected.emit(self)
+	selected.emit(self, null)
 
 
 func left() -> void:

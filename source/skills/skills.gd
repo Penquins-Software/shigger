@@ -15,7 +15,7 @@ var _skill_cards: Array[SkillCard] = [
 	ResourceLoader.load("res://content/skills_cards/mega_shovel.tscn").instantiate() as SkillCard,
 	ResourceLoader.load("res://content/skills_cards/sideways_shovel.tscn").instantiate() as SkillCard,
 	ResourceLoader.load("res://content/skills_cards/wide_shovel.tscn").instantiate() as SkillCard,
-	ResourceLoader.load("res://content/skills_cards/multiplier.tscn").instantiate() as SkillCard,
+	#ResourceLoader.load("res://content/skills_cards/multiplier.tscn").instantiate() as SkillCard,
 ]
 
 const NEED_HITS: int = 3
@@ -103,7 +103,7 @@ func place_random_skill() -> SkillCard:
 	return skill_card
 
 
-func skill_selected(skill_card: SkillCard) -> void:
+func skill_selected(skill_card: SkillCard, next_card: SkillCard) -> void:
 	hide()
 	_left_skill = null
 	_right_skill = null
@@ -113,6 +113,8 @@ func skill_selected(skill_card: SkillCard) -> void:
 	_skill_cards.append_array(_current_skills)
 	_hud.add_skill_icon(skill_card)
 	selected.emit()
+	if not next_card == null:
+		_skill_cards.append(next_card)
 
 
 func get_skills_count() -> int:

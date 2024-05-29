@@ -14,7 +14,7 @@ script = ExtResource("1_670gn")
 _area = NodePath("Area2D")
 destroy_animated_sprite = NodePath("Explode")
 destroy_sound = ExtResource("2_nhpcs")
-dig_sound = ExtResource("3_fdk0o")
+dig_sounds = Array[AudioStream]([ExtResource("3_fdk0o")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_lljxb")

@@ -65,6 +65,11 @@
 # res://content/items/random_rotation.tscn
 # res://content/items/stop_monster.tscn
 # res://content/items/treasure.tscn
+# res://source/biome/chunk/chunk.gd
+# res://content/skills_cards/drill_plus.tscn
+# res://content/skills_cards/mega_shovel_plus.tscn
+# res://content/skills_cards/sideways_shovel_plus.tscn
+# res://content/skills_cards/wide_shovel_plus.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -87,10 +92,6 @@ msgstr ""
 
 #: source/hud.gd
 msgid "Очков"
-msgstr ""
-
-#: source/hud.gd
-msgid "Серия"
 msgstr ""
 
 #: source/leaderboard.gd
@@ -337,4 +338,40 @@ msgstr ""
 msgid ""
 "[center]Лопата прокапывает внизу строчку из трёх блоков\n"
 "(Хорошо для кантиков)"
+msgstr ""
+
+#: source/biome/chunk/chunk.gd
+msgid "Нет урона..."
+msgstr ""
+
+#: content/skills_cards/drill_plus.tscn
+msgid "[center]Бур+"
+msgstr ""
+
+#: content/skills_cards/drill_plus.tscn
+msgid "[center]Лопата прокапывает ТРИ блока вниз."
+msgstr ""
+
+#: content/skills_cards/mega_shovel_plus.tscn
+msgid "[center]Мегалопата +"
+msgstr ""
+
+#: content/skills_cards/mega_shovel_plus.tscn
+msgid "[center]Лопата наносит тройной удар!"
+msgstr ""
+
+#: content/skills_cards/sideways_shovel_plus.tscn
+msgid "[center]Боковая лопата+"
+msgstr ""
+
+#: content/skills_cards/sideways_shovel_plus.tscn
+msgid "[center]Лопата позволяет копать вбок, даже если под вами нет блоков."
+msgstr ""
+
+#: content/skills_cards/wide_shovel_plus.tscn
+msgid "[center]Широкая лопата+"
+msgstr ""
+
+#: content/skills_cards/wide_shovel_plus.tscn
+msgid "[center]Лопата подбирает предметы."
 msgstr ""

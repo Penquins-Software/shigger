@@ -27,3 +27,5 @@ func _init():
 	solid_chunk = s_solid_chunk
 	background = s_background
 	
+	_patterns.append_array(Constants.BASE_PATTERNS)
+	

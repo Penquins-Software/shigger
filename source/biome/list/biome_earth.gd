@@ -18,6 +18,7 @@ func _init():
 	base_chunk_possibility = 0.75
 	solid_chunk_possibility = 0.2
 	item_possibility = 0.04
+	pattern_possibility = 0.1
 	
 	left_extreme_point = 2
 	right_extreme_point = 6
@@ -26,3 +27,5 @@ func _init():
 	base_chunks = s_base_chunks
 	solid_chunk = s_solid_chunk
 	background = s_background
+	
+	_patterns.append_array(Constants.BASE_PATTERNS)

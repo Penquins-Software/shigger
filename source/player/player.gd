@@ -30,6 +30,10 @@ var wide_shovel: bool = false
 var sideways_shovel: bool = false
 var drill: bool = false
 
+var wide_shovel_p: bool = false
+var sideways_shovel_p: bool = false
+var drill_p: bool = false
+
 var hit_queue: InputEvent
 var first_bit: bool = true
 
@@ -59,7 +63,7 @@ func hit(event: InputEvent) -> void:
 	elif event.is_action_pressed("right"):
 		move_right()
 	elif event.is_action_pressed("dig"):
-		dig()
+		dig(_world_position + Vector2.DOWN)
 
 
 func miss() -> void:
@@ -72,7 +76,7 @@ func miss() -> void:
 		return
 	
 	series_of_hits = 0
-	Message.create(self, position, "[color=purple]%s" % tr("Мимо..."))
+	#Message.create(self, position, "[color=purple]%s" % tr("Мимо..."))
 
 
 func check_hit_queue() -> void:
@@ -81,11 +85,17 @@ func check_hit_queue() -> void:
 
 
 func move_left() -> void:
-	try_move_in_world(Vector2.LEFT)
+	if sideways_shovel_p:
+		dig(_world_position + Vector2.LEFT, false)
+	else:
+		try_move_in_world(Vector2.LEFT)
 
 
 func move_right() -> void:
-	try_move_in_world(Vector2.RIGHT)
+	if sideways_shovel_p:
+		dig(_world_position + Vector2.RIGHT, false)
+	else:
+		try_move_in_world(Vector2.RIGHT)
 
 
 func place(world_position: Vector2) -> void:
@@ -109,17 +119,18 @@ func try_move_in_world(direction: Vector2) -> void:
 	place(new_position)
 
 
-func dig() -> void:
-	var new_position = _world_position + Vector2.DOWN
+func dig(new_position: Vector2, apply_modificators: bool = true) -> void:
 	if _world.chunks.has(new_position):
 		play_dig_animation()
 		series_of_hits += 1
-		hit_chunk(new_position)
+		hit_chunk(new_position, apply_modificators)
 	else:
 		place(new_position)
 
 
 func hit_chunk(chunk_position: Vector2, apply_modificators: bool = true, play_sound: bool = true) -> bool:
+	if wide_shovel_p and _world.items.has(chunk_position) and not _world.items[chunk_position] == null and not _world.items[chunk_position].is_queued_for_deletion():
+		_world.items[chunk_position].use()
 	if not _world.chunks.has(chunk_position) or _world.chunks[chunk_position] == null:
 		return false
 	var chunk = _world.chunks[chunk_position]
@@ -160,6 +171,8 @@ func _apply_drill(hit_position: Vector2) -> void:
 	if not drill:
 		return
 	
+	if drill_p and _world.chunks.has(hit_position + Vector2.DOWN):
+		hit_chunk(hit_position + Vector2.DOWN + Vector2.DOWN, false, false)
 	hit_chunk(hit_position + Vector2.DOWN, false, false)
 
 
@@ -182,7 +195,7 @@ func _on_area_entered(area: Area2D) -> void:
 			monster.place(monster.world_position - Vector2(0, 4))
 			Message.create(self, position, "[color=green]%s" % tr("Вас спасла рыба ФУГУ!"))
 			place(_world_position + Vector2.DOWN)
-			_world.game.hud.remove_skill_icon("Fugu")
+			_world.game.hud.darker_skill_icon("Fugu")
 		else:
 			die.emit()
 
@@ -220,3 +233,10 @@ func get_flashlight() -> void:
 func set_animation_speed(bpm: RhythmMachine.BPM) -> void:
 	var bpm_75_in_seconds = RhythmMachine.bpm_in_seconds[RhythmMachine.BPM.BPM75]
 	character_animated_sprite.speed_scale = bpm_75_in_seconds / RhythmMachine.bpm_in_seconds[bpm]
+
+
+func start_darkened(value: float, bits: int) -> void:
+	var part_value = value / bits
+	for bit in bits:
+		light.color = light.color.darkened(part_value)
+		await RhythmMachine.bit_1_1

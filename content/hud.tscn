@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dj6ej8wvocjor"]
+[gd_scene load_steps=16 format=3 uid="uid://dj6ej8wvocjor"]
 
 [ext_resource type="Script" path="res://source/hud.gd" id="1_54nam"]
 [ext_resource type="Theme" uid="uid://cnni4p646elf0" path="res://main_theme.tres" id="2_cd0nx"]
@@ -9,6 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://ddahxon0eyss0" path="res://content/rhythm/rhythm_helper_element.tscn" id="6_otuj0"]
 [ext_resource type="Texture2D" uid="uid://osu45a1ynqde" path="res://graphics/rhythm/1_1.png" id="6_wqv6d"]
 [ext_resource type="Texture2D" uid="uid://seduqnnbsrfn" path="res://graphics/rhythm/1_2.png" id="7_h284y"]
+[ext_resource type="Texture2D" uid="uid://dse1seiisbkix" path="res://graphics/rhythm/back_line.png" id="10_7qt4r"]
+[ext_resource type="Texture2D" uid="uid://b04bawt3meir6" path="res://graphics/rhythm/progress.png" id="12_idnly"]
+[ext_resource type="Texture2D" uid="uid://mj0xagjv75x0" path="res://graphics/rhythm/mark.png" id="12_pln32"]
+[ext_resource type="Script" path="res://source/spectrum.gd" id="12_rw516"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_njc70"]
 action = &"pause"
@@ -16,11 +20,14 @@ action = &"pause"
 [sub_resource type="Shortcut" id="Shortcut_21tut"]
 events = [SubResource("InputEventAction_njc70")]
 
-[node name="Hud" type="CanvasLayer" node_paths=PackedStringArray("rhythm", "pause_button", "points", "skills", "preparation_screen", "info_panel")]
+[node name="Hud" type="CanvasLayer" node_paths=PackedStringArray("rhythm", "pause_button", "points", "multiplier_label", "series_label", "series_texture_bar", "skills", "preparation_screen", "info_panel")]
 script = ExtResource("1_54nam")
 rhythm = NodePath("Control/Rhythm")
 pause_button = NodePath("Control/PauseButton")
 points = NodePath("Control/Points")
+multiplier_label = NodePath("Control/Rhythm/RhythmTextureRect/Multiplier")
+series_label = NodePath("Control/Rhythm/RhythmTextureRect/Series")
+series_texture_bar = NodePath("Control/Rhythm/RhythmTextureRect/SeriesTextureProgressBar")
 skills = NodePath("Control/Skills")
 preparation_screen = NodePath("Control/PreparationScreen")
 info_panel = NodePath("Control/Info/VBoxContainer")
@@ -67,10 +74,14 @@ grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/Info"]
 layout_mode = 1
-offset_left = 20.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -556.0
 offset_top = 60.0
-offset_right = 84.0
+offset_right = -492.0
 offset_bottom = 60.0
+grow_horizontal = 2
 scale = Vector2(0.75, 0.75)
 alignment = 1
 
@@ -221,6 +232,26 @@ rhythm_button = NodePath("RhythmTextureRect")
 idle_texture = ExtResource("6_wqv6d")
 hover_texture = ExtResource("7_h284y")
 
+[node name="Spectrum" type="Control" parent="Control/Rhythm"]
+modulate = Color(1, 1, 1, 0.643137)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = 447.0
+offset_right = 480.0
+offset_bottom = -82.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("12_rw516")
+fill_color = Color(0.929412, 0.223529, 0.270588, 1)
+outline_color = Color(0.67451, 0, 0.121569, 1)
+vu_count = 24
+height_scale = 4.0
+animation_speed = 0.12
+x_mirror = true
+
 [node name="Helper" type="Control" parent="Control/Rhythm" node_paths=PackedStringArray("container")]
 custom_minimum_size = Vector2(1000, 0)
 layout_mode = 1
@@ -241,16 +272,80 @@ script = ExtResource("6_1jctb")
 helper_element_scene = ExtResource("6_otuj0")
 container = NodePath("Container")
 
-[node name="Line" type="ColorRect" parent="Control/Rhythm/Helper"]
+[node name="LineTextureRect" type="TextureRect" parent="Control/Rhythm/Helper"]
+layout_mode = 0
+offset_top = 28.0
+offset_right = 1000.0
+offset_bottom = 34.0
+texture = ExtResource("10_7qt4r")
+stretch_mode = 2
+
+[node name="Marks" type="Control" parent="Control/Rhythm/Helper"]
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -2.0
-offset_bottom = 2.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Mark" type="TextureRect" parent="Control/Rhythm/Helper/Marks"]
+layout_mode = 0
+offset_left = 339.0
+offset_top = 20.0
+offset_right = 342.0
+offset_bottom = 43.0
+pivot_offset = Vector2(1, 11)
+texture = ExtResource("12_pln32")
+stretch_mode = 3
+
+[node name="Mark4" type="TextureRect" parent="Control/Rhythm/Helper/Marks"]
+layout_mode = 0
+offset_left = 659.0
+offset_top = 20.0
+offset_right = 662.0
+offset_bottom = 43.0
+pivot_offset = Vector2(1, 11)
+texture = ExtResource("12_pln32")
+stretch_mode = 3
+
+[node name="Mark5" type="TextureRect" parent="Control/Rhythm/Helper/Marks"]
+layout_mode = 0
+offset_left = 819.0
+offset_top = 20.0
+offset_right = 822.0
+offset_bottom = 43.0
+pivot_offset = Vector2(1, 11)
+texture = ExtResource("12_pln32")
+stretch_mode = 3
+
+[node name="Mark6" type="TextureRect" parent="Control/Rhythm/Helper/Marks"]
+layout_mode = 0
+offset_left = 979.0
+offset_top = 20.0
+offset_right = 982.0
+offset_bottom = 43.0
+pivot_offset = Vector2(1, 11)
+texture = ExtResource("12_pln32")
+stretch_mode = 3
+
+[node name="Mark2" type="TextureRect" parent="Control/Rhythm/Helper/Marks"]
+layout_mode = 0
+offset_left = 179.0
+offset_top = 20.0
+offset_right = 182.0
+offset_bottom = 43.0
+pivot_offset = Vector2(1, 11)
+texture = ExtResource("12_pln32")
+stretch_mode = 3
+
+[node name="Mark3" type="TextureRect" parent="Control/Rhythm/Helper/Marks"]
+offset_left = 19.0
+offset_top = 20.0
+offset_right = 22.0
+offset_bottom = 43.0
+pivot_offset = Vector2(1, 11)
+texture = ExtResource("12_pln32")
+stretch_mode = 3
 
 [node name="ColorRect" type="ColorRect" parent="Control/Rhythm/Helper"]
 visible = false
@@ -276,31 +371,94 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="RhythmTextureRect" type="TextureRect" parent="Control/Rhythm"]
-modulate = Color(1, 1, 1, 0.784314)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -60.0
-offset_top = -142.0
-offset_right = 60.0
-offset_bottom = -22.0
+offset_left = -50.0
+offset_top = -132.0
+offset_right = 50.0
+offset_bottom = -32.0
 grow_horizontal = 2
 grow_vertical = 0
-pivot_offset = Vector2(60, 60)
+pivot_offset = Vector2(50, 50)
 texture = ExtResource("6_wqv6d")
 expand_mode = 3
 stretch_mode = 5
 
+[node name="Multiplier" type="RichTextLabel" parent="Control/Rhythm/RhythmTextureRect"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -50.0
+offset_top = 34.0
+offset_right = 50.0
+offset_bottom = 66.0
+grow_horizontal = 2
+pivot_offset = Vector2(50, 16)
+auto_translate = false
+mouse_filter = 2
+theme = ExtResource("2_cd0nx")
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.572549, 0.0156863, 0.141176, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/normal_font_size = 22
+bbcode_enabled = true
+text = "[center]x1"
+fit_content = true
+scroll_active = false
+
+[node name="Series" type="RichTextLabel" parent="Control/Rhythm/RhythmTextureRect"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.0
+offset_top = 66.0
+offset_right = 60.0
+offset_bottom = 74.0
+grow_horizontal = 2
+pivot_offset = Vector2(60, 16)
+auto_translate = false
+mouse_filter = 2
+theme = ExtResource("2_cd0nx")
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.572549, 0.0156863, 0.141176, 1)
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "[center]0"
+fit_content = true
+scroll_active = false
+
+[node name="SeriesTextureProgressBar" type="TextureProgressBar" parent="Control/Rhythm/RhythmTextureRect"]
+modulate = Color(1, 1, 1, 0.752941)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+step = 25.0
+fill_mode = 4
+nine_patch_stretch = true
+texture_progress = ExtResource("12_idnly")
+
 [node name="PauseButton" type="Button" parent="Control"]
 layout_mode = 1
-offset_left = 10.0
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -566.0
 offset_top = 10.0
-offset_right = 66.0
+offset_right = -510.0
 offset_bottom = 41.0
 mouse_default_cursor_shape = 2
 theme = ExtResource("2_cd0nx")
 shortcut = SubResource("Shortcut_21tut")
+shortcut_in_tooltip = false
 text = "Пауза"

@@ -8,6 +8,9 @@ signal bit_1_2
 signal bit_2_3
 signal bit_3_4
 signal bit_4_5
+signal every_half_bit
+signal every_eighth_bit
+signal every_sixteenth_bit
 
 signal bit_changed(bpm: BPM)
 
@@ -41,8 +44,14 @@ var bpm_in_seconds_2_3: float
 var bpm_in_seconds_3_4: float
 var bpm_in_seconds_4_5: float
 
+var bpm_in_seconds_1_8: float
+var bpm_in_seconds_1_16: float
+
 var playing: bool = false
 var current_time: float = 0
+
+var time_eighth_bit: float = 0
+var time_sixteenth_bit: float = 0
 
 var _bit_1_5: bool = false
 var _bit_1_4: bool = false
@@ -87,6 +96,7 @@ func _process(delta):
 		_bit_1_3 = true
 	elif not _bit_1_2 and current_time > bpm_in_seconds_1_2:
 		bit_1_2.emit()
+		every_half_bit.emit()
 		_bit_1_2 = true
 	elif not _bit_2_3 and current_time > bpm_in_seconds_2_3:
 		bit_2_3.emit()
@@ -98,8 +108,21 @@ func _process(delta):
 		bit_4_5.emit()
 		_bit_4_5 = true
 	
+	if time_eighth_bit < bpm_in_seconds_1_8:
+		time_eighth_bit += delta
+	else:
+		time_eighth_bit = time_eighth_bit - bpm_in_seconds_1_8
+		every_eighth_bit.emit()
+	
+	if time_sixteenth_bit < bpm_in_seconds_1_16:
+		time_sixteenth_bit += delta
+	else:
+		time_sixteenth_bit = time_sixteenth_bit - bpm_in_seconds_1_16
+		every_sixteenth_bit.emit()
+	
 	if current_time > bpm_in_seconds_1_1:
 		bit_1_1.emit()
+		every_half_bit.emit()
 		reset(current_time - bpm_in_seconds_1_1)
 
 
@@ -146,6 +169,8 @@ func set_bpm(bpm: BPM) -> void:
 	bpm_in_seconds_2_3 = bpm_in_seconds_1_1 * 2 / 3
 	bpm_in_seconds_3_4 = bpm_in_seconds_1_1 * 3 / 4
 	bpm_in_seconds_4_5 = bpm_in_seconds_1_1 * 4 / 5
+	bpm_in_seconds_1_8 = bpm_in_seconds_1_1 / 8
+	bpm_in_seconds_1_16 = bpm_in_seconds_1_1 / 16
 	reset()
 	current_bpm = bpm
 	bit_changed.emit(bpm)

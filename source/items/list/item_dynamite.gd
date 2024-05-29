@@ -6,6 +6,7 @@ extends Item
 
 func use() -> void:
 	var points: int = 0
+	points += _world.destroy_all_in_position(_world_position, true)
 	points += _world.destroy_all_in_position(_world_position + Vector2.LEFT, true)
 	points += _world.destroy_all_in_position(_world_position + Vector2.LEFT + Vector2.LEFT, true)
 	points += _world.destroy_all_in_position(_world_position + Vector2.LEFT + Vector2.DOWN, true)

@@ -1,0 +1,33 @@
+[gd_scene load_steps=8 format=3 uid="uid://1f6mseajbxp1"]
+
+[ext_resource type="Script" path="res://source/biome/chunk/chunk.gd" id="1_kbtjl"]
+[ext_resource type="AudioStream" uid="uid://cl007rkqlo1tt" path="res://audio/sfx/break2.mp3" id="2_ad11u"]
+[ext_resource type="AudioStream" uid="uid://bt6up776g7318" path="res://audio/sfx/hit1.mp3" id="3_cnbuy"]
+[ext_resource type="AudioStream" uid="uid://dfe75lg6asivb" path="res://audio/sfx/hit2.mp3" id="4_f0lcd"]
+[ext_resource type="Texture2D" uid="uid://bvr44jw1h7pu4" path="res://graphics/biomes/chunks/indestructible.png" id="4_qc0at"]
+[ext_resource type="PackedScene" uid="uid://cpt4tcy3n6p0a" path="res://content/explode.tscn" id="5_aeuq8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5nd4p"]
+size = Vector2(64, 64)
+
+[node name="EarthSolidChunk" type="Node2D" node_paths=PackedStringArray("_area", "destroy_animated_sprite")]
+script = ExtResource("1_kbtjl")
+hp = 32
+points = 64
+destructible = false
+_area = NodePath("Area2D")
+destroy_animated_sprite = NodePath("Explode")
+destroy_sound = ExtResource("2_ad11u")
+dig_sounds = Array[AudioStream]([ExtResource("3_cnbuy"), ExtResource("4_f0lcd")])
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("4_qc0at")
+centered = false
+
+[node name="Explode" parent="." instance=ExtResource("5_aeuq8")]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(32, 32)
+shape = SubResource("RectangleShape2D_5nd4p")

@@ -15,7 +15,7 @@ points = 64
 _area = NodePath("Area2D")
 destroy_animated_sprite = NodePath("Explode")
 destroy_sound = ExtResource("2_88rse")
-dig_sound = ExtResource("3_db8lc")
+dig_sounds = Array[AudioStream]([ExtResource("3_db8lc")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("4_xsgwa")

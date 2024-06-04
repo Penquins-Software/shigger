@@ -233,7 +233,7 @@ idle_texture = ExtResource("6_wqv6d")
 hover_texture = ExtResource("7_h284y")
 
 [node name="Spectrum" type="Control" parent="Control/Rhythm"]
-modulate = Color(1, 1, 1, 0.643137)
+modulate = Color(1, 1, 1, 0.376471)
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -248,7 +248,7 @@ script = ExtResource("12_rw516")
 fill_color = Color(0.929412, 0.223529, 0.270588, 1)
 outline_color = Color(0.67451, 0, 0.121569, 1)
 vu_count = 24
-height_scale = 4.0
+height_scale = 6.0
 animation_speed = 0.12
 x_mirror = true
 
@@ -290,9 +290,9 @@ grow_vertical = 2
 
 [node name="Mark" type="TextureRect" parent="Control/Rhythm/Helper/Marks"]
 layout_mode = 0
-offset_left = 339.0
+offset_left = 338.0
 offset_top = 20.0
-offset_right = 342.0
+offset_right = 341.0
 offset_bottom = 43.0
 pivot_offset = Vector2(1, 11)
 texture = ExtResource("12_pln32")
@@ -300,9 +300,9 @@ stretch_mode = 3
 
 [node name="Mark4" type="TextureRect" parent="Control/Rhythm/Helper/Marks"]
 layout_mode = 0
-offset_left = 659.0
+offset_left = 658.0
 offset_top = 20.0
-offset_right = 662.0
+offset_right = 661.0
 offset_bottom = 43.0
 pivot_offset = Vector2(1, 11)
 texture = ExtResource("12_pln32")
@@ -310,9 +310,9 @@ stretch_mode = 3
 
 [node name="Mark5" type="TextureRect" parent="Control/Rhythm/Helper/Marks"]
 layout_mode = 0
-offset_left = 819.0
+offset_left = 818.0
 offset_top = 20.0
-offset_right = 822.0
+offset_right = 821.0
 offset_bottom = 43.0
 pivot_offset = Vector2(1, 11)
 texture = ExtResource("12_pln32")
@@ -320,9 +320,9 @@ stretch_mode = 3
 
 [node name="Mark6" type="TextureRect" parent="Control/Rhythm/Helper/Marks"]
 layout_mode = 0
-offset_left = 979.0
+offset_left = 978.0
 offset_top = 20.0
-offset_right = 982.0
+offset_right = 981.0
 offset_bottom = 43.0
 pivot_offset = Vector2(1, 11)
 texture = ExtResource("12_pln32")
@@ -330,18 +330,19 @@ stretch_mode = 3
 
 [node name="Mark2" type="TextureRect" parent="Control/Rhythm/Helper/Marks"]
 layout_mode = 0
-offset_left = 179.0
+offset_left = 178.0
 offset_top = 20.0
-offset_right = 182.0
+offset_right = 181.0
 offset_bottom = 43.0
 pivot_offset = Vector2(1, 11)
 texture = ExtResource("12_pln32")
 stretch_mode = 3
 
 [node name="Mark3" type="TextureRect" parent="Control/Rhythm/Helper/Marks"]
-offset_left = 19.0
+layout_mode = 0
+offset_left = 18.0
 offset_top = 20.0
-offset_right = 22.0
+offset_right = 21.0
 offset_bottom = 43.0
 pivot_offset = Vector2(1, 11)
 texture = ExtResource("12_pln32")

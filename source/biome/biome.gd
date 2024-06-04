@@ -103,7 +103,8 @@ func create_biome(path: PackedVector2Array, depth: int) -> void:
 			back_positions.append(point)
 			# Размещение предмета.
 			if not items_positions.has(point) and randf() < item_possibility:
-				items_positions.append(point)
+				if not indestructible_positions.has(point):
+					items_positions.append(point)
 			if used_positions.has(point):
 				continue
 			# Генерация блока паттерна.

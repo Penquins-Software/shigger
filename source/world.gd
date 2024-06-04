@@ -10,6 +10,7 @@ var path: PackedVector2Array
 var backs: Dictionary = {}
 var chunks: Dictionary = {}
 var items: Dictionary = {}
+var traps: Dictionary = {}
 
 
 func _ready():

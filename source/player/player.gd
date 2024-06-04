@@ -107,6 +107,10 @@ func try_move_in_world(direction: Vector2) -> void:
 	var new_position = _world_position + direction
 	if not _world.backs.has(new_position):
 		return
+	if _world.traps.has(new_position):
+		var trap = _world.traps[new_position] as Trap
+		if not trap.move_to():
+			return
 	if _world.chunks.has(new_position):
 		# На пути есть блок. Можно попробовать забраться на него.
 		var upper_player_position = _world_position + Vector2.UP

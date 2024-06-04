@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://byqj07g2d6sg7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bcnm8"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"on",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xvk7p"]
+size = Vector2(32, 32)
+
+[node name="TrapCell" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_bcnm8")
+animation = &"off"
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_xvk7p")

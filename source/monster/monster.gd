@@ -59,12 +59,15 @@ func set_difficult(biome: Biome.Biomes) -> void:
 		Biome.Biomes.EARTH:
 			max_distance_to_player = 14
 			audio_player.stream = audio_bpm75
+			bits_per_move = 2
 		Biome.Biomes.MAGMA:
 			max_distance_to_player = 12
 			audio_player.stream = audio_bpm100
+			bits_per_move = 2
 		Biome.Biomes.CHEESE:
 			max_distance_to_player = 10
 			audio_player.stream = audio_bpm120
+			bits_per_move = 2
 		Biome.Biomes.CENTER:
 			max_distance_to_player = 10
 			audio_player.stream = audio_bpm120
@@ -76,9 +79,23 @@ func set_difficult(biome: Biome.Biomes) -> void:
 		Biome.Biomes.BACK_MAGMA:
 			max_distance_to_player = 8
 			audio_player.stream = audio_bpm100
+			bits_per_move = 2
 		Biome.Biomes.BACK_EARTH:
 			max_distance_to_player = 6
 			audio_player.stream = audio_bpm75
+			bits_per_move = 2
+		Biome.Biomes.SEA:
+			max_distance_to_player = 6
+			audio_player.stream = audio_bpm100
+			bits_per_move = 2
+		Biome.Biomes.SKY:
+			max_distance_to_player = 6
+			audio_player.stream = audio_bpm100
+			bits_per_move = 2
+		Biome.Biomes.SPACE:
+			max_distance_to_player = 6
+			audio_player.stream = audio_bpm100
+			bits_per_move = 2
 		_:
 			max_distance_to_player = 8
 			audio_player.stream = audio_bpm100

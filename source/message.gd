@@ -17,11 +17,11 @@ func _process(delta):
 func show_message(message: String, bits: int = 6) -> void:
 	text = "[center]" + message
 	if is_left:
-		rotation_degrees = randf_range(-5.0, -1.0)
-		position.x -= randf_range(8.0, 12.0)
+		rotation_degrees = randf_range(-5.0, -2.0)
+		position.x -= 4
 	else:
-		rotation_degrees = randf_range(1.0, 5.0)
-		position.x += randf_range(8.0, 12.0)
+		rotation_degrees = randf_range(2.0, 5.0)
+		position.x += 4
 	is_left = not is_left
 	
 	for bit in bits:

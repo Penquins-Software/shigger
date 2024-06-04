@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cycif5o6ovikj"]
+[gd_scene load_steps=21 format=3 uid="uid://cycif5o6ovikj"]
 
 [ext_resource type="PackedScene" uid="uid://dj6ej8wvocjor" path="res://content/hud.tscn" id="1_67q3x"]
 [ext_resource type="Script" path="res://source/game.gd" id="1_m38ur"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" path="res://source/canvas_modulate.gd" id="12_sncfd"]
 [ext_resource type="AudioStream" uid="uid://d2uustjaknysu" path="res://audio/music/biome2_rev.mp3" id="12_yqh1m"]
 [ext_resource type="AudioStream" uid="uid://b6ug0f8tdmbnq" path="res://audio/music/biome3_rev.mp3" id="13_ye78f"]
+[ext_resource type="AudioStream" uid="uid://bc5kd82ot0xp7" path="res://audio/music/sea_storm_wip.mp3" id="20_20hn3"]
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("hud", "pause", "world", "player", "monster", "game_canvas", "music_player", "kick_player")]
 script = ExtResource("1_m38ur")
@@ -74,3 +75,4 @@ audio_cheese = ExtResource("10_7eap1")
 audio_back_cheese = ExtResource("13_ye78f")
 audio_back_magma = ExtResource("12_yqh1m")
 audio_back_earth = ExtResource("11_ugnd5")
+audio_sea = ExtResource("20_20hn3")

@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Shigger package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-05-25 08:14:09+0000\n"
+"PO-Revision-Date: 2024-05-28 00:08:16+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -10,6 +10,42 @@ msgstr ""
 "X-Generator: GlotPress/4.0.1\n"
 "Language: ru\n"
 "Project-Id-Version: Shigger\n"
+
+#: content/skills_cards/wide_shovel_plus.tscn
+msgid "[center]Лопата подбирает предметы."
+msgstr "[center]Лопата подбирает предметы."
+
+#: content/skills_cards/wide_shovel_plus.tscn
+msgid "[center]Широкая лопата+"
+msgstr "[center]Широкая лопата+"
+
+#: content/skills_cards/sideways_shovel_plus.tscn
+msgid "[center]Лопата позволяет копать вбок, даже если под вами нет блоков."
+msgstr "[center]Лопата позволяет копать вбок, даже если под вами нет блоков."
+
+#: content/skills_cards/sideways_shovel_plus.tscn
+msgid "[center]Боковая лопата+"
+msgstr "[center]Боковая лопата+"
+
+#: content/skills_cards/mega_shovel_plus.tscn
+msgid "[center]Лопата наносит тройной удар!"
+msgstr "[center]Лопата наносит тройной удар!"
+
+#: content/skills_cards/mega_shovel_plus.tscn
+msgid "[center]Мегалопата +"
+msgstr "[center]Мегалопата+"
+
+#: content/skills_cards/drill_plus.tscn
+msgid "[center]Лопата прокапывает ТРИ блока вниз."
+msgstr "[center]Лопата прокапывает ТРИ блока вниз."
+
+#: content/skills_cards/drill_plus.tscn
+msgid "[center]Бур+"
+msgstr "[center]Бур+"
+
+#: source/biome/chunk/chunk.gd
+msgid "Нет урона..."
+msgstr "Нет урона..."
 
 #: content/menu.tscn
 msgid "Начать!"
@@ -32,7 +68,7 @@ msgid ""
 "[center]Лопата прокапывает внизу строчку из трёх блоков\n"
 "(Хорошо для кантиков)"
 msgstr ""
-"[center]Лопата прокапывает внизу строчку из трёх блоков\n"
+"[center]Лопата прокапывает внизу строчку из трёх блоков.\n"
 "(Хорошо для кантиков)"
 
 #: content/skills_cards/wide_shovel.tscn
@@ -41,7 +77,7 @@ msgstr "[center]Широкая лопата"
 
 #: content/skills_cards/sideways_shovel.tscn
 msgid "[center]Лопата одновременно копает в трёх направлениях"
-msgstr "[center]Лопата одновременно копает в трёх направлениях"
+msgstr "[center]Лопата одновременно копает в трёх направлениях."
 
 #: content/skills_cards/sideways_shovel.tscn
 msgid "[center]Боковая лопата"
@@ -49,7 +85,7 @@ msgstr "[center]Боковая лопата"
 
 #: content/skills_cards/multiplier.tscn
 msgid "[center]Удваивает получаемые очки"
-msgstr "[center]Удваивает получаемые очки"
+msgstr "[center]Удваивает получаемые очки."
 
 #: content/skills_cards/multiplier.tscn
 msgid "[center]X2"
@@ -57,7 +93,7 @@ msgstr "[center]X2"
 
 #: content/skills_cards/mega_shovel.tscn
 msgid "[center]Лопата наносит двойной удар"
-msgstr "[center]Лопата наносит двойной удар"
+msgstr "[center]Лопата наносит двойной удар."
 
 #: content/skills_cards/mega_shovel.tscn
 msgid "[center]Мегалопата"
@@ -242,12 +278,8 @@ msgid "Ранг"
 msgstr "Ранг"
 
 #: source/hud.gd
-msgid "Серия"
-msgstr "Серия"
-
-#: source/hud.gd
 msgid "Очков"
-msgstr "Очков"
+msgstr "Очки"
 
 #: source/ending.gd
 msgid "Вас съели!"

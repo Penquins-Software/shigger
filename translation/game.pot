@@ -95,22 +95,18 @@ msgid "Очков"
 msgstr ""
 
 #: source/leaderboard.gd
-#: content/menu.tscn
 msgid "Ранг"
 msgstr ""
 
 #: source/leaderboard.gd
-#: content/menu.tscn
 msgid "Игрок"
 msgstr ""
 
 #: source/leaderboard.gd
-#: content/menu.tscn
 msgid "Количество очков"
 msgstr ""
 
 #: source/menu.gd
-#: content/menu.tscn
 msgid "[center]Вы прокопали на [color=red]%s[/color] очков"
 msgstr ""
 
@@ -135,11 +131,14 @@ msgid "Сокровище!"
 msgstr ""
 
 #: source/player/player.gd
-msgid "Мимо..."
+msgid "Вас спасла рыба ФУГУ!"
 msgstr ""
 
-#: source/player/player.gd
-msgid "Вас спасла рыба ФУГУ!"
+#: content/ending.tscn
+msgid ""
+"[center]Вас съели!\n"
+"\n"
+"Ваш результат: 232 очков."
 msgstr ""
 
 #: content/ending.tscn
@@ -220,6 +219,7 @@ msgid "Режим экрана"
 msgstr ""
 
 #: content/menu.tscn
+#: content/pause.tscn
 msgid "Общая громкость"
 msgstr ""
 
@@ -229,6 +229,14 @@ msgstr ""
 
 #: content/menu.tscn
 msgid "Громкость музыки"
+msgstr ""
+
+#: content/menu.tscn
+msgid "Звук попадания в ритм"
+msgstr ""
+
+#: content/menu.tscn
+msgid "Дополнительная визуализация"
 msgstr ""
 
 #: content/menu.tscn
@@ -304,6 +312,11 @@ msgstr ""
 msgid ""
 "[center]Парализует котомедузу, когда она вас настигает.\n"
 "Одноразовая."
+msgstr ""
+
+#: content/skills_cards/fugu.tscn
+#: content/skills_cards/multiplier.tscn
+msgid "[center]←"
 msgstr ""
 
 #: content/skills_cards/mega_shovel.tscn

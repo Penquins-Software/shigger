@@ -111,7 +111,9 @@ func try_move_in_world(direction: Vector2) -> void:
 		var trap = _world.traps[new_position] as Trap
 		if not trap.move_to():
 			return
-	if _world.chunks.has(new_position):
+			
+	if _world.chunks.has(new_position) and is_instance_valid(_world.chunks[new_position]):
+	#if _world.chunks.has(new_position) and not _world.chunks[new_position] == null:
 		# На пути есть блок. Можно попробовать забраться на него.
 		var upper_player_position = _world_position + Vector2.UP
 		var upper_chunk_position = new_position + Vector2.UP
@@ -133,16 +135,22 @@ func dig(new_position: Vector2, apply_modificators: bool = true) -> void:
 
 
 func hit_chunk(chunk_position: Vector2, apply_modificators: bool = true, play_sound: bool = true) -> bool:
-	if wide_shovel_p and _world.items.has(chunk_position) and not _world.items[chunk_position] == null and not _world.items[chunk_position].is_queued_for_deletion():
+	if wide_shovel_p and _world.items.has(chunk_position) and is_instance_valid(_world.items[chunk_position]):
 		_world.items[chunk_position].use()
-	if not _world.chunks.has(chunk_position) or _world.chunks[chunk_position] == null:
+	#if wide_shovel_p and _world.items.has(chunk_position) and not _world.items[chunk_position] == null:
+		#if not _world.items[chunk_position].is_queued_for_deletion():
+			#_world.items[chunk_position].use()
+	if not _world.chunks.has(chunk_position) or not is_instance_valid(_world.chunks[chunk_position]):
 		return false
+	#if not _world.chunks.has(chunk_position) or _world.chunks[chunk_position] == null:
+		#return false
+	#if _world.chunks[chunk_position].is_queued_for_deletion():
+		#return false
 	var chunk = _world.chunks[chunk_position]
 	var result = chunk.dig(self, play_sound)
 	if result:
 		_world.chunks.erase(chunk_position)
 		_world.game.add_points(chunk.points, chunk_position * Constants.FACTOR)
-		chunk.destoy()
 		Input.start_joy_vibration(0, 0.4, 0.6, 0.1)
 	else:
 		Input.start_joy_vibration(0, 0.6, 1.0, 0.15)
@@ -230,8 +238,11 @@ func get_flashlight() -> void:
 	light.scale = Vector2(1.5, 1.5)
 	
 	for item in _world.items:
-		if not _world.items[item] == null and not _world.items[item].is_queued_for_deletion():
+		if is_instance_valid(_world.items[item]):
 			_world.items[item].turn_on_light()
+		#if not _world.items[item] == null:
+			#if not _world.items[item].is_queued_for_deletion():
+				#_world.items[item].turn_on_light()
 
 
 func set_animation_speed(bpm: RhythmMachine.BPM) -> void:

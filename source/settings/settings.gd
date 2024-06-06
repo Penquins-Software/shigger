@@ -29,6 +29,8 @@ var music_volume: int = 50 : set = _set_music_volume
 var intro: bool = false
 var tutorial: bool = false
 var camera_shaking: bool = true : set = _set_camera_shaking
+var additional_visualization: bool = true : set = _set_additional_visualization
+var impact_sound: bool = true : set = _set_impact_sound
 
 
 func _set_player_name(new_name: String) -> void:
@@ -66,7 +68,15 @@ func _set_music_volume(value: int) -> void:
 
 func _set_camera_shaking(value: bool) -> void:
 	camera_shaking = value
-	print("Camera shaking: %s" % camera_shaking);
+	print("Camera shaking: %s" % value);
+
+func _set_additional_visualization(value: bool) -> void:
+	additional_visualization = value
+	print("Additional visualization: %s" % value);
+
+func _set_impact_sound(value: bool) -> void:
+	impact_sound = value
+	print("Impact sound: %s" % value);
 
 
 func _enter_tree():
@@ -95,6 +105,8 @@ func save_config() -> void:
 	config.set_value("game_settings", "intro", intro)
 	config.set_value("game_settings", "turorial", tutorial)
 	config.set_value("game_settings", "shaking", camera_shaking)
+	config.set_value("game_settings", "additional_visualization", additional_visualization)
+	config.set_value("game_settings", "impact_sound", impact_sound)
 	
 	config.save(PATH_TO_CONFIG)
 
@@ -119,6 +131,8 @@ func load_config() -> void:
 		intro = config.get_value("game_settings", "intro", true)
 		camera_shaking = config.get_value("game_settings", "shaking", true)
 		tutorial = config.get_value("game_settings", "turorial", true)
+		additional_visualization = config.get_value("game_settings", "additional_visualization", true)
+		impact_sound = config.get_value("game_settings", "impact_sound", true)
 		
 		print("Configuration file loaded successfully!")
 	else:

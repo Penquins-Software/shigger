@@ -6,7 +6,10 @@ extends Control
 
 
 func _ready():
-	animation_player.animation_finished.connect(load_next_scene)
+	if OS.has_feature("web"):
+		load_next_scene()
+	else:
+		animation_player.animation_finished.connect(load_next_scene)
 
 
 func _input(event):

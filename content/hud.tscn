@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dj6ej8wvocjor"]
+[gd_scene load_steps=18 format=3 uid="uid://dj6ej8wvocjor"]
 
 [ext_resource type="Script" path="res://source/hud.gd" id="1_54nam"]
 [ext_resource type="Theme" uid="uid://cnni4p646elf0" path="res://main_theme.tres" id="2_cd0nx"]
@@ -13,6 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://b04bawt3meir6" path="res://graphics/rhythm/progress.png" id="12_idnly"]
 [ext_resource type="Texture2D" uid="uid://mj0xagjv75x0" path="res://graphics/rhythm/mark.png" id="12_pln32"]
 [ext_resource type="Script" path="res://source/spectrum.gd" id="12_rw516"]
+[ext_resource type="Script" path="res://source/mobile_control.gd" id="14_iwqks"]
+[ext_resource type="Script" path="res://source/button_action.gd" id="15_kytdt"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_njc70"]
 action = &"pause"
@@ -41,6 +43,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Points" type="RichTextLabel" parent="Control"]
+auto_translate_mode = 2
 clip_contents = false
 custom_minimum_size = Vector2(800, 0)
 layout_mode = 1
@@ -52,7 +55,6 @@ offset_top = 20.0
 offset_right = 250.0
 offset_bottom = 68.0
 grow_horizontal = 2
-auto_translate = false
 mouse_filter = 2
 theme = ExtResource("2_cd0nx")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -129,6 +131,7 @@ fit_content = true
 scroll_active = false
 
 [node name="Hits" type="RichTextLabel" parent="Control/Skills"]
+auto_translate_mode = 2
 clip_contents = false
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 1
@@ -144,7 +147,6 @@ offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(250, 16)
-auto_translate = false
 mouse_filter = 2
 theme = ExtResource("2_cd0nx")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -192,6 +194,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.784314)
 
 [node name="Timer" type="RichTextLabel" parent="Control/PreparationScreen"]
+auto_translate_mode = 2
 clip_contents = false
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 1
@@ -207,7 +210,6 @@ offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(250, 16)
-auto_translate = false
 mouse_filter = 2
 theme = ExtResource("2_cd0nx")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -218,7 +220,7 @@ text = "[center]3"
 fit_content = true
 scroll_active = false
 
-[node name="Rhythm" type="Control" parent="Control" node_paths=PackedStringArray("helper", "rhythm_button")]
+[node name="Rhythm" type="Control" parent="Control" node_paths=PackedStringArray("helper", "rhythm_button", "spectrum", "line", "marks")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -231,6 +233,9 @@ helper = NodePath("Helper")
 rhythm_button = NodePath("RhythmTextureRect")
 idle_texture = ExtResource("6_wqv6d")
 hover_texture = ExtResource("7_h284y")
+spectrum = NodePath("Spectrum")
+line = NodePath("Helper/LineTextureRect")
+marks = NodePath("Helper/Marks")
 
 [node name="Spectrum" type="Control" parent="Control/Rhythm"]
 modulate = Color(1, 1, 1, 0.376471)
@@ -390,6 +395,7 @@ expand_mode = 3
 stretch_mode = 5
 
 [node name="Multiplier" type="RichTextLabel" parent="Control/Rhythm/RhythmTextureRect"]
+auto_translate_mode = 2
 clip_contents = false
 layout_mode = 1
 anchors_preset = 5
@@ -401,7 +407,6 @@ offset_right = 50.0
 offset_bottom = 66.0
 grow_horizontal = 2
 pivot_offset = Vector2(50, 16)
-auto_translate = false
 mouse_filter = 2
 theme = ExtResource("2_cd0nx")
 theme_override_colors/default_color = Color(1, 1, 1, 1)
@@ -414,6 +419,7 @@ fit_content = true
 scroll_active = false
 
 [node name="Series" type="RichTextLabel" parent="Control/Rhythm/RhythmTextureRect"]
+auto_translate_mode = 2
 clip_contents = false
 layout_mode = 1
 anchors_preset = 5
@@ -425,7 +431,6 @@ offset_right = 60.0
 offset_bottom = 74.0
 grow_horizontal = 2
 pivot_offset = Vector2(60, 16)
-auto_translate = false
 mouse_filter = 2
 theme = ExtResource("2_cd0nx")
 theme_override_colors/default_color = Color(1, 1, 1, 1)
@@ -448,6 +453,93 @@ step = 25.0
 fill_mode = 4
 nine_patch_stretch = true
 texture_progress = ExtResource("12_idnly")
+
+[node name="MobileControl" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("14_iwqks")
+
+[node name="Left" type="Button" parent="Control/MobileControl"]
+auto_translate_mode = 2
+modulate = Color(1, 1, 1, 0.501961)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -110.0
+offset_right = 220.0
+offset_bottom = -10.0
+grow_vertical = 2
+theme = ExtResource("2_cd0nx")
+theme_override_font_sizes/font_size = 64
+text = "←"
+script = ExtResource("15_kytdt")
+_action = &"left"
+
+[node name="Down1" type="Button" parent="Control/MobileControl"]
+auto_translate_mode = 2
+modulate = Color(1, 1, 1, 0.501961)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = 10.0
+offset_right = 220.0
+offset_bottom = 110.0
+grow_vertical = 2
+theme = ExtResource("2_cd0nx")
+theme_override_font_sizes/font_size = 64
+text = "↓"
+script = ExtResource("15_kytdt")
+_action = &"dig"
+
+[node name="Right" type="Button" parent="Control/MobileControl"]
+auto_translate_mode = 2
+modulate = Color(1, 1, 1, 0.501961)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -110.0
+offset_right = -20.0
+offset_bottom = -10.0
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("2_cd0nx")
+theme_override_font_sizes/font_size = 64
+text = "→"
+script = ExtResource("15_kytdt")
+_action = &"right"
+
+[node name="Down2" type="Button" parent="Control/MobileControl"]
+auto_translate_mode = 2
+modulate = Color(1, 1, 1, 0.501961)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = 10.0
+offset_right = -20.0
+offset_bottom = 110.0
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("2_cd0nx")
+theme_override_font_sizes/font_size = 64
+text = "↓"
+script = ExtResource("15_kytdt")
+_action = &"dig"
 
 [node name="PauseButton" type="Button" parent="Control"]
 layout_mode = 1

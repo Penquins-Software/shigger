@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cycif5o6ovikj"]
+[gd_scene load_steps=22 format=3 uid="uid://cycif5o6ovikj"]
 
 [ext_resource type="PackedScene" uid="uid://dj6ej8wvocjor" path="res://content/hud.tscn" id="1_67q3x"]
 [ext_resource type="Script" path="res://source/game.gd" id="1_m38ur"]
@@ -19,7 +19,8 @@
 [ext_resource type="Script" path="res://source/canvas_modulate.gd" id="12_sncfd"]
 [ext_resource type="AudioStream" uid="uid://d2uustjaknysu" path="res://audio/music/biome2_rev.mp3" id="12_yqh1m"]
 [ext_resource type="AudioStream" uid="uid://b6ug0f8tdmbnq" path="res://audio/music/biome3_rev.mp3" id="13_ye78f"]
-[ext_resource type="AudioStream" uid="uid://bc5kd82ot0xp7" path="res://audio/music/sea_storm_wip.mp3" id="20_20hn3"]
+[ext_resource type="AudioStream" uid="uid://soi4sn483swe" path="res://audio/music/biome4.mp3" id="20_ehk6a"]
+[ext_resource type="AudioStream" uid="uid://btm4dxxren3d6" path="res://audio/music/biome5.mp3" id="21_48b74"]
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("hud", "pause", "world", "player", "monster", "game_canvas", "music_player", "kick_player")]
 script = ExtResource("1_m38ur")
@@ -34,11 +35,23 @@ kick_player = NodePath("KickPlayer")
 menu_scene_file = "res://content/menu.tscn"
 ending_scene_file = "res://content/ending.tscn"
 
-[node name="Hud" parent="." node_paths=PackedStringArray("game") instance=ExtResource("1_67q3x")]
+[node name="Hud" parent="." node_paths=PackedStringArray("game", "rhythm", "pause_button", "points", "multiplier_label", "series_label", "series_texture_bar", "skills", "preparation_screen", "info_panel") instance=ExtResource("1_67q3x")]
 game = NodePath("..")
+rhythm = NodePath("Control/Rhythm")
+pause_button = NodePath("Control/PauseButton")
+points = NodePath("Control/Points")
+multiplier_label = NodePath("Control/Rhythm/RhythmTextureRect/Multiplier")
+series_label = NodePath("Control/Rhythm/RhythmTextureRect/Series")
+series_texture_bar = NodePath("Control/Rhythm/RhythmTextureRect/SeriesTextureProgressBar")
+skills = NodePath("Control/Skills")
+preparation_screen = NodePath("Control/PreparationScreen")
+info_panel = NodePath("Control/Info/VBoxContainer")
 
-[node name="Pause" parent="." instance=ExtResource("2_c7und")]
+[node name="Pause" parent="." node_paths=PackedStringArray("continue_button", "return_button", "result_label") instance=ExtResource("2_c7und")]
 visible = false
+continue_button = NodePath("Control/VBoxContainer/ContinueButton")
+return_button = NodePath("Control/VBoxContainer/ReturnButton")
+result_label = NodePath("Control/Result")
 
 [node name="KickPlayer" type="AudioStreamPlayer" parent="."]
 bus = &"Music"
@@ -55,11 +68,19 @@ game = NodePath("..")
 player = NodePath("Player")
 monster = NodePath("Monster")
 
-[node name="Player" parent="World" node_paths=PackedStringArray("_world") instance=ExtResource("5_0bvna")]
+[node name="Player" parent="World" node_paths=PackedStringArray("_world", "shake_animation_player", "character_animated_sprite", "effect_animated_sprite", "light", "_area", "camera") instance=ExtResource("5_0bvna")]
 _world = NodePath("..")
+shake_animation_player = NodePath("ShakeAnimationPlayer")
+character_animated_sprite = NodePath("AnimatedSprite2D")
+effect_animated_sprite = NodePath("EffectAnimatedSprite2D")
+light = NodePath("PointLight2D")
+_area = NodePath("Area2D")
+camera = NodePath("Camera2D")
 
-[node name="Monster" parent="World" instance=ExtResource("7_xrk0u")]
+[node name="Monster" parent="World" node_paths=PackedStringArray("audio_player", "animation_player") instance=ExtResource("7_xrk0u")]
 position = Vector2(0, -640)
+audio_player = NodePath("AudioStreamPlayer2D")
+animation_player = NodePath("AnimationPlayer")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="World"]
 color = Color(0, 0, 0, 1)
@@ -75,4 +96,5 @@ audio_cheese = ExtResource("10_7eap1")
 audio_back_cheese = ExtResource("13_ye78f")
 audio_back_magma = ExtResource("12_yqh1m")
 audio_back_earth = ExtResource("11_ugnd5")
-audio_sea = ExtResource("20_20hn3")
+audio_sea = ExtResource("20_ehk6a")
+audio_sky = ExtResource("21_48b74")

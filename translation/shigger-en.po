@@ -8,7 +8,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: GlotPress/4.0.1\n"
-"Language: en_US\n"
+"Language: en\n"
 "Project-Id-Version: Shigger\n"
 
 #: content/skills_cards/wide_shovel_plus.tscn

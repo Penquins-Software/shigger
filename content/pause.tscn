@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://k82wwl0t8p28"]
+[gd_scene load_steps=6 format=3 uid="uid://k82wwl0t8p28"]
 
 [ext_resource type="Theme" uid="uid://cnni4p646elf0" path="res://main_theme.tres" id="1_b8nco"]
 [ext_resource type="Script" path="res://source/pause.gd" id="1_vgpp8"]
+[ext_resource type="Script" path="res://source/settings/setting_audio_bus.gd" id="4_chdrh"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_0ny7f"]
 action = &"pause"
@@ -32,7 +33,46 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.392157)
 
+[node name="MasterVolume" type="HBoxContainer" parent="Control" node_paths=PackedStringArray("slider", "spin_box")]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -340.0
+offset_top = -606.0
+offset_right = 340.0
+offset_bottom = -582.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("4_chdrh")
+slider = NodePath("HSlider")
+spin_box = NodePath("SpinBox")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/MasterVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("1_b8nco")
+text = "Общая громкость"
+fit_content = true
+
+[node name="HSlider" type="HSlider" parent="Control/MasterVolume"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme = ExtResource("1_b8nco")
+
+[node name="SpinBox" type="SpinBox" parent="Control/MasterVolume"]
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("1_b8nco")
+
 [node name="Result" type="RichTextLabel" parent="Control"]
+auto_translate_mode = 2
 custom_minimum_size = Vector2(800, 30)
 layout_mode = 1
 anchors_preset = 5
@@ -43,7 +83,6 @@ offset_top = 240.0
 offset_right = 300.0
 offset_bottom = 270.0
 grow_horizontal = 2
-auto_translate = false
 theme = ExtResource("1_b8nco")
 bbcode_enabled = true
 text = "[center]Ваш результат: 525 очков!"
@@ -55,22 +94,26 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = -20.0
-offset_right = 100.0
-offset_bottom = 20.0
+offset_left = -340.0
+offset_top = -26.0
+offset_right = 340.0
+offset_bottom = 26.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ContinueButton" type="Button" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 mouse_default_cursor_shape = 2
 theme = ExtResource("1_b8nco")
 shortcut = SubResource("Shortcut_4m0hu")
 text = "Продолжить"
 
 [node name="ReturnButton" type="Button" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 mouse_default_cursor_shape = 2
 theme = ExtResource("1_b8nco")
 text = "Вернуться в меню"

@@ -6,7 +6,7 @@ signal get_leaderboards_completed
 signal set_player_name_completed
 signal get_player_name_completed(name: String)
 signal submit_score_completed
-signal get_score_completed(score: int)
+#signal get_score_completed(score: int)
 
 const PATH_TO_DATA_FILE: String = "user://LootLocker.data"
 

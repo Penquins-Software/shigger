@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bn610g1y3m6q4"]
+[gd_scene load_steps=26 format=3 uid="uid://bn610g1y3m6q4"]
 
 [ext_resource type="Script" path="res://source/menu.gd" id="1_y313j"]
 [ext_resource type="Texture2D" uid="uid://di2x4ta1ypsls" path="res://graphics/menu/title_background.png" id="2_5l2x8"]
@@ -16,7 +16,9 @@
 [ext_resource type="Script" path="res://source/settings/setting_camera_shaking.gd" id="11_w1p6r"]
 [ext_resource type="Script" path="res://source/authors.gd" id="12_hpssp"]
 [ext_resource type="Script" path="res://source/settings/settins_return_to_menu.gd" id="12_yqn17"]
+[ext_resource type="Script" path="res://source/settings/setting_impact_sound.gd" id="14_25dl7"]
 [ext_resource type="AudioStream" uid="uid://ds4qod44dht6f" path="res://audio/sfx/kick75.mp3" id="15_26a6a"]
+[ext_resource type="Script" path="res://source/settings/setting_additional_visualization.gd" id="15_wpdfa"]
 
 [sub_resource type="Animation" id="Animation_xwvgy"]
 resource_name = "Idle"
@@ -229,8 +231,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 2304.0
-offset_bottom = 1296.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_gu6l7")
@@ -242,8 +242,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 2304.0
-offset_bottom = 1296.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_vdowo")
@@ -261,6 +259,7 @@ offset_top = -45.28
 offset_right = -308.0
 offset_bottom = -5.28
 pivot_offset = Vector2(124, 20)
+focus_neighbor_top = NodePath("../VBoxContainer/ExitButton")
 focus_neighbor_bottom = NodePath("../VBoxContainer/StoryComicButton")
 mouse_default_cursor_shape = 2
 theme = ExtResource("5_qhpuc")
@@ -355,6 +354,7 @@ alignment = 0
 [node name="ExitButton" type="Button" parent="Main/VBoxContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../AuthorsButton")
+focus_neighbor_bottom = NodePath("../../StartButton")
 mouse_default_cursor_shape = 2
 theme = ExtResource("5_qhpuc")
 text = "Выход"
@@ -362,6 +362,7 @@ flat = true
 alignment = 0
 
 [node name="Penquins" type="RichTextLabel" parent="Main"]
+auto_translate_mode = 2
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -374,7 +375,6 @@ offset_right = -259.0
 offset_bottom = -288.0
 grow_horizontal = 2
 grow_vertical = 2
-auto_translate = false
 theme = ExtResource("5_qhpuc")
 theme_override_font_sizes/normal_font_size = 12
 bbcode_enabled = true
@@ -383,6 +383,7 @@ fit_content = true
 scroll_active = false
 
 [node name="Jam" type="RichTextLabel" parent="Main"]
+auto_translate_mode = 2
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -395,7 +396,6 @@ offset_right = 565.0
 offset_bottom = 302.0
 grow_horizontal = 2
 grow_vertical = 2
-auto_translate = false
 theme = ExtResource("5_qhpuc")
 theme_override_font_sizes/normal_font_size = 12
 bbcode_enabled = true
@@ -428,6 +428,7 @@ fit_content = true
 scroll_active = false
 
 [node name="Scores" type="RichTextLabel" parent="Main"]
+auto_translate_mode = 2
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -443,7 +444,6 @@ grow_horizontal = 2
 grow_vertical = 2
 rotation = -0.329698
 pivot_offset = Vector2(250, 10)
-auto_translate = false
 theme = ExtResource("5_qhpuc")
 theme_override_colors/default_color = Color(0.937255, 0.937255, 0.0235294, 1)
 theme_override_font_sizes/normal_font_size = 14
@@ -453,6 +453,7 @@ fit_content = true
 scroll_active = false
 
 [node name="Version" type="RichTextLabel" parent="Main"]
+auto_translate_mode = 2
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -465,20 +466,24 @@ offset_right = -259.0
 offset_bottom = 304.0
 grow_horizontal = 2
 grow_vertical = 2
-auto_translate = false
 theme = ExtResource("5_qhpuc")
 theme_override_colors/default_color = Color(0.393086, 0.393086, 0.393085, 1)
 theme_override_font_sizes/normal_font_size = 12
 bbcode_enabled = true
-text = "Версия 1.0.12"
+text = "Версия 1.0.15"
 fit_content = true
 scroll_active = false
 script = ExtResource("7_cgacl")
-_version = "1.0.12"
+_version = "1.0.15"
 
-[node name="Comic" parent="." instance=ExtResource("7_qt4s1")]
+[node name="Comic" parent="." node_paths=PackedStringArray("_left_button", "_right_button", "exit_button", "_pages", "focus_element") instance=ExtResource("7_qt4s1")]
 visible = false
 layout_mode = 1
+_left_button = NodePath("HBoxContainer/LeftButton")
+_right_button = NodePath("HBoxContainer/RightButton")
+exit_button = NodePath("ExitButton")
+_pages = [NodePath("Page 1"), NodePath("Page 2"), NodePath("Page 3"), NodePath("Page 4"), NodePath("Page 5")]
+focus_element = NodePath("HBoxContainer/RightButton")
 
 [node name="Leaderboard" type="Control" parent="." node_paths=PackedStringArray("focus_element")]
 visible = false
@@ -587,10 +592,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -300.0
-offset_top = -68.0
-offset_right = 300.0
-offset_bottom = 68.0
+offset_left = -340.0
+offset_top = -120.0
+offset_right = 340.0
+offset_bottom = 120.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -605,7 +610,7 @@ text = "Имя игрока"
 fit_content = true
 
 [node name="LineEdit" type="LineEdit" parent="Settings/VBoxContainer/Nickname" node_paths=PackedStringArray("confirm_button")]
-custom_minimum_size = Vector2(305, 0)
+custom_minimum_size = Vector2(294, 0)
 layout_mode = 2
 theme = ExtResource("5_qhpuc")
 placeholder_text = "Введите имя..."
@@ -613,13 +618,13 @@ script = ExtResource("7_3q4m3")
 confirm_button = NodePath("../Button")
 
 [node name="Button" type="Button" parent="Settings/VBoxContainer/Nickname"]
+auto_translate_mode = 2
 layout_mode = 2
-auto_translate = false
 tooltip_text = "Accept"
 focus_neighbor_bottom = NodePath("../../Localization/MenuButton")
 mouse_default_cursor_shape = 2
 theme = ExtResource("5_qhpuc")
-text = "✔️"
+text = "OK"
 
 [node name="Localization" type="HBoxContainer" parent="Settings/VBoxContainer" node_paths=PackedStringArray("menu_button")]
 layout_mode = 2
@@ -656,10 +661,10 @@ text = "Режим экрана"
 fit_content = true
 
 [node name="MenuButton" type="MenuButton" parent="Settings/VBoxContainer/WindowMode"]
+auto_translate_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-auto_translate = false
 focus_neighbor_top = NodePath("../../Localization/MenuButton")
 focus_neighbor_bottom = NodePath("../../MasterVolume/HSlider")
 mouse_default_cursor_shape = 2
@@ -668,7 +673,6 @@ text = "Windowed"
 flat = false
 item_count = 2
 popup/item_0/text = "Windowed"
-popup/item_0/id = 0
 popup/item_1/text = "Fullscreen"
 popup/item_1/id = 4
 script = ExtResource("9_uj1h1")
@@ -750,7 +754,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 focus_neighbor_top = NodePath("../../SFXVolume/HSlider")
-focus_neighbor_bottom = NodePath("../../Shaking/CheckBox")
+focus_neighbor_bottom = NodePath("../../ImpactSound/CheckBox")
 mouse_default_cursor_shape = 2
 theme = ExtResource("5_qhpuc")
 
@@ -758,6 +762,43 @@ theme = ExtResource("5_qhpuc")
 layout_mode = 2
 size_flags_vertical = 4
 theme = ExtResource("5_qhpuc")
+
+[node name="ImpactSound" type="HBoxContainer" parent="Settings/VBoxContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Settings/VBoxContainer/ImpactSound"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("5_qhpuc")
+text = "Звук попадания в ритм"
+fit_content = true
+
+[node name="CheckBox" type="CheckBox" parent="Settings/VBoxContainer/ImpactSound"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../MusicVolume/HSlider")
+focus_neighbor_bottom = NodePath("../../AdditionalVisualization/CheckBox")
+mouse_default_cursor_shape = 2
+theme = ExtResource("5_qhpuc")
+script = ExtResource("14_25dl7")
+
+[node name="AdditionalVisualization" type="HBoxContainer" parent="Settings/VBoxContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Settings/VBoxContainer/AdditionalVisualization"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("5_qhpuc")
+text = "Дополнительная визуализация"
+fit_content = true
+
+[node name="CheckBox" type="CheckBox" parent="Settings/VBoxContainer/AdditionalVisualization"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../ImpactSound/CheckBox")
+focus_neighbor_bottom = NodePath("../../Shaking/CheckBox")
+mouse_default_cursor_shape = 2
+script = ExtResource("15_wpdfa")
 
 [node name="Shaking" type="HBoxContainer" parent="Settings/VBoxContainer"]
 layout_mode = 2
@@ -772,7 +813,7 @@ fit_content = true
 
 [node name="CheckBox" type="CheckBox" parent="Settings/VBoxContainer/Shaking"]
 layout_mode = 2
-focus_neighbor_top = NodePath("../../MusicVolume/HSlider")
+focus_neighbor_top = NodePath("../../AdditionalVisualization/CheckBox")
 focus_neighbor_bottom = NodePath("../../../BackButton")
 mouse_default_cursor_shape = 2
 script = ExtResource("11_w1p6r")

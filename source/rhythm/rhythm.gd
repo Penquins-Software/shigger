@@ -7,10 +7,19 @@ extends Control
 @export var idle_texture: Texture2D
 @export var hover_texture: Texture2D
 
+@export var spectrum: Spectrum
+@export var line: Control
+@export var marks: Control
+
 var increased_size: Vector2 = Vector2(1.25, 1.25)
 
 
 func _ready():
+	if not Settings.additional_visualization:
+		spectrum.queue_free()
+		line.queue_free()
+		marks.queue_free()
+	
 	RhythmMachine.bit_1_5.connect(bit_1_5)
 	RhythmMachine.bit_1_1.connect(bit_1_1)
 

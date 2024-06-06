@@ -120,8 +120,8 @@ func bit() -> void:
 func destroy_chunk_by_position(world_position: Vector2, explode: bool) -> int:
 	if not chunks.has(world_position):
 		return 0
-	if chunks[world_position] == null or chunks[world_position].is_queued_for_deletion():
-		return 0 
+	if not is_instance_valid(chunks[world_position]):
+		return 0
 	var chunk = chunks[world_position] as Chunk
 	chunks.erase(world_position)
 	var points = game.add_points(chunk.points, world_position * Constants.FACTOR, false)
@@ -132,7 +132,7 @@ func destroy_chunk_by_position(world_position: Vector2, explode: bool) -> int:
 func destroy_item_by_position(world_position: Vector2) -> void:
 	if not items.has(world_position):
 		return
-	if items[world_position] == null or items[world_position].is_queued_for_deletion():
+	if not is_instance_valid(items[world_position]):
 		return
 	if items[world_position] is ItemDynamite:
 		return 

@@ -64,6 +64,7 @@ func _ready():
 	
 	if OS.has_feature("web"):
 		exit_button.hide()
+		nickname_edit.focus_entered.connect(_focus)
 
 
 func _show_menu_element(menu_element: MenuElement) -> void:
@@ -97,6 +98,7 @@ func set_nickname() -> void:
 		return
 	
 	Settings.player_name = nickname_edit.text
+	Settings.save_config()
 	LootLockerClient.set_player_name(Settings.player_name)
 	_start_game()
 
@@ -117,3 +119,9 @@ func silence_bit() -> void:
 
 func turn_up_bit() -> void:
 	$AudioStreamPlayer.volume_db = 0
+
+
+func _focus() -> void:
+	if OS.has_feature("web_android") or OS.has_feature("web_ios"):
+		nickname_edit.text = JavaScriptBridge.eval("prompt('%s', '%s');" % ["Enter nickname:", nickname_edit.text], true)
+		nickname_edit.find_valid_focus_neighbor(SIDE_BOTTOM).grab_focus()

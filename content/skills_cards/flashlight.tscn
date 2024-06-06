@@ -80,6 +80,7 @@ fit_content = true
 scroll_active = false
 
 [node name="Arrow" type="RichTextLabel" parent="."]
+auto_translate_mode = 2
 clip_contents = false
 layout_mode = 1
 anchors_preset = 7
@@ -94,7 +95,6 @@ offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(50, 16)
-auto_translate = false
 mouse_filter = 2
 theme = ExtResource("3_5chpc")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)

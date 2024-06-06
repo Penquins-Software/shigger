@@ -7,6 +7,7 @@
 light_mode = 1
 
 [node name="Message" type="RichTextLabel"]
+auto_translate_mode = 2
 top_level = true
 light_mask = 2
 z_index = 8
@@ -24,7 +25,6 @@ offset_bottom = -301.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(100, 10)
-auto_translate = false
 theme = ExtResource("1_nd0x8")
 theme_override_font_sizes/normal_font_size = 12
 bbcode_enabled = true

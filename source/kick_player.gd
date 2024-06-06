@@ -14,6 +14,19 @@ extends AudioStreamPlayer
 }
 
 
+func _ready():
+	RhythmMachine.bit_1_1.connect(sync)
+
+
+func sync() -> void:
+	if playing:
+		var parts = get_playback_position() / RhythmMachine.get_current_bpm_in_seconds()
+		var i_part = round(parts)
+		var f_part = abs(parts - i_part)
+		if f_part > 0.1:
+			play(i_part * RhythmMachine.get_current_bpm_in_seconds())
+
+
 func play_kicking(bpm: RhythmMachine.BPM) -> void:
 	stream = kick_by_bpm[bpm]
 	play(RhythmMachine.current_time)

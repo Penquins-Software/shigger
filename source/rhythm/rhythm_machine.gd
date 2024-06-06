@@ -143,7 +143,8 @@ func check_action(event: InputEvent) -> void:
 	if _bit_2_3 or not _bit_1_4:
 		_missing = false
 		hit.emit(event)
-		SFXPlayer.play(_hit_sounds.pick_random())
+		if Settings.impact_sound:
+			SFXPlayer.play(_hit_sounds.pick_random())
 	else:
 		_missing = true
 		SFXPlayer.play(_miss_sounds.pick_random())

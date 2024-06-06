@@ -1,7 +1,7 @@
 class_name Trap
 extends AnimatedSprite2D
 
-@export var _area: Area2D
+#@export var _area: Area2D
 
 var _world_position: Vector2
 var _player: Player

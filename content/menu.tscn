@@ -14,7 +14,7 @@
 [ext_resource type="Script" path="res://source/settings/setting_screen_mode.gd" id="9_uj1h1"]
 [ext_resource type="Script" path="res://source/settings/setting_audio_bus.gd" id="10_dvv5c"]
 [ext_resource type="Script" path="res://source/settings/setting_camera_shaking.gd" id="11_w1p6r"]
-[ext_resource type="Script" path="res://source/authors.gd" id="12_hpssp"]
+[ext_resource type="Script" path="res://source/web_link.gd" id="12_hpssp"]
 [ext_resource type="Script" path="res://source/settings/settins_return_to_menu.gd" id="12_yqn17"]
 [ext_resource type="Script" path="res://source/settings/setting_impact_sound.gd" id="14_25dl7"]
 [ext_resource type="AudioStream" uid="uid://ds4qod44dht6f" path="res://audio/sfx/kick75.mp3" id="15_26a6a"]
@@ -122,6 +122,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.01, 1.01), Vector2(1.1, 1.1)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Main/PlayerName:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.01, 1.01), Vector2(1.1, 1.1)]
+}
 
 [sub_resource type="Animation" id="Animation_y5e6k"]
 length = 0.001
@@ -161,6 +173,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Main/PlayerName:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_148vk"]
 _data = {
@@ -168,7 +192,7 @@ _data = {
 "RESET": SubResource("Animation_y5e6k")
 }
 
-[node name="Menu" type="Control" node_paths=PackedStringArray("main", "comic", "leaderboard", "settings", "authors", "nickname", "start_button", "comic_button", "leaderboard_button", "settings_button", "authors_button", "exit_button", "return_from_leaderboard_button", "return_from_settings_button", "return_from_authors_button", "enter_nickname", "exit_confirmation_dialog", "nickname_edit", "score")]
+[node name="Menu" type="Control" node_paths=PackedStringArray("main", "comic", "leaderboard", "settings", "authors", "nickname", "start_button", "comic_button", "leaderboard_button", "settings_button", "authors_button", "share_button", "exit_button", "return_from_leaderboard_button", "return_from_settings_button", "return_from_authors_button", "enter_nickname", "exit_confirmation_dialog", "nickname_edit", "player_name", "score")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -187,6 +211,7 @@ comic_button = NodePath("Main/VBoxContainer/StoryComicButton")
 leaderboard_button = NodePath("Main/VBoxContainer/LeaderboardButton")
 settings_button = NodePath("Main/VBoxContainer/SettingsButton")
 authors_button = NodePath("Main/VBoxContainer/AuthorsButton")
+share_button = NodePath("Main/VBoxContainer/ShareButton")
 exit_button = NodePath("Main/VBoxContainer/ExitButton")
 return_from_leaderboard_button = NodePath("Leaderboard/BackButton")
 return_from_settings_button = NodePath("Settings/BackButton")
@@ -194,6 +219,7 @@ return_from_authors_button = NodePath("Authors/BackButton")
 enter_nickname = NodePath("Nickname/VBoxContainer/Button")
 exit_confirmation_dialog = NodePath("ConfirmationDialog")
 nickname_edit = NodePath("Nickname/VBoxContainer/Nickname/LineEdit")
+player_name = NodePath("Main/PlayerName")
 score = NodePath("Main/Scores")
 game_scene_file = "res://content/game.tscn"
 tutorial_scene_file = "res://content/tutorial.tscn"
@@ -304,10 +330,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -516.0
-offset_top = 36.0
-offset_right = -364.0
-offset_bottom = 172.0
+offset_left = -532.0
+offset_top = 35.0
+offset_right = -316.0
+offset_bottom = 199.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -344,16 +370,27 @@ alignment = 0
 [node name="AuthorsButton" type="Button" parent="Main/VBoxContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../SettingsButton")
-focus_neighbor_bottom = NodePath("../ExitButton")
+focus_neighbor_bottom = NodePath("../ShareButton")
 mouse_default_cursor_shape = 2
 theme = ExtResource("5_qhpuc")
 text = "Авторы"
 flat = true
 alignment = 0
 
-[node name="ExitButton" type="Button" parent="Main/VBoxContainer"]
+[node name="ShareButton" type="Button" parent="Main/VBoxContainer"]
+visible = false
 layout_mode = 2
 focus_neighbor_top = NodePath("../AuthorsButton")
+focus_neighbor_bottom = NodePath("../ExitButton")
+mouse_default_cursor_shape = 2
+theme = ExtResource("5_qhpuc")
+text = "Поделиться..."
+flat = true
+alignment = 0
+
+[node name="ExitButton" type="Button" parent="Main/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../ShareButton")
 focus_neighbor_bottom = NodePath("../../StartButton")
 mouse_default_cursor_shape = 2
 theme = ExtResource("5_qhpuc")
@@ -378,9 +415,11 @@ grow_vertical = 2
 theme = ExtResource("5_qhpuc")
 theme_override_font_sizes/normal_font_size = 12
 bbcode_enabled = true
-text = "Pen[color=red]q[/color]uins Software"
+text = "[url=https://penquins.software]Pen[color=red]q[/color]uins Software"
 fit_content = true
 scroll_active = false
+meta_underlined = false
+script = ExtResource("12_hpssp")
 
 [node name="Jam" type="RichTextLabel" parent="Main"]
 auto_translate_mode = 2
@@ -399,9 +438,11 @@ grow_vertical = 2
 theme = ExtResource("5_qhpuc")
 theme_override_font_sizes/normal_font_size = 12
 bbcode_enabled = true
-text = "Siberian Game Jam"
+text = "[url=https://sibgamejam.com]Siberian Game Jam"
 fit_content = true
 scroll_active = false
+meta_underlined = false
+script = ExtResource("12_hpssp")
 
 [node name="TItle" type="RichTextLabel" parent="Main"]
 layout_mode = 1
@@ -427,6 +468,30 @@ text = "[center]ЛОП[color=red]А[/color]ТЕЛЬ"
 fit_content = true
 scroll_active = false
 
+[node name="PlayerName" type="RichTextLabel" parent="Main"]
+auto_translate_mode = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 6.99994
+offset_top = 205.0
+offset_right = 507.0
+offset_bottom = 225.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.329698
+pivot_offset = Vector2(250, 10)
+theme = ExtResource("5_qhpuc")
+theme_override_colors/default_color = Color(0.937255, 0.937255, 0.0235294, 1)
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+text = "[center][color=red]PLAYER_NAME[/color]!"
+fit_content = true
+scroll_active = false
+
 [node name="Scores" type="RichTextLabel" parent="Main"]
 auto_translate_mode = 2
 visible = false
@@ -436,10 +501,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 5.0
-offset_top = 203.0
-offset_right = 505.0
-offset_bottom = 223.0
+offset_left = 35.0
+offset_top = 226.0
+offset_right = 535.0
+offset_bottom = 246.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = -0.329698
@@ -470,11 +535,11 @@ theme = ExtResource("5_qhpuc")
 theme_override_colors/default_color = Color(0.393086, 0.393086, 0.393085, 1)
 theme_override_font_sizes/normal_font_size = 12
 bbcode_enabled = true
-text = "Версия 1.0.15"
+text = "Версия 1.0.18"
 fit_content = true
 scroll_active = false
 script = ExtResource("7_cgacl")
-_version = "1.0.15"
+_version = "1.0.18"
 
 [node name="Comic" parent="." node_paths=PackedStringArray("_left_button", "_right_button", "exit_button", "_pages", "focus_element") instance=ExtResource("7_qt4s1")]
 visible = false
@@ -609,13 +674,14 @@ theme = ExtResource("5_qhpuc")
 text = "Имя игрока"
 fit_content = true
 
-[node name="LineEdit" type="LineEdit" parent="Settings/VBoxContainer/Nickname" node_paths=PackedStringArray("confirm_button")]
+[node name="LineEdit" type="LineEdit" parent="Settings/VBoxContainer/Nickname" node_paths=PackedStringArray("confirm_button", "menu")]
 custom_minimum_size = Vector2(294, 0)
 layout_mode = 2
 theme = ExtResource("5_qhpuc")
 placeholder_text = "Введите имя..."
 script = ExtResource("7_3q4m3")
 confirm_button = NodePath("../Button")
+menu = NodePath("../../../..")
 
 [node name="Button" type="Button" parent="Settings/VBoxContainer/Nickname"]
 auto_translate_mode = 2

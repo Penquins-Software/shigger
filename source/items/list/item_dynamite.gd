@@ -20,7 +20,7 @@ func use() -> void:
 	points += _world.destroy_all_in_position(_world_position + Vector2.UP, true)
 	points += _world.destroy_all_in_position(_world_position + Vector2.UP + Vector2.UP, true)
 	SFXPlayer.play(explosion_sound)
-	Message.create(_world, position, "[color=red]%s +%s" % [tr("ВЗРЫВ!"), points])
+	Message.create(_world, position - Constants.HALF_FACTOR_VECTOR, "[color=red]%s +%s" % [tr("ВЗРЫВ!"), points])
 	queue_free()
 
 

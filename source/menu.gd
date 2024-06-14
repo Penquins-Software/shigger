@@ -16,6 +16,7 @@ extends Control
 @export var leaderboard_button: Button
 @export var settings_button: Button
 @export var authors_button: Button
+@export var share_button: Button
 @export var exit_button: Button
 
 @export var return_from_leaderboard_button: Button
@@ -27,6 +28,7 @@ extends Control
 @export_group("Other")
 @export var exit_confirmation_dialog: ConfirmationDialog
 @export var nickname_edit: LineEdit
+@export var player_name: RichTextLabel
 @export var score: RichTextLabel
 
 @export_group("Scenes")
@@ -56,9 +58,15 @@ func _ready():
 	
 	enter_nickname.pressed.connect(set_nickname)
 	
+	if Settings.is_telegram:
+		share_button.show()
+		share_button.pressed.connect(TelegramClient.share_score)
+	
 	LootLockerClient.get_leaderboards_completed.connect(show_score)
 	
 	main.show_and_focus()
+	
+	set_nickame_label()
 	
 	Settings.locale_was_changed.connect(show_score)
 	
@@ -103,10 +111,14 @@ func set_nickname() -> void:
 	_start_game()
 
 
+func set_nickame_label() -> void:
+	player_name.text = "[center][color=red]%s[/color]!" % Settings.player_name
+
+
 func show_score(_response = null) -> void:
 	if LootLockerClient.player_score == "":
 		return
-		
+	
 	var score_value = int(LootLockerClient.player_score)
 	if score_value > 0:
 		score.show()

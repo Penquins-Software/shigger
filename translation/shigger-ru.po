@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Shigger package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-05-28 00:08:16+0000\n"
+"PO-Revision-Date: 2024-06-08 04:31:36+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -10,6 +10,18 @@ msgstr ""
 "X-Generator: GlotPress/4.0.1\n"
 "Language: ru\n"
 "Project-Id-Version: Shigger\n"
+
+#: content/ending.tscn
+msgid "Поделиться..."
+msgstr "Поделиться..."
+
+#: content/menu.tscn
+msgid "Дополнительная визуализация"
+msgstr "Дополнительная визуализация"
+
+#: content/menu.tscn
+msgid "Звук попадания в ритм"
+msgstr "Звук попадания в ритм"
 
 #: content/skills_cards/wide_shovel_plus.tscn
 msgid "[center]Лопата подбирает предметы."
@@ -54,10 +66,6 @@ msgstr "Начать!"
 #: source/player/player.gd
 msgid "Вас спасла рыба ФУГУ!"
 msgstr "Вас спасла рыба ФУГУ!"
-
-#: source/player/player.gd
-msgid "Мимо..."
-msgstr "Мимо..."
 
 #: content/menu.tscn
 msgid "[center]ЛОП[color=red]А[/color]ТЕЛЬ"
@@ -149,7 +157,7 @@ msgid ""
 "\n"
 "Музыка и звуки: [url=https://vk.com/musical_output]lexander[/url]"
 msgstr ""
-"[center]Программирование: [url=https://ozkitsune.itch.io/]Oz Fox[/url]\n"
+"[center]Godot разработчик: [url=https://ozkitsune.itch.io/]Oz Fox[/url]\n"
 "\n"
 "Геймдизайн и сценарий: [url=https://itch.io/profile/aki-ona]Akiona[/url]\n"
 "\n"
@@ -173,7 +181,7 @@ msgstr "Громкость музыки"
 msgid "Громкость эффектов"
 msgstr "Громкость эффектов"
 
-#: content/menu.tscn
+#: content/menu.tscn content/pause.tscn
 msgid "Общая громкость"
 msgstr "Общая громкость"
 
@@ -265,15 +273,15 @@ msgstr "ВЗРЫВ!"
 msgid "Версия"
 msgstr "Версия"
 
-#: source/leaderboard.gd content/menu.tscn
+#: source/leaderboard.gd
 msgid "Количество очков"
 msgstr "Количество очков"
 
-#: source/leaderboard.gd content/menu.tscn
+#: source/leaderboard.gd
 msgid "Игрок"
 msgstr "Игрок"
 
-#: source/leaderboard.gd content/menu.tscn
+#: source/leaderboard.gd
 msgid "Ранг"
 msgstr "Ранг"
 
@@ -313,6 +321,11 @@ msgstr ""
 msgid "Имя игрока"
 msgstr "Имя игрока"
 
-#: source/menu.gd content/menu.tscn
+#: source/menu.gd
 msgid "[center]Вы прокопали на [color=red]%s[/color] очков"
 msgstr "[center]Вы прокопали на [color=red]%s[/color] очков"
+
+#: content/skills_cards/multiplier.tscn
+#, gp-priority: hidden
+msgid "[center]←"
+msgstr "[center]←"

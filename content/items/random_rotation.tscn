@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b0w6svr7sixq"]
 
 [ext_resource type="Script" path="res://source/items/list/item_random_rotation.gd" id="1_kdt8d"]
-[ext_resource type="Texture2D" uid="uid://dbyi2vh2hc6oe" path="res://icon.svg" id="2_k0uw6"]
+[ext_resource type="Texture2D" uid="uid://b4h05ed1ubbdg" path="res://graphics/items/rotation.png" id="2_ibjq2"]
 [ext_resource type="Texture2D" uid="uid://dknlgi0dvoat0" path="res://graphics/light.png" id="3_1vkkt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a8008"]
@@ -14,8 +14,7 @@ _area = NodePath("Area2D")
 light = NodePath("PointLight2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_k0uw6")
+texture = ExtResource("2_ibjq2")
 
 [node name="Area2D" type="Area2D" parent="."]
 

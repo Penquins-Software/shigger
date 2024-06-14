@@ -32,6 +32,8 @@ var camera_shaking: bool = true : set = _set_camera_shaking
 var additional_visualization: bool = true : set = _set_additional_visualization
 var impact_sound: bool = true : set = _set_impact_sound
 
+var is_telegram: bool = false
+
 
 func _set_player_name(new_name: String) -> void:
 	player_name = new_name
@@ -137,6 +139,16 @@ func load_config() -> void:
 		print("Configuration file loaded successfully!")
 	else:
 		print("Failed to read configuration file: %s" % error)
+	
+	var first_name = HelpFunctions.get_parameter("user_first_name")
+	var user_name = HelpFunctions.get_parameter("username")
+	if not first_name == "" or not user_name == "":
+		is_telegram = true
+		if player_name == "" or player_name == "<null>":
+			if not user_name == "":
+				player_name = user_name
+			else:
+				player_name = first_name
 
 
 func set_audio_volume(bus: AudioBus, value: int) -> void:

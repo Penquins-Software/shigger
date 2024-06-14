@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Shigger package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-05-30 00:05:50+0000\n"
+"PO-Revision-Date: 2024-06-08 04:31:47+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -10,6 +10,18 @@ msgstr ""
 "X-Generator: GlotPress/4.0.1\n"
 "Language: en\n"
 "Project-Id-Version: Shigger\n"
+
+#: content/ending.tscn
+msgid "Поделиться..."
+msgstr "Share..."
+
+#: content/menu.tscn
+msgid "Дополнительная визуализация"
+msgstr "Additional visualization"
+
+#: content/menu.tscn
+msgid "Звук попадания в ритм"
+msgstr "Action sound"
 
 #: content/skills_cards/wide_shovel_plus.tscn
 msgid "[center]Лопата подбирает предметы."
@@ -21,7 +33,7 @@ msgstr "[center]Wide shovel+"
 
 #: content/skills_cards/sideways_shovel_plus.tscn
 msgid "[center]Лопата позволяет копать вбок, даже если под вами нет блоков."
-msgstr "[center]Shovel allows digging sideways even if there's no block below."
+msgstr "[center]Allows to dig sideways even if there's no block below."
 
 #: content/skills_cards/sideways_shovel_plus.tscn
 msgid "[center]Боковая лопата+"
@@ -54,10 +66,6 @@ msgstr "Start!"
 #: source/player/player.gd
 msgid "Вас спасла рыба ФУГУ!"
 msgstr "Fugu saved you!"
-
-#: source/player/player.gd
-msgid "Мимо..."
-msgstr "Miss..."
 
 #: content/menu.tscn
 msgid "[center]ЛОП[color=red]А[/color]ТЕЛЬ"
@@ -147,7 +155,7 @@ msgid ""
 "\n"
 "Музыка и звуки: [url=https://vk.com/musical_output]lexander[/url]"
 msgstr ""
-"[center]Programming: [url=https://ozkitsune.itch.io/]Oz Fox[/url]\n"
+"[center]Godot Developer: [url=https://ozkitsune.itch.io/]Oz Fox[/url]\n"
 "\n"
 "GD and Story: [url=https://itch.io/profile/aki-ona]Akiona[/url]\n"
 "\n"
@@ -171,7 +179,7 @@ msgstr "Music volume"
 msgid "Громкость эффектов"
 msgstr "SFX volume"
 
-#: content/menu.tscn
+#: content/menu.tscn content/pause.tscn
 msgid "Общая громкость"
 msgstr "General volume"
 
@@ -263,15 +271,15 @@ msgstr "EXPLOSION!"
 msgid "Версия"
 msgstr "Version"
 
-#: source/leaderboard.gd content/menu.tscn
+#: source/leaderboard.gd
 msgid "Количество очков"
 msgstr "Scores"
 
-#: source/leaderboard.gd content/menu.tscn
+#: source/leaderboard.gd
 msgid "Игрок"
 msgstr "Player"
 
-#: source/leaderboard.gd content/menu.tscn
+#: source/leaderboard.gd
 msgid "Ранг"
 msgstr "Rank"
 
@@ -311,6 +319,11 @@ msgstr ""
 msgid "Имя игрока"
 msgstr "Player name"
 
-#: source/menu.gd content/menu.tscn
+#: source/menu.gd
 msgid "[center]Вы прокопали на [color=red]%s[/color] очков"
 msgstr "[center]You dug for [color=red]%s[/color] points"
+
+#: content/skills_cards/multiplier.tscn
+#, gp-priority: hidden
+msgid "[center]←"
+msgstr "[center]←"

@@ -94,7 +94,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("CanvasLayer/Button:visible")
+tracks/5/path = NodePath("CanvasLayer/ReturnButton:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -118,10 +118,22 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("CanvasLayer/Button:modulate")
+tracks/7/path = NodePath("CanvasLayer/ReturnButton:modulate")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("CanvasLayer/ShareButton:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -194,7 +206,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("CanvasLayer/Button:visible")
+tracks/5/path = NodePath("CanvasLayer/ReturnButton:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -218,7 +230,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("CanvasLayer/Button:modulate")
+tracks/7/path = NodePath("CanvasLayer/ReturnButton:modulate")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -227,6 +239,18 @@ tracks/7/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("CanvasLayer/ShareButton:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 4, 4.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rmfhq"]
 _data = {
@@ -234,10 +258,11 @@ _data = {
 "ending": SubResource("Animation_oki5w")
 }
 
-[node name="Ending" type="Node2D" node_paths=PackedStringArray("text", "return_to_menu_button", "animation_player")]
+[node name="Ending" type="Node2D" node_paths=PackedStringArray("text", "return_to_menu_button", "share_button", "animation_player")]
 script = ExtResource("1_w14xy")
 text = NodePath("CanvasLayer/Title")
-return_to_menu_button = NodePath("CanvasLayer/Button")
+return_to_menu_button = NodePath("CanvasLayer/ReturnButton")
+share_button = NodePath("CanvasLayer/ShareButton")
 animation_player = NodePath("AnimationPlayer")
 next_scene_file = "res://content/menu.tscn"
 
@@ -285,7 +310,7 @@ text = "[center]Вас съели!
 fit_content = true
 scroll_active = false
 
-[node name="Button" type="Button" parent="CanvasLayer"]
+[node name="ReturnButton" type="Button" parent="CanvasLayer"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -297,9 +322,28 @@ offset_right = 150.0
 offset_bottom = 60.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_neighbor_bottom = NodePath("../ShareButton")
 mouse_default_cursor_shape = 2
 theme = ExtResource("5_6xr4o")
 text = "Вернуться в меню"
+
+[node name="ShareButton" type="Button" parent="CanvasLayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = 66.0
+offset_right = 150.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_top = NodePath("../ReturnButton")
+mouse_default_cursor_shape = 2
+theme = ExtResource("5_6xr4o")
+text = "Поделиться..."
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

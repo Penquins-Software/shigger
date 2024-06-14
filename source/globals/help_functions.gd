@@ -19,3 +19,9 @@ func format_integer(number: int) -> String:
 	for r in result:
 		result_s += r + " "
 	return result_s.substr(0, result_s.length() - 1)
+
+
+func get_parameter(parameter: String) -> String:
+	if not OS.has_feature("web"):
+		return ""
+	return JavaScriptBridge.eval("new URL(window.location.href).searchParams.get('%s')" % parameter)

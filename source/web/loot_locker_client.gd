@@ -2,6 +2,7 @@ extends Node
 
 signal authentication_completed
 signal get_leaderboards_completed
+signal received_player_score(score: int)
 #signal get_leaderboards_old_completed
 signal set_player_name_completed
 signal get_player_name_completed(name: String)
@@ -11,8 +12,8 @@ signal submit_score_completed
 const PATH_TO_DATA_FILE: String = "user://LootLocker.data"
 
 const API_KEY: String = "dev_fb7eb641411a4264ba4d9add7ead7815"
-#const LEADERBOARD_KEY: String = "22174"
-const LEADERBOARD_KEY: String = "22173"
+const LEADERBOARD_KEY: String = "22174"
+#const LEADERBOARD_KEY: String = "22173"
 #const LEADERBOARD_KEY_OLD: String = "22174"
 const GAME_VERSION: String = "0.0.0.1"
 const DEVELOPMENT_MODE: bool = true
@@ -154,6 +155,7 @@ func _on_get_leaderboards(_r: int, _rc: int, _h: PackedStringArray, body: Packed
 		
 		if item_id == player_id:
 			player_score = item_score
+			received_player_score.emit(int(player_score))
 		
 		leaderboard_data.append(LeaderboardData.new(item_rank, item_id, item_name, item_score))
 	

@@ -135,15 +135,12 @@ msgid "Вас спасла рыба ФУГУ!"
 msgstr ""
 
 #: content/ending.tscn
-msgid ""
-"[center]Вас съели!\n"
-"\n"
-"Ваш результат: 232 очков."
+#: content/pause.tscn
+msgid "Вернуться в меню"
 msgstr ""
 
 #: content/ending.tscn
-#: content/pause.tscn
-msgid "Вернуться в меню"
+msgid "Поделиться..."
 msgstr ""
 
 #: content/hud.tscn
@@ -314,11 +311,6 @@ msgid ""
 "Одноразовая."
 msgstr ""
 
-#: content/skills_cards/fugu.tscn
-#: content/skills_cards/multiplier.tscn
-msgid "[center]←"
-msgstr ""
-
 #: content/skills_cards/mega_shovel.tscn
 msgid "[center]Мегалопата"
 msgstr ""
@@ -333,6 +325,10 @@ msgstr ""
 
 #: content/skills_cards/multiplier.tscn
 msgid "[center]Удваивает получаемые очки"
+msgstr ""
+
+#: content/skills_cards/multiplier.tscn
+msgid "[center]←"
 msgstr ""
 
 #: content/skills_cards/sideways_shovel.tscn

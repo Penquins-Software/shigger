@@ -9,6 +9,7 @@ extends AudioStreamPlayer
 @export var audio_back_earth: AudioStream
 @export var audio_sea: AudioStream
 @export var audio_sky: AudioStream
+@export var audio_space: AudioStream
 
 @onready var audio_by_biome: Dictionary = {
 	Biome.Biomes.EARTH : [audio_earth, RhythmMachine.BPM.BPM75],
@@ -20,7 +21,7 @@ extends AudioStreamPlayer
 	Biome.Biomes.BACK_EARTH : [audio_back_earth, RhythmMachine.BPM.BPM75],
 	Biome.Biomes.SEA : [audio_sea, RhythmMachine.BPM.BPM150],
 	Biome.Biomes.SKY : [audio_sky, RhythmMachine.BPM.BPM120],
-	Biome.Biomes.SPACE : [audio_magma, RhythmMachine.BPM.BPM100],
+	Biome.Biomes.SPACE : [audio_space, RhythmMachine.BPM.BPM100],
 }
 
 

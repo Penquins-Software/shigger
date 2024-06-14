@@ -115,14 +115,19 @@ func end_preparation_menu(check_player_hit: bool = true) -> void:
 
 func to_menu() -> void:
 	RhythmMachine.stop()
-	LootLockerClient.submit_score(points)
+	submit_score()
 	get_tree().call_deferred("change_scene_to_file", menu_scene_file)
 
 
 func end_game() -> void:
 	RhythmMachine.stop()
-	LootLockerClient.submit_score(points)
+	submit_score()
 	get_tree().call_deferred("change_scene_to_file", ending_scene_file)
+
+
+func submit_score() -> void:
+	LootLockerClient.submit_score(points)
+	TelegramClient.submit_score(points)
 
 
 func bit() -> void:

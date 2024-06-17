@@ -17,6 +17,7 @@ extends Control
 @export var settings_button: Button
 @export var authors_button: Button
 @export var share_button: Button
+@export var login_button: Button
 @export var exit_button: Button
 
 @export var return_from_leaderboard_button: Button
@@ -62,17 +63,31 @@ func _ready():
 		share_button.show()
 		share_button.pressed.connect(TelegramClient.share_score)
 	
-	LootLockerClient.get_leaderboards_completed.connect(show_score)
+	if OS.has_feature("yandex"):
+		login_button.pressed.connect(YandexClient.open_auth_dialog)
+		_check_authorized(null)
+		YandexClient.check_auth.connect(_check_authorized)
+		YandexClient.authorized.connect(_check_authorized.bind(null))
+		show_score()
+		YandexClient.leaderboard_player_entry_loaded.connect(show_score)
+	else:
+		LootLockerClient.get_leaderboards_completed.connect(show_score)
 	
 	main.show_and_focus()
 	
 	set_nickame_label()
 	
 	Settings.locale_was_changed.connect(show_score)
+	Settings.player_name_was_changed.connect(set_nickame_label)
 	
 	if OS.has_feature("web"):
 		exit_button.hide()
 		nickname_edit.focus_entered.connect(_focus)
+
+
+func _check_authorized(is_authorized) -> void:
+	leaderboard_button.disabled = not YandexClient.is_authorized
+	login_button.visible = not YandexClient.is_authorized
 
 
 func _show_menu_element(menu_element: MenuElement) -> void:
@@ -86,7 +101,7 @@ func _show_main_menu(menu_element: Control) -> void:
 
 
 func _start_game() -> void:
-	if Settings.player_name == "":
+	if not OS.has_feature("yandex") and Settings.player_name == "":
 		nickname.show()
 		return
 	
@@ -112,14 +127,21 @@ func set_nickname() -> void:
 
 
 func set_nickame_label() -> void:
-	player_name.text = "[center][color=red]%s[/color]!" % Settings.player_name
+	if Settings.player_name == "":
+		player_name.text = ""
+	else:
+		player_name.text = "[center][color=red]%s[/color]!" % Settings.player_name
 
 
 func show_score(_response = null) -> void:
-	if LootLockerClient.player_score == "":
-		return
+	var score_value: int = 0
+	if OS.has_feature("yandex"):
+		score_value = YandexClient.max_score
+	else:
+		if LootLockerClient.player_score == "":
+			return
+		score_value = int(LootLockerClient.player_score)
 	
-	var score_value = int(LootLockerClient.player_score)
 	if score_value > 0:
 		score.show()
 		score.text = tr("[center]Вы прокопали на [color=red]%s[/color] очков") % HelpFunctions.format_integer(score_value)

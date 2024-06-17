@@ -21,13 +21,14 @@ var solid_chunk: PackedScene
 var background: PackedScene
 
 static var s_indestructible: PackedScene = ResourceLoader.load("res://content/biomes/chunks/indestructible_chunk.tscn")
-
+static var s_trap: PackedScene = ResourceLoader.load("res://content/traps/trap_cell.tscn")
 
 var width: int = 3
 var base_chunk_possibility: float = 0.5
 var solid_chunk_possibility: float = 0.1
 var item_possibility: float = 0.03
 var pattern_possibility: float = 0.2
+var trap_possibility: float = 0.05
 
 var left_extreme_point: int = 0
 var right_extreme_point: int = 8
@@ -38,6 +39,7 @@ var solid_chunk_positions: PackedVector2Array
 var items_positions: PackedVector2Array
 var used_positions: PackedVector2Array
 var indestructible_positions: PackedVector2Array
+var trap_positions: PackedVector2Array
 
 var _start_point: Vector2
 var _last_point: Vector2
@@ -107,6 +109,11 @@ func create_biome(path: PackedVector2Array, depth: int) -> void:
 					items_positions.append(point)
 			if used_positions.has(point):
 				continue
+			# Размещение ловушки.
+			if not trap_positions.has(point) and randf() < trap_possibility:
+				if not indestructible_positions.has(point):
+					trap_positions.append(point)
+					continue
 			# Генерация блока паттерна.
 			if randf() < pattern_possibility:
 				if create_pattern(point, depth):

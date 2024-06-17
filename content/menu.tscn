@@ -15,7 +15,7 @@
 [ext_resource type="Script" path="res://source/settings/setting_audio_bus.gd" id="10_dvv5c"]
 [ext_resource type="Script" path="res://source/settings/setting_camera_shaking.gd" id="11_w1p6r"]
 [ext_resource type="Script" path="res://source/web_link.gd" id="12_hpssp"]
-[ext_resource type="Script" path="res://source/settings/settins_return_to_menu.gd" id="12_yqn17"]
+[ext_resource type="Script" path="res://source/settings/settings_return_to_menu.gd" id="12_yqn17"]
 [ext_resource type="Script" path="res://source/settings/setting_impact_sound.gd" id="14_25dl7"]
 [ext_resource type="AudioStream" uid="uid://ds4qod44dht6f" path="res://audio/sfx/kick75.mp3" id="15_26a6a"]
 [ext_resource type="Script" path="res://source/settings/setting_additional_visualization.gd" id="15_wpdfa"]
@@ -192,7 +192,7 @@ _data = {
 "RESET": SubResource("Animation_y5e6k")
 }
 
-[node name="Menu" type="Control" node_paths=PackedStringArray("main", "comic", "leaderboard", "settings", "authors", "nickname", "start_button", "comic_button", "leaderboard_button", "settings_button", "authors_button", "share_button", "exit_button", "return_from_leaderboard_button", "return_from_settings_button", "return_from_authors_button", "enter_nickname", "exit_confirmation_dialog", "nickname_edit", "player_name", "score")]
+[node name="Menu" type="Control" node_paths=PackedStringArray("main", "comic", "leaderboard", "settings", "authors", "nickname", "start_button", "comic_button", "leaderboard_button", "settings_button", "authors_button", "share_button", "login_button", "exit_button", "return_from_leaderboard_button", "return_from_settings_button", "return_from_authors_button", "enter_nickname", "exit_confirmation_dialog", "nickname_edit", "player_name", "score")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -212,6 +212,7 @@ leaderboard_button = NodePath("Main/VBoxContainer/LeaderboardButton")
 settings_button = NodePath("Main/VBoxContainer/SettingsButton")
 authors_button = NodePath("Main/VBoxContainer/AuthorsButton")
 share_button = NodePath("Main/VBoxContainer/ShareButton")
+login_button = NodePath("Main/VBoxContainer/LoginButton")
 exit_button = NodePath("Main/VBoxContainer/ExitButton")
 return_from_leaderboard_button = NodePath("Leaderboard/BackButton")
 return_from_settings_button = NodePath("Settings/BackButton")
@@ -330,9 +331,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -532.0
+offset_left = -537.0
 offset_top = 35.0
-offset_right = -316.0
+offset_right = -305.0
 offset_bottom = 199.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -387,6 +388,41 @@ theme = ExtResource("5_qhpuc")
 text = "Поделиться..."
 flat = true
 alignment = 0
+
+[node name="LoginButton" type="Button" parent="Main/VBoxContainer"]
+visible = false
+layout_mode = 2
+focus_neighbor_top = NodePath("../AuthorsButton")
+focus_neighbor_bottom = NodePath("../ExitButton")
+mouse_default_cursor_shape = 2
+theme = ExtResource("5_qhpuc")
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "Авторизоваться"
+flat = true
+alignment = 0
+
+[node name="Description" type="RichTextLabel" parent="Main/VBoxContainer/LoginButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.0
+offset_top = 14.0
+offset_right = 165.0
+offset_bottom = 62.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_qhpuc")
+theme_override_colors/default_color = Color(0.392157, 0.392157, 0.392157, 1)
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "Авторизуйтесь, чтобы получить доступ к таблице лидеров"
+fit_content = true
+scroll_active = false
+meta_underlined = false
+script = ExtResource("12_hpssp")
 
 [node name="ExitButton" type="Button" parent="Main/VBoxContainer"]
 layout_mode = 2
@@ -535,11 +571,11 @@ theme = ExtResource("5_qhpuc")
 theme_override_colors/default_color = Color(0.393086, 0.393086, 0.393085, 1)
 theme_override_font_sizes/normal_font_size = 12
 bbcode_enabled = true
-text = "Версия 1.0.18"
+text = "Версия 1.1.0"
 fit_content = true
 scroll_active = false
 script = ExtResource("7_cgacl")
-_version = "1.0.18"
+_version = "1.1.0"
 
 [node name="Comic" parent="." node_paths=PackedStringArray("_left_button", "_right_button", "exit_button", "_pages", "focus_element") instance=ExtResource("7_qt4s1")]
 visible = false

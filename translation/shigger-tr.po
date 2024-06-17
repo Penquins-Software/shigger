@@ -1,83 +1,83 @@
-# Translation of Shigger in English
+# Translation of Shigger in Turkish
 # This file is distributed under the same license as the Shigger package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-06-17 00:58:29+0000\n"
+"PO-Revision-Date: 2024-06-17 00:58:16+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: GlotPress/4.0.1\n"
-"Language: en\n"
+"Language: tr\n"
 "Project-Id-Version: Shigger\n"
 
 #: content/menu.tscn
 msgid "Авторизуйтесь, чтобы получить доступ к таблице лидеров"
-msgstr "Login to access the leaderboard"
+msgstr "Skor tablosuna erişmek için giriş yapın"
 
 #: source/web/yandex_client.gd
 msgid "Безымянный"
-msgstr "Unnamed"
+msgstr "İsimsiz"
 
 #: content/menu.tscn
 msgid "Авторизоваться"
-msgstr "Login"
+msgstr "Giriş yapmak"
 
 #: content/ending.tscn content/menu.tscn
 msgid "Поделиться..."
-msgstr "Share..."
+msgstr "Paylaşmak..."
 
 #: content/menu.tscn
 msgid "Дополнительная визуализация"
-msgstr "Additional visualization"
+msgstr "Ek görselleştirme"
 
 #: content/menu.tscn
 msgid "Звук попадания в ритм"
-msgstr "Action sound"
+msgstr "Vuruş sesi"
 
 #: content/skills_cards/wide_shovel_plus.tscn
 msgid "[center]Лопата подбирает предметы."
-msgstr "[center]Shovel picks up items."
+msgstr "[center]Kürek nesneleri alır."
 
 #: content/skills_cards/wide_shovel_plus.tscn
 msgid "[center]Широкая лопата+"
-msgstr "[center]Wide shovel+"
+msgstr "[center]Geniş Kürek+"
 
 #: content/skills_cards/sideways_shovel_plus.tscn
 msgid "[center]Лопата позволяет копать вбок, даже если под вами нет блоков."
-msgstr "[center]Allows to dig sideways even if there's no block below."
+msgstr "[center]Kürek, altınızda blok olmasa bile yana doğru kazmanızı sağlar."
 
 #: content/skills_cards/sideways_shovel_plus.tscn
 msgid "[center]Боковая лопата+"
-msgstr "[center]Side shovel+"
+msgstr "[center]Yan kürek+"
 
 #: content/skills_cards/mega_shovel_plus.tscn
 msgid "[center]Лопата наносит тройной удар!"
-msgstr "[center]Shovel strikes thrice as hard!"
+msgstr "[center]Kürek üç kez vuruyor!"
 
 #: content/skills_cards/mega_shovel_plus.tscn
 msgid "[center]Мегалопата +"
-msgstr "[center]Megashovel+"
+msgstr "[center]Mega Kürek+"
 
 #: content/skills_cards/drill_plus.tscn
 msgid "[center]Лопата прокапывает ТРИ блока вниз."
-msgstr "[center]Shovel digs THREE blocks down."
+msgstr "[center]Kürek ÜÇ blok aşağıyı kazıyor."
 
 #: content/skills_cards/drill_plus.tscn
 msgid "[center]Бур+"
-msgstr "[center]Drill+"
+msgstr "[center]Frez+"
 
 #: source/biome/chunk/chunk.gd
 msgid "Нет урона..."
-msgstr "No damage..."
+msgstr "Hasar yok..."
 
 #: content/menu.tscn
 msgid "Начать!"
-msgstr "Start!"
+msgstr "Başlamak!"
 
 #: source/player/player.gd
 msgid "Вас спасла рыба ФУГУ!"
-msgstr "Fugu saved you!"
+msgstr "Fugu balığı seni kurtardı!"
 
 #: content/menu.tscn
 msgid "[center]ЛОП[color=red]А[/color]ТЕЛЬ"
@@ -87,23 +87,23 @@ msgstr "[center]SH[color=red]I[/color]GGER"
 msgid ""
 "[center]Лопата прокапывает внизу строчку из трёх блоков\n"
 "(Хорошо для кантиков)"
-msgstr "[center]Shovel digs a line of three blocks below."
+msgstr "[center]Bir kürek aşağıda üç blokluk bir çizgi kazıyor"
 
 #: content/skills_cards/wide_shovel.tscn
 msgid "[center]Широкая лопата"
-msgstr "[center]Wide shovel"
+msgstr "[center]Geniş kürek"
 
 #: content/skills_cards/sideways_shovel.tscn
 msgid "[center]Лопата одновременно копает в трёх направлениях"
-msgstr "[center]Shovel digs in three directions."
+msgstr "[center]Kürek aynı anda üç yönde kazıyor"
 
 #: content/skills_cards/sideways_shovel.tscn
 msgid "[center]Боковая лопата"
-msgstr "[center]Side shovel"
+msgstr "[center]Yan kürek"
 
 #: content/skills_cards/multiplier.tscn
 msgid "[center]Удваивает получаемые очки"
-msgstr "[center]Doubles the points you gain."
+msgstr "[center]Çiftlerde alınan puanlar"
 
 #: content/skills_cards/multiplier.tscn
 msgid "[center]X2"
@@ -111,51 +111,51 @@ msgstr "[center]X2"
 
 #: content/skills_cards/mega_shovel.tscn
 msgid "[center]Лопата наносит двойной удар"
-msgstr "[center]Shovel strikes twice as hard."
+msgstr "[center]Kürek iki kere vuruyor"
 
 #: content/skills_cards/mega_shovel.tscn
 msgid "[center]Мегалопата"
-msgstr "[center]Megashovel"
+msgstr "[center]Mega kürek"
 
 #: content/skills_cards/fugu.tscn
 msgid ""
 "[center]Парализует котомедузу, когда она вас настигает.\n"
 "Одноразовая."
 msgstr ""
-"[center]Paralyzes the Jellyfish Cat when it reaches you.\n"
-"Single-use item."
+"[center]Size yetiştiğinde kedi denizanasını felç eder.↵\n"
+"Tek kullanımlık."
 
 #: content/skills_cards/fugu.tscn
 msgid "[center]Рыба Фугу"
-msgstr "[center]Fugu"
+msgstr "[center]Fugu balığı"
 
 #: content/skills_cards/flashlight.tscn
 msgid "[center]Увеличивает радиус обзора и подсвечивает предметы."
-msgstr "[center]Increases view range and highlights items."
+msgstr "[center]Görüntüleme yarıçapını artırır ve nesneleri vurgular."
 
 #: content/skills_cards/flashlight.tscn
 msgid "[center]Фонарик"
-msgstr "[center]Flashlight"
+msgstr "[center]El feneri"
 
 #: content/skills_cards/drill.tscn
 msgid "[center]Лопата прокапывает два блока вниз."
-msgstr "[center]Shovel digs two blocks down."
+msgstr "[center]Kürek iki blok aşağıyı kazıyor."
 
 #: content/skills_cards/drill.tscn
 msgid "[center]Бур"
-msgstr "[center]Drill"
+msgstr "[center]Boer"
 
 #: content/pause.tscn
 msgid "Продолжить"
-msgstr "Continue"
+msgstr "Devam etmek"
 
 #: content/menu.tscn
 msgid "Вы уверены?"
-msgstr "Are you sure?"
+msgstr "Emin misin?"
 
 #: content/menu.tscn
 msgid "Подтвердите действие"
-msgstr "Confirm action"
+msgstr "Eylemi onaylayın"
 
 #: content/menu.tscn
 msgid ""
@@ -177,139 +177,139 @@ msgstr ""
 
 #: content/menu.tscn
 msgid "[center]Авторы"
-msgstr "[center]Authors"
+msgstr "[center]Yazarlar"
 
 #: content/menu.tscn
 msgid "Тряска камеры"
-msgstr "Screen shake"
+msgstr "Kamera titriyor"
 
 #: content/menu.tscn
 msgid "Громкость музыки"
-msgstr "Music volume"
+msgstr "Müzik sesi"
 
 #: content/menu.tscn
 msgid "Громкость эффектов"
-msgstr "SFX volume"
+msgstr "Efekt Hacmi"
 
 #: content/menu.tscn content/pause.tscn
 msgid "Общая громкость"
-msgstr "General volume"
+msgstr "Genel hacim"
 
 #: content/menu.tscn
 msgid "Режим экрана"
-msgstr "Screen mode"
+msgstr "Ekran modu"
 
 #: content/menu.tscn
 msgid "Язык"
-msgstr "Language"
+msgstr "Dil"
 
 #: content/menu.tscn
 msgid "Введите имя..."
-msgstr "Enter name..."
+msgstr "Adınızı giriniz..."
 
 #: content/menu.tscn
 msgid "[center]Настройки"
-msgstr "[center]Settings"
+msgstr "[center]Ayarlar"
 
 #: content/menu.tscn
 msgid "Вернуться"
-msgstr "Return"
+msgstr "Geri dönmek"
 
 #: content/menu.tscn
 msgid "[center]Получение данных..."
-msgstr "[center]Retrieving data..."
+msgstr "[center]Veri alıyor..."
 
 #: content/menu.tscn
 msgid "[center]Таблица лидеров"
-msgstr "[center]Leaderboard"
+msgstr "[center]Liderler Sıralaması"
 
 #: content/menu.tscn
 msgid "Выход"
-msgstr "Exit"
+msgstr "çıkış"
 
 #: content/menu.tscn
 msgid "Авторы"
-msgstr "Authors"
+msgstr "Yazarlar"
 
 #: content/menu.tscn
 msgid "Настройки"
-msgstr "Settings"
+msgstr "Ayarlar"
 
 #: content/menu.tscn
 msgid "Лидеры"
-msgstr "Leaders"
+msgstr "Liderler"
 
 #: content/menu.tscn
 msgid "Комикс"
-msgstr "Comic strip"
+msgstr "komik"
 
 #: content/menu.tscn
 msgid "ИГРАТЬ"
-msgstr "PLAY"
+msgstr "OYNAMAK"
 
 #: content/menu.tscn
 msgid "КОПАТЬ"
-msgstr "DIG"
+msgstr "KAZMA"
 
 #: content/hud.tscn
 msgid "Пауза"
-msgstr "Pause"
+msgstr "Duraklat"
 
 #: content/hud.tscn
 msgid "[center]Выберите улучшение!"
-msgstr "[center]Choose an upgrade!"
+msgstr "[center]Bir yükseltme seçin!"
 
 #: content/ending.tscn content/pause.tscn
 msgid "Вернуться в меню"
-msgstr "Return to menu"
+msgstr "Menüye dön"
 
 #: source/items/list/item_treasure.gd
 msgid "Сокровище!"
-msgstr "Treasure!"
+msgstr "Hazine!"
 
 #: source/items/list/item_stop.gd
 msgid "Монстр замедлен!"
-msgstr "The monster is slowed down!"
+msgstr "Canavar yavaşladı!"
 
 #: source/items/list/item_random_rotation.gd
 msgid "Круговорот!"
-msgstr "Rotation!"
+msgstr "Döngü!"
 
 #: source/items/list/item_dynamite.gd
 msgid "ВЗРЫВ!"
-msgstr "EXPLOSION!"
+msgstr "PATLAMA!"
 
 #: source/version.gd
 msgid "Версия"
-msgstr "Version"
+msgstr "Sürüm"
 
 #: source/leaderboard.gd
 msgid "Количество очков"
-msgstr "Scores"
+msgstr "Puan sayısı"
 
 #: source/leaderboard.gd
 msgid "Игрок"
-msgstr "Player"
+msgstr "oyuncu"
 
 #: source/leaderboard.gd
 msgid "Ранг"
-msgstr "Rank"
+msgstr "Rütbe"
 
 #: source/hud.gd
 msgid "Очков"
-msgstr "Score"
+msgstr "Gözlük"
 
 #: source/ending.gd
 msgid "Вас съели!"
-msgstr "You got eaten!"
+msgstr "Yemişsin!"
 
 #: source/game.gd source/ending.gd
 msgid "Ваш результат: %s очков."
-msgstr "Your result: %s points."
+msgstr "Sonucunuz: %s puan."
 
 #: content/tutorial.tscn
 msgid "Я всё понял!"
-msgstr "Got it!"
+msgstr "Anladım!"
 
 #: content/tutorial.tscn
 msgid ""
@@ -320,20 +320,20 @@ msgid ""
 "\n"
 "[color=red]Не забывай попадать в ритм, чтобы произвести действие!"
 msgstr ""
-"[center]​Press [A] and [D] OR [←​] and [→​] to move left and right.\n"
-"\n"
-"Press [S] OR [↓]\n"
-"to dig the block below or move down.\n"
-"\n"
-"[color=red]Don't forget to keep up with the beat!"
+"[center]​Sola ve sağa hareket etmek için A ve D tuşlarına VEYA ←​ ve →​ ok tuşlarına basın.↵\n"
+"↵\n"
+"S tuşuna VEYA ↓,↵ okuna basın\n"
+"karakterin altındaki bir bloğu kazmak veya aşağı doğru ilerlemek için.↵\n"
+"↵\n"
+"[color=red]Harekete geçmek için ritmi yakalamayı unutmayın!"
 
 #: content/menu.tscn
 msgid "Имя игрока"
-msgstr "Player name"
+msgstr "Oyuncu ismi"
 
 #: source/menu.gd
 msgid "[center]Вы прокопали на [color=red]%s[/color] очков"
-msgstr "[center]You dug for [color=red]%s[/color] points"
+msgstr "[center][color=red]%s[/color] puan için kazdınız"
 
 #: content/skills_cards/multiplier.tscn
 #, gp-priority: hidden

@@ -5,13 +5,21 @@ var _data: Array[LeaderboardData]
 
 
 func _ready():
-	LootLockerClient.get_leaderboards_completed.connect(set_leaderboards)
-	LootLockerClient.get_leaderboards()
+	if OS.has_feature("yandex"):
+		YandexClient.leaderboard_entries_loaded.connect(set_leaderboards)
+		YandexClient.leaderboard_score_saved.connect(YandexClient.load_leaderboard_entries.bind(YandexClient.LEADERBOARD_NAME, true, 10, 20))
+		YandexClient.load_leaderboard_entries(YandexClient.LEADERBOARD_NAME, true, 10, 20)
+	else:
+		LootLockerClient.get_leaderboards_completed.connect(set_leaderboards)
+		LootLockerClient.get_leaderboards()
 	Settings.locale_was_changed.connect(show_table)
 
 
 func _exit_tree():
-	LootLockerClient.get_leaderboards_completed.disconnect(set_leaderboards)
+	if OS.has_feature("yandex"):
+		YandexClient.leaderboard_entries_loaded.disconnect(set_leaderboards)
+	else:
+		LootLockerClient.get_leaderboards_completed.disconnect(set_leaderboards)
 	Settings.locale_was_changed.disconnect(show_table)
 
 

@@ -10,6 +10,9 @@ var public_key: CryptoKey
 
 
 func _ready():
+	if OS.has_feature("yandex"):
+		return
+		
 	user_id = HelpFunctions.get_parameter("user_id")
 	inline_message_id = HelpFunctions.get_parameter("inline")
 	

@@ -35,6 +35,9 @@ var leaderboards_queue: bool = false
 
 
 func _ready():
+	if OS.has_feature("yandex"):
+		return
+	
 	authentication()
 
 

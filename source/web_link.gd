@@ -2,7 +2,8 @@ extends RichTextLabel
 
 
 func _ready():
-	meta_clicked.connect(open_url)
+	if not OS.has_feature("yandex"):
+		meta_clicked.connect(open_url)
 
 
 func open_url(meta: Variant) -> void:

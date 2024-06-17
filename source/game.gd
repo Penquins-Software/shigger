@@ -58,6 +58,9 @@ func _ready():
 	RhythmMachine.bit_1_1.connect(bit)
 	RhythmMachine.miss.connect(miss)
 	set_level(Biome.Biomes.EARTH)
+	
+	if OS.has_feature("web"):
+		WebHandler.blur.connect(pause_game)
 
 
 func pause_game() -> void:
@@ -126,8 +129,11 @@ func end_game() -> void:
 
 
 func submit_score() -> void:
-	LootLockerClient.submit_score(points)
-	TelegramClient.submit_score(points)
+	if OS.has_feature("yandex"):
+		YandexClient.save_leaderboard_score(YandexClient.LEADERBOARD_NAME, points)
+	else:
+		LootLockerClient.submit_score(points)
+		TelegramClient.submit_score(points)
 
 
 func bit() -> void:

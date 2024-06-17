@@ -4,6 +4,7 @@ extends Node2D
 @export var return_to_menu_button: Button
 @export var share_button: Button
 @export var animation_player: AnimationPlayer
+@export var audio_player: AudioStreamPlayer
 
 @export_file("*.tscn") var next_scene_file
 
@@ -24,4 +25,8 @@ func _input(event):
 
 
 func load_next_scene() -> void:
+	audio_player.stop()
+	if OS.has_feature("yandex"):
+		YandexClient.show_ad()
+		await YandexClient.ad
 	get_tree().change_scene_to_file(next_scene_file)

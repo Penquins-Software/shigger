@@ -19,6 +19,9 @@ func _ready():
 	menu_button.text = TranslationServer.get_locale_name(Settings.locale)
 	
 	menu_button.get_popup().index_pressed.connect(_set_language)
+	
+	if OS.has_feature("yandex"):
+		hide()
 
 
 func _set_language(id: int):

@@ -1,27 +1,50 @@
-[gd_scene load_steps=3 format=3 uid="uid://byqj07g2d6sg7"]
+[gd_scene load_steps=10 format=3 uid="uid://byqj07g2d6sg7"]
+
+[ext_resource type="Texture2D" uid="uid://qd8pj5u3cpmb" path="res://graphics/traps/3.png" id="1_4wd7n"]
+[ext_resource type="Texture2D" uid="uid://bh14qsbf44ivr" path="res://graphics/traps/2.png" id="2_cck7o"]
+[ext_resource type="Texture2D" uid="uid://sf0sfpmp6i4j" path="res://graphics/traps/1.png" id="3_msy68"]
+[ext_resource type="Script" path="res://source/traps/trap_cell.gd" id="4_obs3p"]
+[ext_resource type="AudioStream" uid="uid://cl007rkqlo1tt" path="res://audio/sfx/break2.mp3" id="5_3gs2b"]
+[ext_resource type="AudioStream" uid="uid://bt6up776g7318" path="res://audio/sfx/hit1.mp3" id="6_8pwxm"]
+[ext_resource type="AudioStream" uid="uid://dfe75lg6asivb" path="res://audio/sfx/hit2.mp3" id="7_4nq3c"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bcnm8"]
 animations = [{
-"frames": [],
-"loop": true,
-"name": &"off",
-"speed": 5.0
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_cck7o")
 }, {
-"frames": [],
-"loop": true,
+"duration": 1.0,
+"texture": ExtResource("1_4wd7n")
+}],
+"loop": false,
+"name": &"off",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_cck7o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_msy68")
+}],
+"loop": false,
 "name": &"on",
-"speed": 5.0
+"speed": 2.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xvk7p"]
 size = Vector2(32, 32)
 
-[node name="TrapCell" type="AnimatedSprite2D"]
+[node name="TrapCell" type="AnimatedSprite2D" node_paths=PackedStringArray("_area")]
 sprite_frames = SubResource("SpriteFrames_bcnm8")
 animation = &"off"
+script = ExtResource("4_obs3p")
+destroy_sound = ExtResource("5_3gs2b")
+dig_sounds = Array[AudioStream]([ExtResource("6_8pwxm"), ExtResource("7_4nq3c")])
+_area = NodePath("Area2D")
 
 [node name="Area2D" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_xvk7p")

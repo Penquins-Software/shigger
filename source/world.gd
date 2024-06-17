@@ -102,6 +102,11 @@ func create_biome(biome: Biome) -> void:
 		items[item_position] = item
 		add_child(item)
 		item.place(item_position, player, monster, self)
+	for trap_position in biome.trap_positions:
+		var trap = biome.s_trap.instantiate() as Trap
+		traps[trap_position] = trap
+		add_child(trap)
+		trap.place(trap_position, player, self)
 	var background = biome.get_background()
 	background.place(Vector2(Constants.MIDDLE_POINT, biome._start_point.y), player)
 	add_child(background)
@@ -141,6 +146,17 @@ func destroy_item_by_position(world_position: Vector2) -> void:
 	item.explode()
 
 
+func destroy_trap_in_position(world_position: Vector2) -> void:
+	if not traps.has(world_position):
+		return
+	if not is_instance_valid(traps[world_position]):
+		return
+	var trap = traps[world_position] as Trap
+	traps.erase(world_position)
+	trap.explode()
+
+
 func destroy_all_in_position(world_position: Vector2, explode: bool) -> int:
 	destroy_item_by_position(world_position)
+	destroy_trap_in_position(world_position)
 	return destroy_chunk_by_position(world_position, explode)

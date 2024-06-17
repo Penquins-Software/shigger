@@ -107,21 +107,34 @@ func try_move_in_world(direction: Vector2) -> void:
 	var new_position = _world_position + direction
 	if not _world.backs.has(new_position):
 		return
-	if _world.traps.has(new_position):
-		var trap = _world.traps[new_position] as Trap
-		if not trap.move_to():
-			return
-			
-	if _world.chunks.has(new_position) and is_instance_valid(_world.chunks[new_position]):
-	#if _world.chunks.has(new_position) and not _world.chunks[new_position] == null:
+	
+	var is_active_trap: bool = false
+	if _world.traps.has(new_position) and is_instance_valid(_world.traps[new_position]):
+		is_active_trap = (_world.traps[new_position] as Trap).active
+	
+	if (_world.chunks.has(new_position) and is_instance_valid(_world.chunks[new_position])) or is_active_trap:
 		# На пути есть блок. Можно попробовать забраться на него.
 		var upper_player_position = _world_position + Vector2.UP
 		var upper_chunk_position = new_position + Vector2.UP
 		if _world.chunks.has(upper_player_position) or _world.chunks.has(upper_chunk_position):
 			return
+		if _world.traps.has(upper_player_position) and is_instance_valid(_world.traps[upper_player_position]):
+			if (_world.traps[upper_player_position] as Trap).active:
+				return
+		if _world.traps.has(upper_chunk_position) and is_instance_valid(_world.traps[upper_chunk_position]):
+			if (_world.traps[upper_chunk_position] as Trap).active:
+				return
 		if not _world.backs.has(upper_chunk_position):
 			return
 		new_position = upper_chunk_position
+	
+	if _world.traps.has(new_position) and is_instance_valid(_world.traps[new_position]):
+		play_dig_animation()
+		series_of_hits += 1
+		var trap = _world.traps[new_position] as Trap
+		if not trap.move_to():
+			return
+	
 	place(new_position)
 
 
@@ -130,6 +143,12 @@ func dig(new_position: Vector2, apply_modificators: bool = true) -> void:
 		play_dig_animation()
 		series_of_hits += 1
 		hit_chunk(new_position, apply_modificators)
+	elif _world.traps.has(new_position) and is_instance_valid(_world.traps[new_position]):
+		play_dig_animation()
+		series_of_hits += 1
+		var trap = _world.traps[new_position] as Trap
+		if trap.move_to():
+			place(new_position)
 	else:
 		place(new_position)
 

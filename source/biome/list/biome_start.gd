@@ -19,6 +19,7 @@ func _init():
 	solid_chunk_possibility = 0.05
 	item_possibility = 0.025
 	pattern_possibility = 0.1
+	trap_possibility = 0
 	
 	left_extreme_point = 3
 	right_extreme_point = 5

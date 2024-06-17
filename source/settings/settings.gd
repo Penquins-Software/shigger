@@ -1,6 +1,7 @@
 extends Node
 
 signal locale_was_changed
+signal player_name_was_changed
 
 const PATH_TO_CONFIG = "user://config.ini"
 
@@ -37,6 +38,7 @@ var is_telegram: bool = false
 
 func _set_player_name(new_name: String) -> void:
 	player_name = new_name
+	player_name_was_changed.emit()
 	print("Player name: %s" % player_name);
 
 func _set_locale(new_locale: String) -> void:
@@ -149,6 +151,10 @@ func load_config() -> void:
 				player_name = user_name
 			else:
 				player_name = first_name
+	
+	var lang = HelpFunctions.get_parameter("lang")
+	if not lang == "":
+		TranslationServer.set_locale(lang)
 
 
 func set_audio_volume(bus: AudioBus, value: int) -> void:

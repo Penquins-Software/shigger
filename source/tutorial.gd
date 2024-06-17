@@ -11,4 +11,5 @@ func _ready():
 
 func confirm() -> void:
 	Settings.tutorial = true
+	Settings.save_config()
 	get_tree().change_scene_to_file(next_scene_file)

@@ -13,6 +13,9 @@ func _ready():
 		if OS.has_feature("web_android") or OS.has_feature("web_ios"):
 			LootLockerClient.set_player_name(Settings.player_name)
 			(get_parent() as Control).hide()
+	
+	if OS.has_feature("yandex"):
+		(get_parent() as Control).hide()
 
 
 func _set_player_name() -> void:

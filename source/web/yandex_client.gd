@@ -59,6 +59,7 @@ func _ready() -> void:
 	
 	init_game()
 	load_leaderboard_player_entry(LEADERBOARD_NAME)
+	load_data(["score"])
 
 
 func open_auth_dialog():
@@ -138,13 +139,17 @@ func save_stats(stats: Dictionary):
 		saves[i] = stats[i]
 	window.SaveStats(saves)
 
+
 func save_leaderboard_score(leaderboard_name, score, extra_data=""):
-	if not is_leaderboard_initialized:
-		await leaderboard_initialized
-	
 	if int(score) > max_score:
 		max_score = int(score)
+	
+	if YandexClient.is_authorized:
+		if not is_leaderboard_initialized:
+			await leaderboard_initialized
 		window.SaveLeaderboardScore(leaderboard_name, score, extra_data, callback_score_saved)
+	else:
+		save_data({ "score" : str(max_score) })
 
 
 func load_data(keys: Array):
@@ -194,9 +199,10 @@ func _data_loaded(args):
 		var values = JavaScriptBridge.get_interface("Object").values(args[1])
 		for i in range(keys.length):
 			result[keys[i]] = values[i]
-		#if result.has("score"):
-			#GameController.best_score = int(result["score"])
-			#GameController.anonim_best_score = int(result["score"])
+		if result.has("score"):
+			var score = int(result["score"])
+			if score > max_score:
+				max_score = score
 		data_loaded.emit(result)
 		
 
@@ -217,7 +223,9 @@ func _leaderboard_player_entry_loaded(args):
 		var values = JavaScriptBridge.get_interface("Object").values(args[1])
 		for i in range(keys.length):
 			result[keys[i]] = values[i]
-		max_score = int(result["formattedScore"])
+		var score = int(result["formattedScore"])
+		if score > max_score:
+			max_score = score
 		leaderboard_player_entry_loaded.emit(result)
 
 

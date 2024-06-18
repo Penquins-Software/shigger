@@ -70,6 +70,7 @@ func _ready():
 		YandexClient.authorized.connect(_check_authorized.bind(null))
 		show_score()
 		YandexClient.leaderboard_player_entry_loaded.connect(show_score)
+		YandexClient.data_loaded.connect(show_score)
 	else:
 		LootLockerClient.get_leaderboards_completed.connect(show_score)
 	
